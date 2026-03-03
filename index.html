@@ -379,7 +379,7 @@
 
     .how-grid {
       max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch;
     }
 
     .how-left .section-label { text-align: left; }
@@ -412,21 +412,24 @@
     .priv-card {
       background: white; border-radius: var(--radius-xl);
       border: 1.5px solid var(--p-200);
-      padding: 32px 28px;
+      padding: 40px 36px;
       box-shadow: var(--shadow-sm);
+      height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
     }
 
-    .priv-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .priv-top { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
     .priv-ico {
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 52px; height: 52px; border-radius: 50%;
       background: var(--y-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .priv-title { font-size: 17px; font-weight: 700; color: var(--ink); }
-    .priv-text  { font-size: 13px; color: var(--ink-60); line-height: 1.7; }
-    .priv-tags  { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .priv-title { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
+    .priv-text  { font-size: 15px; color: var(--ink-60); line-height: 1.75; margin-bottom: 4px; }
+    .priv-tags  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 22px; }
     .priv-tag {
-      padding: 4px 12px; background: var(--p-100); border-radius: var(--radius-pill);
-      border: 1px solid var(--p-200); font-size: 11px; font-weight: 600; color: var(--p-text);
+      padding: 8px 14px; background: var(--p-100); border-radius: var(--radius-md);
+      border: 1px solid var(--p-200); font-size: 12px; font-weight: 600; color: var(--p-text);
+      text-align: center;
     }
 
     /* ══════════════════════════════════════
@@ -489,15 +492,15 @@
     }
     .backed-row {
       display: flex; flex-wrap: wrap; justify-content: center;
-      align-items: center; gap: 36px 48px;
+      align-items: center; gap: 40px 60px;
     }
     .backed-logo {
       display: flex; align-items: center; justify-content: center;
       transition: opacity 0.16s;
     }
-    .backed-logo:hover { opacity: 0.75; }
+    .backed-logo:hover { opacity: 0.72; }
     .backed-logo img {
-      height: 54px; width: auto; object-fit: contain; display: block;
+      height: 90px; width: auto; object-fit: contain; display: block;
     }
 
     /* ══════════════════════════════════════
@@ -630,7 +633,7 @@
     <div class="nav-inner">
       <a href="#top" class="logo">
         <img src="Flex Logo.png" alt="Kidooo AI" class="logo-img" />
-      </a>
+      </a><img src="image.png" alt="Kidooo AI" class="logo-img" />
       <div class="nav-links">
         <a href="#top">Home</a>
         <a href="https://family.kidooo.ai" target="_blank" rel="noopener">User Tutorial</a>
@@ -648,25 +651,14 @@
     <div class="hero-inner">
 
       <div class="hero-left">
-        <div class="hero-kicker">
-          <div class="kicker-dot">✦</div>
-          AI Agent for Autism
-        </div>
         <h1 class="hero-h1">
-          AI Agent for Autism<br/>
-          <span class="hi">Families</span> and Clinics
+          AI Agent for Autism<br/><span class="hi">Families</span> and Clinics
         </h1>
         <p class="hero-p">
-          Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos
-          into clinician-ready documentation for therapists and actionable guidance for families.
+          Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos into clinician-ready documentation for therapists and actionable guidance for families.
         </p>
-        <div class="hero-chips">
-          <div class="hero-chip"><span class="chip-pip"></span>Built with autistic families</div>
-          <div class="hero-chip"><span class="chip-pip"></span>Supports clinic &amp; home</div>
-        </div>
         <div class="hero-cta">
-          <a href="https://family.kidooo.ai" class="btn-hero">Try Kidooo AI</a>
-          <a href="https://family.kidooo.ai" class="btn-ghost">User Tutorial</a>
+          <a href="https://family.kidooo.ai" class="btn-hero">Try Kidooo Family</a>
           <a href="mailto:hello@kidooo.ai" class="btn-ghost">Contact Us</a>
         </div>
       </div>
@@ -739,7 +731,6 @@
 
   <!-- FEATURES -->
   <section id="features" class="features">
-    <div class="section-label">Kidooo AI</div>
     <h2 class="section-h2">Three steps to <span class="hi">clarity</span></h2>
     <p class="section-p">No jargon. No clinic waiting rooms. Just real guidance from real moments at home.</p>
 
@@ -889,7 +880,7 @@
           <img src="historical-marks-new-logo-sq-03_img-web-1-1-150x150.png" alt="Santa Clara University" />
         </div>
         <div class="backed-logo">
-          <img src="Bronco-Ventures-Accelerator_Logo-black-900-900x140-1.png" alt="Bronco Ventures Accelerator" style="height:36px;" />
+          <img src="Bronco-Ventures-Accelerator_Logo-black-900-900x140-1.png" alt="Bronco Ventures Accelerator" style="height:50px;" />
         </div>
         <div class="backed-logo">
           <img src="image-9.png" alt="The University of North Carolina at Chapel Hill" />
@@ -901,12 +892,8 @@
   <!-- CTA -->
   <section class="cta">
     <div class="cta-inner">
-      <div class="cta-badge">
-        <div class="cta-badge-dot">✦</div>
-        Free to try
-      </div>
       <h2 class="cta-h2">Get your first summary <span class="hi">in minutes.</span></h2>
-      <p class="cta-p">Start with one short clip from home. No appointments. No waiting. Just understanding.</p>
+      <p class="cta-p">Start with one short clip from home — no appointments, no waiting.</p>
       <div class="cta-btns">
         <a href="https://family.kidooo.ai" class="btn-cta">Try free → family.kidooo.ai</a>
         <a href="mailto:hello@kidooo.ai" class="btn-cta-out">Questions? Talk to us</a>
@@ -920,26 +907,20 @@
     <div class="footer-inner">
       <div class="footer-social">
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/company/kidooo-ai" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/company/kidoooai/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" fill="#0A66C2">
             <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/>
           </svg>
         </a>
-        <!-- 小红书 -->
-        <a href="https://www.xiaohongshu.com" target="_blank" rel="noopener" class="social-btn" aria-label="小红书">
+        <!-- 小红书 / RedNote -->
+        <a href="https://www.xiaohongshu.com/user/profile/6153d39400000000020196eb" target="_blank" rel="noopener" class="social-btn" aria-label="小红书">
           <svg viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="6" fill="#FF2442"/>
-            <text x="5" y="17" font-size="11" font-weight="800" fill="white" font-family="Arial">小红书</text>
-          </svg>
-        </a>
-        <!-- WeChat -->
-        <a href="#" class="social-btn" aria-label="WeChat">
-          <svg viewBox="0 0 24 24" fill="#07C160">
-            <path d="M8.7 10.3a.9.9 0 100-1.8.9.9 0 000 1.8zm4.6 0a.9.9 0 100-1.8.9.9 0 000 1.8zM24 15.4c0-3.1-3.2-5.6-7.1-5.6-4 0-7.1 2.5-7.1 5.6s3.2 5.6 7.1 5.6c.8 0 1.6-.1 2.3-.3l2.4 1.2-.6-2c1.8-1 3-2.6 3-4.5zm-10-1.2a.75.75 0 110-1.5.75.75 0 010 1.5zm5.6 0a.75.75 0 110-1.5.75.75 0 010 1.5zM11 4C6.3 4 2.5 7 2.5 10.8c0 2.3 1.4 4.3 3.6 5.5l-.8 2.5 3-1.5c.9.2 1.8.4 2.7.4h.5A6.3 6.3 0 019.8 15c0-3.8 3.4-6.9 7.6-6.9h.5C16.7 5.8 14.1 4 11 4z"/>
+            <text x="3.5" y="16" font-size="9" font-weight="800" fill="white" font-family="Arial">小红书</text>
           </svg>
         </a>
         <!-- Facebook -->
-        <a href="https://www.facebook.com/kidoooai" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+        <a href="https://www.facebook.com/hao.xue.kidoooai/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
           <svg viewBox="0 0 24 24" fill="#1877F2">
             <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/>
           </svg>
