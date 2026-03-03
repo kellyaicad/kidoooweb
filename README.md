@@ -2,7 +2,8 @@
 
 The marketing website for **Kidooo AI**, an AI copilot for autism clinics and families.
 
-Live site: [kellyaicad.github.io/kidoooweb](https://kellyaicad.github.io/kidoooweb)
+Live site (temp): [idyllic-praline-bc9d8c.netlify.app](https://idyllic-praline-bc9d8c.netlify.app)
+GitHub Pages: [kellyaicad.github.io/kidoooweb](https://kellyaicad.github.io/kidoooweb)
 Product app: [family.kidooo.ai](https://family.kidooo.ai)
 
 ---
