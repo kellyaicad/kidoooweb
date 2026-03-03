@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kidooo AI – AI Copilot for Autism Families</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── Yellow — clear, sunlit, no orange ── */
+      --y-400:   #FFD426;   /* main bright yellow   */
+      --y-300:   #FFE566;   /* lighter, airier       */
+      --y-200:   #FFF3A3;   /* soft petal            */
+      --y-100:   #FFFBE6;   /* almost-white wash     */
+      --y-dark:  #C8A000;   /* text on yellow        */
+
+      /* ── Purple — light, muted ── */
+      --p-500:   #8B7ED8;   /* mid lavender          */
+      --p-400:   #A99EE0;   /* soft lavender         */
+      --p-200:   #EAE6FA;   /* barely-there lavender */
+      --p-100:   #F5F3FE;   /* ghost lavender        */
+      --p-text:  #6B5FAA;   /* readable purple text  */
+
+      /* ── Neutrals — warm but not brown ── */
+      --ink:     #1A1A2E;   /* near-black, blue-tinted warm */
+      --ink-60:  #5A5878;
+      --ink-40:  #8E8CAA;
+      --white:   #FFFFFF;
+
+      --radius-sm:   10px;
+      --radius-md:   18px;
+      --radius-lg:   26px;
+      --radius-xl:   36px;
+      --radius-pill: 999px;
+
+      --shadow-y:  0 8px 32px rgba(200,160,0,0.18);
+      --shadow-p:  0 8px 32px rgba(139,126,216,0.18);
+      --shadow-sm: 0 2px 16px rgba(26,26,46,0.07);
+      --shadow-md: 0 8px 40px rgba(26,26,46,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ══════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,212,38,0.25);
+    }
+
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px;
+    }
+
+    .logo { display: flex; align-items: center; }
+
+    .logo-img {
+      height: 36px; width: auto; display: block;
+    }
+
+    .nav-links {
+      display: flex; gap: 28px;
+      font-size: 13px; font-weight: 500; color: var(--ink-60);
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+
+    .btn-ghost {
+      padding: 8px 16px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.14); background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 600; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s;
+    }
+    .btn-ghost:hover { border-color: var(--y-dark); color: var(--ink); background: var(--y-100); }
+
+    .btn-solid {
+      padding: 9px 20px; border-radius: var(--radius-pill); border: none;
+      background: var(--p-500); font-family: inherit; font-size: 13px;
+      font-weight: 600; color: white; cursor: pointer;
+      box-shadow: var(--shadow-p); transition: all 0.16s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .btn-solid:hover { background: var(--p-text); transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      background: var(--y-100);
+      padding: 80px 32px 100px;
+      position: relative; overflow: hidden;
+    }
+
+    /* Big airy circle top-right */
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: var(--y-300);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    /* Soft lavender bottom-left */
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -180px; left: -150px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: var(--p-200);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; position: relative; z-index: 1;
+    }
+
+    /* Left */
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 14px 5px 6px;
+      background: white; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--y-300);
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--y-dark); margin-bottom: 24px;
+      box-shadow: var(--shadow-y);
+    }
+    .kicker-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--y-400);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(38px, 4vw, 54px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -1.6px; color: var(--ink); margin-bottom: 20px;
+    }
+    .hero-h1 .hi { color: var(--p-500); }
+    .hero-h1 .wave {
+      display: inline-block; position: relative;
+    }
+    .hero-h1 .wave::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+      background: var(--y-400); border-radius: 9px;
+    }
+
+    .hero-p {
+      font-size: 15.5px; line-height: 1.75; color: var(--ink-60);
+      max-width: 420px; margin-bottom: 28px;
+    }
+
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 13px; background: white; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--y-200); font-size: 12px; font-weight: 500; color: var(--ink-60);
+    }
+    .chip-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--p-400); }
+
+    .hero-cta { display: flex; align-items: center; gap: 16px; }
+
+    .btn-hero {
+      padding: 14px 30px; border-radius: var(--radius-pill); border: none;
+      background: var(--y-400); font-family: inherit; font-size: 15px;
+      font-weight: 700; color: var(--ink); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: var(--shadow-y); transition: all 0.2s;
+    }
+    .btn-hero:hover { background: var(--y-300); transform: translateY(-2px); box-shadow: 0 14px 44px rgba(200,160,0,0.28); }
+
+    .hero-text-link {
+      font-size: 13.5px; font-weight: 500; color: var(--ink-60);
+      text-decoration: underline; text-underline-offset: 4px;
+      text-decoration-color: rgba(90,88,120,0.3); transition: color 0.16s;
+    }
+    .hero-text-link:hover { color: var(--ink); }
+
+    /* Right — app card */
+    .hero-right { position: relative; }
+
+    .app-card {
+      background: white; border-radius: var(--radius-xl);
+      border: 1.5px solid var(--y-200);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      animation: rise 5s ease-in-out infinite;
+    }
+    @keyframes rise {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .app-card-stripe { height: 4px; background: linear-gradient(90deg, var(--y-400) 60%, var(--p-400) 100%); }
+
+    .app-card-head {
+      background: var(--p-200); padding: 20px 22px 18px;
+    }
+
+    .app-card-top {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+    }
+    .app-card-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--p-text); }
+    .live-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--p-400); }
+    .live-pip {
+      width: 7px; height: 7px; border-radius: 50%; background: #5BCB88;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(91,203,136,0.5); }
+      50%      { opacity:.75; box-shadow: 0 0 0 4px rgba(91,203,136,0); }
+    }
+
+    .app-card-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .app-card-sub { font-size: 12px; color: var(--ink-60); line-height: 1.5; max-width: 280px; }
+
+    .app-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 7px; }
+
+    .moment {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: var(--radius-sm);
+      background: var(--y-100); border: 1px solid var(--y-200);
+      transition: background 0.16s;
+    }
+    .moment:hover { background: var(--y-200); }
+
+    .moment-ico {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+    }
+    .ico-y { background: var(--y-200); }
+    .ico-p { background: var(--p-200); }
+    .ico-g { background: #E6FAF2; }
+
+    .moment-info { flex: 1; }
+    .moment-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+    .moment-time { font-size: 10.5px; color: var(--ink-40); }
+
+    .mtag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+    .mtag-y { background: var(--y-200); color: var(--y-dark); }
+    .mtag-p { background: var(--p-200); color: var(--p-text); }
+    .mtag-g { background: #D1FAE5; color: #065F46; }
+
+    /* floating mini card */
+    .mini-card {
+      position: absolute; bottom: -16px; right: -16px;
+      background: white; border-radius: var(--radius-md);
+      border: 1.5px solid var(--y-300);
+      padding: 13px 16px;
+      box-shadow: 0 12px 36px rgba(200,160,0,0.18);
+      animation: rise 5s ease-in-out 1.4s infinite;
+    }
+    .mini-num {
+      font-size: 28px; font-weight: 800; color: var(--ink);
+      line-height: 1; letter-spacing: -1px;
+    }
+    .mini-num em { font-style: normal; color: var(--p-500); }
+    .mini-label { font-size: 10.5px; color: var(--ink-40); margin-top: 3px; max-width: 120px; line-height: 1.35; }
+    .mini-dots { display: flex; margin-top: 8px; }
+    .mdot {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid white; margin-left: -5px;
+    }
+    .mdot:first-child { margin-left: 0; }
+
+    /* ══════════════════════════════════════
+       TRUST BAR
+    ══════════════════════════════════════ */
+    .trust {
+      padding: 16px 32px;
+      background: white;
+      border-bottom: 1px solid var(--y-200);
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .trust-text { font-size: 12.5px; color: var(--ink-60); }
+    .trust-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .trust-tag {
+      padding: 4px 13px; background: var(--y-100); border-radius: var(--radius-pill);
+      border: 1px solid var(--y-200); font-size: 11.5px; font-weight: 500; color: var(--y-dark);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════════════ */
+    .section-label {
+      text-align: center; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--y-dark); margin-bottom: 10px;
+    }
+    .section-h2 {
+      text-align: center; font-size: clamp(24px, 2.8vw, 36px); font-weight: 800;
+      color: var(--ink); letter-spacing: -0.8px; margin-bottom: 12px;
+    }
+    .section-h2 .hi { color: var(--p-500); }
+    .section-p {
+      text-align: center; font-size: 14.5px; color: var(--ink-60);
+      max-width: 480px; margin: 0 auto 56px; line-height: 1.75;
+    }
+
+    /* ══════════════════════════════════════
+       FEATURES — 3 cards
+    ══════════════════════════════════════ */
+    .features { padding: 96px 32px 104px; background: white; }
+
+    .cards-row {
+      max-width: 880px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; align-items: start;
+    }
+
+    .fcard {
+      border-radius: var(--radius-lg); padding: 28px 24px 24px;
+      position: relative; overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .fcard:hover { transform: translateY(-5px); }
+    .fcard:nth-child(2) { margin-top: -12px; }
+
+    .fc-a { background: var(--y-100); border: 1.5px solid var(--y-200); }
+    .fc-a:hover { box-shadow: var(--shadow-y); border-color: var(--y-400); }
+
+    .fc-b { background: white; border: 1.5px solid rgba(26,26,46,0.08); box-shadow: var(--shadow-sm); }
+    .fc-b:hover { box-shadow: var(--shadow-md); border-color: var(--y-300); }
+
+    .fc-c { background: var(--p-100); border: 1.5px solid var(--p-200); }
+    .fc-c:hover { box-shadow: var(--shadow-p); border-color: var(--p-400); }
+
+    .fcard-num {
+      font-size: 60px; font-weight: 800; line-height: 1; letter-spacing: -3px; margin-bottom: 10px;
+    }
+    .fc-a .fcard-num { color: rgba(200,160,0,0.18); }
+    .fc-b .fcard-num { color: rgba(26,26,46,0.07); }
+    .fc-c .fcard-num { color: rgba(139,126,216,0.18); }
+
+    .fcard-ico { font-size: 24px; margin-bottom: 12px; }
+
+    .fcard-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 7px; letter-spacing: -0.3px; }
+    .fcard-body  { font-size: 13px; line-height: 1.65; color: var(--ink-60); }
+
+    .fcard-tag {
+      display: inline-block; margin-top: 16px;
+      padding: 3px 11px; border-radius: 7px; font-size: 10.5px; font-weight: 600;
+    }
+    .fc-a .fcard-tag { background: var(--y-300); color: var(--y-dark); }
+    .fc-b .fcard-tag { background: var(--y-100); color: var(--y-dark); }
+    .fc-c .fcard-tag { background: var(--p-200); color: var(--p-text); }
+
+    /* ══════════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════════ */
+    .how {
+      padding: 96px 32px 104px;
+      background: var(--y-100);
+      border-top: 1px solid var(--y-200);
+      border-bottom: 1px solid var(--y-200);
+    }
+
+    .how-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+
+    .how-left .section-label { text-align: left; }
+    .how-left .section-h2    { text-align: left; }
+    .how-left .section-p     { text-align: left; margin-bottom: 40px; }
+
+    .steps { display: flex; flex-direction: column; gap: 10px; }
+
+    .step {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 18px; background: white; border-radius: var(--radius-md);
+      border: 1.5px solid transparent;
+      box-shadow: var(--shadow-sm); transition: all 0.18s;
+    }
+    .step:hover { border-color: var(--y-400); box-shadow: var(--shadow-y); transform: translateX(3px); }
+
+    .step-n {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+    }
+    .sn-y { background: var(--y-400); color: var(--ink); }
+    .sn-p { background: var(--p-400); color: white; }
+    .sn-g { background: var(--p-200); color: var(--p-text); }
+
+    .step-head { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .step-body { font-size: 12.5px; color: var(--ink-60); line-height: 1.55; }
+
+    /* Privacy card */
+    .priv-card {
+      background: white; border-radius: var(--radius-xl);
+      border: 1.5px solid var(--p-200);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .priv-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .priv-ico {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--y-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .priv-title { font-size: 17px; font-weight: 700; color: var(--ink); }
+    .priv-text  { font-size: 13px; color: var(--ink-60); line-height: 1.7; }
+    .priv-tags  { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .priv-tag {
+      padding: 4px 12px; background: var(--p-100); border-radius: var(--radius-pill);
+      border: 1px solid var(--p-200); font-size: 11px; font-weight: 600; color: var(--p-text);
+    }
+
+    /* ══════════════════════════════════════
+       TEAM
+    ══════════════════════════════════════ */
+    .team { padding: 96px 32px 104px; background: white; }
+
+    .team-grid {
+      max-width: 980px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+
+    .tcard {
+      background: var(--y-100); border-radius: var(--radius-lg);
+      border: 1.5px solid var(--y-200);
+      padding: 32px 26px;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .tcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-y); border-color: var(--y-400); }
+
+    .tav {
+      width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    }
+    .tav img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .tcard-role  { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--p-500); margin-bottom: 4px; }
+    .tcard-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .tcard-bio   { font-size: 13px; line-height: 1.75; color: var(--ink-60); }
+
+    /* ══════════════════════════════════════
+       BACKED BY
+    ══════════════════════════════════════ */
+    .backed {
+      padding: 56px 32px 64px;
+      background: #F8F8F8; border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .backed-inner { max-width: 1000px; margin: 0 auto; }
+    .backed-label {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-40); margin-bottom: 28px;
+    }
+    .backed-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 36px 48px;
+    }
+    .backed-logo {
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.16s;
+    }
+    .backed-logo:hover { opacity: 0.75; }
+    .backed-logo img {
+      height: 54px; width: auto; object-fit: contain; display: block;
+    }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    .cta {
+      padding: 96px 32px 104px;
+      background: var(--y-400);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 640px; height: 640px; border-radius: 50%;
+      background: rgba(255,255,255,0.18); pointer-events: none;
+    }
+    .cta::after {
+      content: ''; position: absolute; bottom: -120px; right: -120px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: var(--p-200); opacity: 0.35; pointer-events: none;
+    }
+
+    .cta-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .cta-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 14px 4px 5px; background: rgba(255,255,255,0.7);
+      border-radius: var(--radius-pill); border: 1.5px solid rgba(255,255,255,0.9);
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--y-dark); margin-bottom: 20px;
+    }
+    .cta-badge-dot {
+      width: 20px; height: 20px; border-radius: 50%; background: var(--p-500);
+      display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;
+    }
+
+    .cta-h2 {
+      font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; color: var(--ink);
+      letter-spacing: -1px; line-height: 1.1; margin-bottom: 14px;
+    }
+    .cta-h2 .hi { color: var(--p-500); }
+    .cta-p { font-size: 15px; color: var(--ink-60); line-height: 1.7; margin-bottom: 32px; }
+
+    .cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    .btn-cta {
+      padding: 14px 32px; border-radius: var(--radius-pill); border: none;
+      background: var(--p-500); font-family: inherit; font-size: 15px; font-weight: 700;
+      color: white; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+      box-shadow: 0 10px 32px rgba(139,126,216,0.35); transition: all 0.2s;
+    }
+    .btn-cta:hover { background: var(--p-text); transform: translateY(-2px); }
+
+    .btn-cta-out {
+      padding: 13px 26px; border-radius: var(--radius-pill);
+      border: 2px solid rgba(26,26,46,0.22); background: rgba(255,255,255,0.6);
+      font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+      cursor: pointer; transition: all 0.16s;
+    }
+    .btn-cta-out:hover { background: rgba(255,255,255,0.85); }
+
+    .cta-note { margin-top: 18px; font-size: 11.5px; color: rgba(26,26,46,0.45); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .footer {
+      padding: 32px 32px 24px;
+      background: var(--p-100); border-top: 1px solid var(--p-200);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .footer-social {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .social-btn {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .social-btn:hover { transform: translateY(-2px); opacity: 0.82; }
+    .social-btn svg { width: 22px; height: 22px; display: block; }
+    .footer-bottom {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .footer-copy { font-size: 12px; color: var(--ink-40); }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { font-size: 12.5px; color: var(--p-text); transition: color 0.16s; }
+    .footer-links a:hover { color: var(--p-500); }
+
+    /* ══════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-kicker  { animation: fadeUp .45s ease-out .05s both; }
+    .hero-h1      { animation: fadeUp .50s ease-out .14s both; }
+    .hero-p       { animation: fadeUp .50s ease-out .21s both; }
+    .hero-chips   { animation: fadeUp .50s ease-out .28s both; }
+    .hero-cta     { animation: fadeUp .50s ease-out .35s both; }
+    .hero-right   { animation: fadeUp .55s ease-out .25s both; }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-inner, .how-grid { grid-template-columns: 1fr; gap: 48px; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 660px) {
+      .cards-row { grid-template-columns: 1fr; max-width: 400px; }
+      .fcard:nth-child(2) { margin-top: 0; }
+      .backed-row { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero, .features, .how, .team, .cta { padding-inline: 18px; }
+      .mini-card { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo">
+        <img src="Flex Logo.png" alt="Kidooo AI" class="logo-img" />
+      </a>
+      <div class="nav-links">
+        <a href="#top">Home</a>
+        <a href="https://family.kidooo.ai" target="_blank" rel="noopener">User Tutorial</a>
+        <a href="#careers">Careers</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
+        <a href="mailto:team@kidooo.ai" class="btn-solid">Talk to us →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <div class="kicker-dot">✦</div>
+          AI Copilot for Autism
+        </div>
+        <h1 class="hero-h1">
+          AI Copilot for Autism<br/>
+          <span class="hi">Clinics</span> and Families
+        </h1>
+        <p class="hero-p">
+          Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos
+          into clinician-ready documentation for therapists and actionable guidance for families.
+        </p>
+        <div class="hero-chips">
+          <div class="hero-chip"><span class="chip-pip"></span>Built with autistic families</div>
+          <div class="hero-chip"><span class="chip-pip"></span>Supports clinic &amp; home</div>
+        </div>
+        <div class="hero-cta">
+          <a href="https://family.kidooo.ai" class="btn-hero">Try Kidooo AI</a>
+          <a href="https://family.kidooo.ai" class="btn-ghost">User Tutorial</a>
+          <a href="mailto:team@kidooo.ai" class="btn-ghost">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="app-card">
+          <div class="app-card-stripe"></div>
+          <div class="app-card-head">
+            <div class="app-card-top">
+              <span class="app-card-label">Kidooo AI</span>
+              <span class="live-row"><span class="live-pip"></span>Live analysis</span>
+            </div>
+            <div class="app-card-title">From moments to guidance.</div>
+            <div class="app-card-sub">Short clips from home become summaries, language you can use, and gentle ideas to try next.</div>
+          </div>
+          <div class="app-card-body">
+            <div class="moment">
+              <div class="moment-ico ico-y">📹</div>
+              <div class="moment-info">
+                <div class="moment-name">After-school meltdown</div>
+                <div class="moment-time">Today · 2:14 PM</div>
+              </div>
+              <span class="mtag mtag-g">Summary ready</span>
+            </div>
+            <div class="moment">
+              <div class="moment-ico ico-p">🌟</div>
+              <div class="moment-info">
+                <div class="moment-name">Playtime win</div>
+                <div class="moment-time">Today · 4:32 PM</div>
+              </div>
+              <span class="mtag mtag-p">Ideas saved</span>
+            </div>
+            <div class="moment">
+              <div class="moment-ico ico-g">📝</div>
+              <div class="moment-info">
+                <div class="moment-name">Parent note</div>
+                <div class="moment-time">Today · 6:05 PM</div>
+              </div>
+              <span class="mtag mtag-y">Tagged for doctor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-num">10–60<em>s</em></div>
+          <div class="mini-label">of home video is all you need</div>
+          <div class="mini-dots">
+            <div class="mdot" style="background:var(--y-400)"></div>
+            <div class="mdot" style="background:var(--y-300)"></div>
+            <div class="mdot" style="background:var(--p-400)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CAREERS -->
+  <section id="careers" class="features">
+    <div class="section-label">Careers</div>
+    <h2 class="section-h2">Join us in building better autism care.</h2>
+    <p class="section-p">
+      We’re a small, research-grounded team working with families and clinicians. If you care deeply about autism,
+      product craft, and safe AI, we’d love to hear from you.
+    </p>
+    <p class="section-p" style="margin-bottom:0;">
+      Email us at <a href="mailto:team@kidooo.ai" class="hero-text-link">team@kidooo.ai</a> with your background and why Kidooo.
+    </p>
+  </section>
+
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="trust-inner">
+      <span class="trust-text">Built with researchers, clinicians &amp; families across leading autism centers.</span>
+      <div class="trust-tags">
+        <span class="trust-tag">Video-to-notes for clinics</span>
+        <span class="trust-tag">Coaching-style guidance at home</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="section-label">Kidooo AI</div>
+    <h2 class="section-h2">Three steps to <span class="hi">clarity</span></h2>
+    <p class="section-p">No jargon. No clinic waiting rooms. Just real guidance from real moments at home.</p>
+
+    <div class="cards-row">
+      <div class="fcard fc-a">
+        <div class="fcard-num">01</div>
+        <div class="fcard-ico">📱</div>
+        <div class="fcard-title">Upload</div>
+        <div class="fcard-body">A 10–60s clip from home. No setup. No extra equipment. Just your phone.</div>
+        <span class="fcard-tag">Any moment, any day</span>
+      </div>
+      <div class="fcard fc-b">
+        <div class="fcard-num">02</div>
+        <div class="fcard-ico">🔍</div>
+        <div class="fcard-title">Understand</div>
+        <div class="fcard-body">Kidooo AI reads what's happening and gives you a clear, gentle summary in plain language.</div>
+        <span class="fcard-tag">In plain language</span>
+      </div>
+      <div class="fcard fc-c">
+        <div class="fcard-num">03</div>
+        <div class="fcard-ico">💡</div>
+        <div class="fcard-title">Take Action</div>
+        <div class="fcard-body">Personalized, evidence-informed ideas you can try with your child today.</div>
+        <span class="fcard-tag">Safe &amp; caregiver-first</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="how-grid">
+
+      <div class="how-left">
+        <div class="section-label">How it works</div>
+        <h2 class="section-h2">Record. Review. <span class="hi">Act.</span></h2>
+        <p class="section-p">No appointments. No complicated setup. Just you, your phone, and a few minutes.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-n sn-y">1</div>
+            <div>
+              <div class="step-head">Record</div>
+              <div class="step-body">A short video of a real moment at home — good, hard, or in-between.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n sn-p">2</div>
+            <div>
+              <div class="step-head">Review</div>
+              <div class="step-body">AI summary and gentle next steps — clear language, no jargon.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n sn-g">3</div>
+            <div>
+              <div class="step-head">Try &amp; Track</div>
+              <div class="step-body">Log progress over time and share with your child's care team.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="priv-card">
+          <div class="priv-top">
+            <div class="priv-ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B7ED8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                <circle cx="12" cy="16" r="1" fill="#8B7ED8" stroke="none"/>
+              </svg>
+            </div>
+            <div class="priv-title">Private by Default</div>
+          </div>
+          <div class="priv-text">Your family's videos and notes are fully encrypted and parent-controlled. Kidooo never sells data, and you choose exactly what to share with your child's care team.</div>
+          <div class="priv-tags">
+            <span class="priv-tag">End-to-end encrypted</span>
+            <span class="priv-tag">Parent-controlled</span>
+            <span class="priv-tag">HIPAA-aligned</span>
+            <span class="priv-tag">No data selling</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="team">
+    <div class="section-label">Our team</div>
+    <h2 class="section-h2">Built by people who <span class="hi">get it</span></h2>
+    <p class="section-p" style="margin-bottom:48px;">Blending autism research, clinical practice, and lived caregiver experience.</p>
+
+    <div class="team-grid">
+      <div class="tcard">
+      <div class="tav">
+        <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
+      </div>
+        <div>
+          <div class="tcard-role">CEO · Autism &amp; Data Science</div>
+          <div class="tcard-title">Hao Xue, PhD, CEO</div>
+          <div class="tcard-bio">Former Stanford postdoctoral researcher in child development and clinician behavior with 1,500+ citations and former Data Science Manager at Wayfair, a Fortune 500 e-commerce company. At Kidooo AI, he leads vision and partnerships, turning rigorous research and industry experience into Autism Co-Pilot, an agentic AI system for autism care that plugs into clinic workflows first and extends support into everyday family routines. Backed by research experts, clinicians, and the Santa Clara University Bronco Ventures Accelerator, he focuses on measurable outcomes, privacy, and safety. He previously founded an education startup in China and serves on editorial boards for several academic journals, keeping Kidooo AI closely aligned with the latest science.</div>
+        </div>
+      </div>
+      <div class="tcard">
+      <div class="tav">
+        <img src="bing.png" alt="Bing Yuan, CTO" />
+      </div>
+        <div>
+          <div class="tcard-role">CTO · Engineering &amp; Caregiver</div>
+          <div class="tcard-title">Bing Yuan, CTO</div>
+          <div class="tcard-bio">An AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. She builds the core product end to end, from backend architecture and data pipelines to a secure, production-ready user experience. As a parent of a neurodivergent child, Bing brings a grounded caregiver lens and strong product judgment to every decision, balancing speed with trust, privacy, and reliability. At Kidooo AI, she leads the technical roadmap and designs human-in-the-loop agent workflows that translate clinical guidance and real-world family context into clear, actionable support for autism care at home and in clinics.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKED BY -->
+  <section id="backed" class="backed">
+    <div class="backed-inner">
+      <div class="backed-label">Backed by</div>
+      <div class="backed-row">
+        <div class="backed-logo">
+          <img src="Stanford-University-Logo-2-scaled-e1761085440745-958x1024-1-150x150.png" alt="Stanford University" />
+        </div>
+        <div class="backed-logo">
+          <img src="harvard-university-logo-png_seeklogo-284458-2-2-150x150.png" alt="Harvard University" />
+        </div>
+        <div class="backed-logo">
+          <img src="historical-marks-new-logo-sq-03_img-web-1-1-150x150.png" alt="Santa Clara University" />
+        </div>
+        <div class="backed-logo">
+          <img src="Bronco-Ventures-Accelerator_Logo-black-900-900x140-1.png" alt="Bronco Ventures Accelerator" style="height:36px;" />
+        </div>
+        <div class="backed-logo">
+          <img src="image-9.png" alt="The University of North Carolina at Chapel Hill" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <div class="cta-badge">
+        <div class="cta-badge-dot">✦</div>
+        Free to try
+      </div>
+      <h2 class="cta-h2">Get your first summary <span class="hi">in minutes.</span></h2>
+      <p class="cta-p">Start with one short clip from home. No appointments. No waiting. Just understanding.</p>
+      <div class="cta-btns">
+        <a href="https://family.kidooo.ai" class="btn-cta">Try free → family.kidooo.ai</a>
+        <a href="mailto:team@kidooo.ai" class="btn-cta-out">Questions? Talk to us</a>
+      </div>
+      <div class="cta-note">Not a medical device. Built with families, for families.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-social">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/kidooo-ai" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="#0A66C2">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/>
+          </svg>
+        </a>
+        <!-- 小红书 -->
+        <a href="https://www.xiaohongshu.com" target="_blank" rel="noopener" class="social-btn" aria-label="小红书">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="6" fill="#FF2442"/>
+            <text x="5" y="17" font-size="11" font-weight="800" fill="white" font-family="Arial">小红书</text>
+          </svg>
+        </a>
+        <!-- WeChat -->
+        <a href="#" class="social-btn" aria-label="WeChat">
+          <svg viewBox="0 0 24 24" fill="#07C160">
+            <path d="M8.7 10.3a.9.9 0 100-1.8.9.9 0 000 1.8zm4.6 0a.9.9 0 100-1.8.9.9 0 000 1.8zM24 15.4c0-3.1-3.2-5.6-7.1-5.6-4 0-7.1 2.5-7.1 5.6s3.2 5.6 7.1 5.6c.8 0 1.6-.1 2.3-.3l2.4 1.2-.6-2c1.8-1 3-2.6 3-4.5zm-10-1.2a.75.75 0 110-1.5.75.75 0 010 1.5zm5.6 0a.75.75 0 110-1.5.75.75 0 010 1.5zM11 4C6.3 4 2.5 7 2.5 10.8c0 2.3 1.4 4.3 3.6 5.5l-.8 2.5 3-1.5c.9.2 1.8.4 2.7.4h.5A6.3 6.3 0 019.8 15c0-3.8 3.4-6.9 7.6-6.9h.5C16.7 5.8 14.1 4 11 4z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/kidoooai" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="#1877F2">
+            <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">Email: hello@kidooo.ai</div>
+        <div class="footer-copy">©2024–2026 AI ECD Inc. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#careers">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

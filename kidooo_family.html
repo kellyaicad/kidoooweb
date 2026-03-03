@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kidooo AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
+      color: #3A2D7A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Tokens ── */
+    :root {
+      --purple-deep:   #3A2D7A;
+      --purple-mid:    #7B68BE;
+      --purple-light:  #EDE8F8;
+      --purple-text:   #6B5FAA;
+      --purple-muted:  #9E92C8;
+      --purple-pale:   #B8ACDC;
+      --amber:         #F5C020;
+      --amber-dark:    #F0AC18;
+      --amber-light:   #FFF2D0;
+      --cream:         #FFF8EE;
+      --mint:          #CCF0E8;
+      --mint-dark:     #2D9B8A;
+      --white:         #ffffff;
+      --radius-sm:     12px;
+      --radius-md:     20px;
+      --radius-lg:     28px;
+      --shadow-card:   0 6px 32px rgba(123,104,190,0.12);
+      --shadow-sm:     0 2px 14px rgba(123,104,190,0.10);
+    }
+
+    /* ════════════════════════════════════════ */
+    /*  SECTION 1 — HERO                        */
+    /* ════════════════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 46fr 54fr;
+      min-height: 340px;
+      border-bottom: 8px solid var(--amber);
+      overflow: hidden;
+    }
+
+    .hero__left {
+      background: var(--purple-light);
+      padding: 48px 52px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .hero__left::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: #C8C0E8;
+      opacity: 0.35;
+    }
+    .hero__left::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--purple-pale);
+      opacity: 0.20;
+    }
+
+    .logo-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(184,172,220,0.35);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #5A4E8A;
+      width: fit-content;
+      margin-bottom: 4px;
+    }
+
+    .hero__headline {
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--purple-deep);
+    }
+    .hero__headline span {
+      color: var(--amber-dark);
+      display: block;
+    }
+
+    .hero__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--purple-text);
+      line-height: 1.55;
+      margin-top: 4px;
+    }
+
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(240,172,24,0.16);
+      border-radius: 12px;
+      padding: 5px 14px 5px 10px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #8A6200;
+      width: fit-content;
+      margin-top: 4px;
+    }
+    .hero__tag::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--amber-dark);
+      flex-shrink: 0;
+    }
+
+    /* Right panel */
+    .hero__right {
+      background: var(--cream);
+      padding: 36px 44px 36px 40px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .hero__right::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: var(--amber);
+      opacity: 0.08;
+    }
+
+    .hero__stat {
+      font-size: clamp(56px, 6.5vw, 84px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      color: var(--purple-deep);
+    }
+    .hero__stat span { color: var(--amber-dark); }
+
+    .hero__stat-label {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--purple-muted);
+      margin-top: 4px;
+    }
+
+    /* App mock cards */
+    .app-cards {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .app-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      flex: 1;
+    }
+    .app-card__bar {
+      height: 5px;
+    }
+    .app-card--purple .app-card__bar { background: var(--purple-mid); }
+    .app-card--mint   .app-card__bar { background: var(--mint); }
+
+    .app-card__body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .app-card__row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .app-card__icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      justify-content: center;
+      padding: 12px;
+    }
+    .app-card--purple .app-card__icon { background: var(--purple-light); }
+    .app-card--mint   .app-card__icon { background: var(--mint); }
+
+    .icon-line {
+      height: 3.5px;
+      border-radius: 2px;
+    }
+    .app-card--purple .icon-line { background: var(--purple-mid); }
+    .app-card--mint   .icon-line { background: var(--mint-dark); }
+    .icon-line.w-full { width: 100%; opacity: 0.5; }
+    .icon-line.w-3q   { width: 75%; opacity: 0.32; }
+    .icon-line.w-half { width: 50%; opacity: 0.28; }
+
+    .app-card__info { flex: 1; }
+    .app-card__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--purple-deep);
+      margin-bottom: 3px;
+    }
+    .app-card__meta {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--purple-mid);
+      margin-bottom: 2px;
+    }
+    .app-card__desc {
+      font-size: 10.5px;
+      font-weight: 300;
+      color: var(--purple-muted);
+    }
+
+    .app-card__actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-xs {
+      border-radius: 10px;
+      padding: 5px 12px;
+      font-size: 10.5px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-xs--amber { background: var(--amber); color: var(--purple-deep); }
+    .btn-xs--ghost { background: var(--purple-light); color: var(--purple-mid); }
+
+    .app-card__dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .dot--on  { background: var(--amber); }
+    .dot--off { background: var(--purple-light); }
+    .dot-label {
+      font-size: 10.5px;
+      color: var(--purple-muted);
+      margin-left: 2px;
+    }
+
+
+    /* ════════════════════════════════════════ */
+    /*  SECTION 2 — WHAT YOU GET               */
+    /* ════════════════════════════════════════ */
+    .features {
+      background: var(--white);
+      padding: 48px 72px 56px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      color: var(--purple-pale);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .feature-card {
+      border-radius: var(--radius-md);
+      padding: 32px 28px 28px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card:nth-child(2) { margin-top: -12px; }
+
+    .feature-card--lavender { background: var(--purple-light); }
+    .feature-card--amber-light { background: var(--amber-light); }
+    .feature-card--amber { background: var(--amber); }
+
+    .feature-num {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+    }
+    .feature-card--lavender     .feature-num { color: var(--purple-mid); }
+    .feature-card--amber-light  .feature-num { color: var(--amber-dark); }
+    .feature-card--amber        .feature-num { color: var(--purple-deep); opacity: 0.85; }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card--lavender     .feature-title { color: var(--purple-deep); }
+    .feature-card--amber-light  .feature-title { color: var(--purple-deep); }
+    .feature-card--amber        .feature-title { color: var(--purple-deep); }
+
+    .feature-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .feature-card--lavender     .feature-desc { color: var(--purple-text); }
+    .feature-card--amber-light  .feature-desc { color: var(--purple-text); }
+    .feature-card--amber        .feature-desc { color: #5A4200; }
+
+    .feature-tag {
+      display: inline-block;
+      margin-top: 20px;
+      border-radius: 10px;
+      padding: 4px 14px;
+      font-size: 10.5px;
+      font-weight: 500;
+    }
+    .feature-card--lavender    .feature-tag { background: rgba(123,104,190,0.12); color: #5A4E8A; }
+    .feature-card--amber-light .feature-tag { background: rgba(240,172,24,0.16);  color: #8A6200; }
+    .feature-card--amber       .feature-tag { background: rgba(58,45,122,0.10);   color: #5A4200; }
+
+
+    /* ════════════════════════════════════════ */
+    /*  SECTION 3 — HOW IT WORKS               */
+    /* ════════════════════════════════════════ */
+    .how {
+      background: var(--purple-light);
+      padding: 48px 72px 52px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      position: relative;
+    }
+
+    /* Connector line between steps */
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(50% + 48px);
+      right: calc(-50% + 48px);
+      height: 1.5px;
+      background: var(--purple-pale);
+      background-image: repeating-linear-gradient(
+        to right,
+        var(--purple-pale) 0, var(--purple-pale) 6px,
+        transparent 6px, transparent 10px
+      );
+    }
+
+    .step__circle {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .step__circle--white  { background: var(--white); color: var(--purple-deep); border: 1.5px solid rgba(123,104,190,0.3); }
+    .step__circle--purple { background: var(--purple-mid); color: var(--white); }
+    .step__circle--amber  { background: var(--amber); color: var(--purple-deep); }
+
+    .step__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--purple-deep);
+      margin-bottom: 4px;
+    }
+    .step__desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--purple-text);
+    }
+
+    /* Privacy badge */
+    .privacy-badge {
+      background: rgba(255,255,255,0.88);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 264px;
+    }
+    .privacy-badge__icon-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .privacy-badge__icon {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lock-svg { width: 16px; height: 16px; }
+    .privacy-badge__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--purple-deep);
+    }
+    .privacy-badge__text {
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--purple-text);
+      line-height: 1.6;
+    }
+
+
+    /* ════════════════════════════════════════ */
+    /*  SECTION 4 — CTA FOOTER                 */
+    /* ════════════════════════════════════════ */
+    .cta {
+      background: var(--cream);
+      border-top: 6px solid var(--amber);
+      padding: 64px 72px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: var(--amber);
+      opacity: 0.07;
+    }
+    .cta::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      opacity: 0.6;
+    }
+
+    .cta__headline {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--purple-deep);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--purple-mid);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 28px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .cta__btn:hover {
+      background: var(--purple-deep);
+      transform: translateY(-1px);
+    }
+
+    .cta__note {
+      margin-top: 20px;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--purple-muted);
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero__left">
+      <span class="logo-pill">KIDOOO</span>
+      <h1 class="hero__headline">
+        See your child.<span>Know what's next.</span>
+      </h1>
+      <p class="hero__sub">
+        Upload a short home video.<br>Get clear, safe next steps today.
+      </p>
+      <span class="hero__tag">For parents of autistic kids</span>
+    </div>
+
+    <div class="hero__right">
+      <div>
+        <div class="hero__stat">10<span>–60s</span></div>
+        <p class="hero__stat-label">of home video is all it takes</p>
+      </div>
+
+      <div class="app-cards">
+        <!-- Card 1 -->
+        <div class="app-card app-card--purple">
+          <div class="app-card__bar"></div>
+          <div class="app-card__body">
+            <div class="app-card__row">
+              <div class="app-card__icon">
+                <div class="icon-line w-full"></div>
+                <div class="icon-line w-3q"></div>
+                <div class="icon-line w-half"></div>
+              </div>
+              <div class="app-card__info">
+                <div class="app-card__title">Sensory Break</div>
+                <div class="app-card__meta">2–3 minutes</div>
+                <div class="app-card__desc">Calming activities and breathing</div>
+              </div>
+            </div>
+            <div class="app-card__actions">
+              <button class="btn-xs btn-xs--amber">Try this now</button>
+              <button class="btn-xs btn-xs--ghost">Save it</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="app-card app-card--mint">
+          <div class="app-card__bar"></div>
+          <div class="app-card__body">
+            <div class="app-card__row">
+              <div class="app-card__icon">
+                <div class="icon-line w-full"></div>
+                <div class="icon-line w-3q"></div>
+              </div>
+              <div class="app-card__info">
+                <div class="app-card__title">Progress Log</div>
+                <div class="app-card__meta">3 wins this week</div>
+              </div>
+            </div>
+            <div class="app-card__dots">
+              <div class="dot dot--on"></div>
+              <div class="dot dot--on"></div>
+              <div class="dot dot--on"></div>
+              <div class="dot dot--off"></div>
+              <div class="dot dot--off"></div>
+              <span class="dot-label">3 / 5 goals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ WHAT YOU GET ══ -->
+  <section class="features">
+    <p class="section-label">What you get</p>
+    <div class="feature-cards">
+
+      <div class="feature-card feature-card--lavender">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Upload</div>
+        <div class="feature-desc">A 10–60s clip from home.<br>No setup. No equipment.</div>
+        <span class="feature-tag">Any moment, any day</span>
+      </div>
+
+      <div class="feature-card feature-card--amber-light">
+        <div class="feature-num">02</div>
+        <div class="feature-title">Understand</div>
+        <div class="feature-desc">AI reads what's happening and gives you a clear summary.</div>
+        <span class="feature-tag">In plain language</span>
+      </div>
+
+      <div class="feature-card feature-card--amber">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Take Action</div>
+        <div class="feature-desc">Personalized ideas you can try with your child today.</div>
+        <span class="feature-tag">Safe &amp; evidence-based</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══ HOW IT WORKS ══ -->
+  <section class="how">
+    <div>
+      <p class="section-label" style="text-align:left; margin-bottom:36px;">How it works</p>
+      <div class="steps">
+
+        <div class="step">
+          <div class="step__circle step__circle--white">1</div>
+          <div class="step__title">Record</div>
+          <div class="step__desc">A short home video</div>
+        </div>
+
+        <div class="step">
+          <div class="step__circle step__circle--purple">2</div>
+          <div class="step__title">Review</div>
+          <div class="step__desc">AI summary + next steps</div>
+        </div>
+
+        <div class="step">
+          <div class="step__circle step__circle--amber">3</div>
+          <div class="step__title">Try &amp; Track</div>
+          <div class="step__desc">Log progress over time</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="privacy-badge">
+      <div class="privacy-badge__icon-row">
+        <div class="privacy-badge__icon">
+          <svg class="lock-svg" viewBox="0 0 24 24" fill="none" stroke="#2D9B8A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <circle cx="12" cy="16" r="1" fill="#2D9B8A" stroke="none"/>
+          </svg>
+        </div>
+        <div class="privacy-badge__title">Private by Default</div>
+      </div>
+      <div class="privacy-badge__text">
+        Encrypted. Parent-controlled.<br>Share only what you choose.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ CTA ══ -->
+  <section class="cta">
+    <h2 class="cta__headline">Get your first summary in minutes.</h2>
+    <a href="https://family.kidooo.ai" class="cta__btn">
+      Try free &nbsp;→&nbsp; family.kidooo.ai
+    </a>
+    <p class="cta__note">Not a medical device. Built with families.</p>
+  </section>
+
+</body>
+</html>
