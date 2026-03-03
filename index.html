@@ -438,50 +438,91 @@
     }
 
     /* ══════════════════════════════════════
-       TEAM
+       TEAM — photo cards with hover overlay
     ══════════════════════════════════════ */
     .team { padding: 96px 32px 104px; background: white; }
 
     .team-grid {
-      max-width: 980px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
     }
 
+    /* Outer card — fixed aspect ratio portrait */
     .tcard {
-      background: var(--y-100); border-radius: var(--radius-lg);
-      border: 1.5px solid var(--y-200);
-      padding: 36px 30px 30px;
-      display: flex; flex-direction: column; gap: 0;
-      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
-    }
-    .tcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-y); border-color: var(--y-400); }
-
-    .tcard-top {
-      display: flex; align-items: center; gap: 20px; margin-bottom: 20px;
-    }
-
-    .tav {
-      width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+      position: relative;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 16px 40px rgba(26,26,46,0.14);
+      cursor: default;
     }
-    .tav img {
+
+    /* Full-bleed photo */
+    .tcard-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .tcard-photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
-    .tcard-name-block { display: flex; flex-direction: column; gap: 6px; }
-    .tcard-title { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.4px; line-height: 1.15; }
-    .tcard-socials { display: flex; gap: 8px; align-items: center; }
-    .tcard-social {
-      width: 30px; height: 30px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      background: white; border: 1.5px solid rgba(0,0,0,0.08);
-      transition: border-color 0.15s, transform 0.15s;
+    /* Bottom name strip — always visible */
+    .tcard-strip {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(255,248,230,0.96);
+      padding: 18px 22px 20px;
+      border-top: 1.5px solid var(--y-200);
+      transition: opacity 0.28s ease;
     }
-    .tcard-social:hover { border-color: var(--y-400); transform: translateY(-1px); }
-    .tcard-social svg { width: 15px; height: 15px; display: block; }
+    .tcard-name {
+      font-size: 22px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 3px;
+    }
+    .tcard-role {
+      font-size: 14px; font-weight: 500; color: var(--ink-60);
+    }
 
-    .tcard-bio { font-size: 15px; line-height: 1.8; color: var(--ink-60); }
+    /* Hover overlay — bio + socials slides up */
+    .tcard-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #2C2250 0%, #1A1A2E 100%);
+      padding: 32px 28px 28px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      pointer-events: none;
+    }
+    .tcard:hover .tcard-overlay {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .tcard:hover .tcard-strip { opacity: 0; pointer-events: none; }
+
+    .tcard-overlay-name {
+      font-size: 24px; font-weight: 800; color: var(--y-400);
+      letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 4px;
+    }
+    .tcard-overlay-role {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.55);
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 18px;
+    }
+    .tcard-bio {
+      font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,0.82);
+      flex: 1; overflow: hidden;
+    }
+    .tcard-socials {
+      display: flex; gap: 10px; align-items: center; margin-top: 20px;
+    }
+    .tcard-social {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      transition: background 0.15s, transform 0.15s;
+    }
+    .tcard-social:hover { background: var(--y-400); border-color: var(--y-400); transform: translateY(-2px); }
+    .tcard-social svg { width: 16px; height: 16px; display: block; }
+    .tcard-social:hover svg path { fill: var(--ink); }
 
     /* ══════════════════════════════════════
        BACKED BY
@@ -620,8 +661,18 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .team-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; max-width: 420px; }
       .priv-banner-inner { grid-template-columns: 1fr; gap: 20px; }
+      /* On mobile show overlay bio statically below photo strip */
+      .tcard-overlay {
+        position: static; opacity: 1; transform: none;
+        background: linear-gradient(160deg, #2C2250 0%, #1A1A2E 100%);
+        pointer-events: auto; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      }
+      .tcard { aspect-ratio: unset; }
+      .tcard-photo { position: static; height: 320px; display: block; }
+      .tcard-photo img { width: 100%; height: 100%; object-fit: cover; }
+      .tcard-strip { display: none; }
     }
     @media (max-width: 660px) {
       .cards-row { grid-template-columns: 1fr; max-width: 400px; }
@@ -831,44 +882,56 @@
     <p class="section-p" style="margin-bottom:48px;">Blending autism research, clinical practice, and lived caregiver experience.</p>
 
     <div class="team-grid">
+
       <!-- Hao Xue -->
       <div class="tcard">
-        <div class="tcard-top">
-          <div class="tav">
-            <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
+        <div class="tcard-photo">
+          <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
+        </div>
+        <div class="tcard-strip">
+          <div class="tcard-name">Hao Xue, PhD</div>
+          <div class="tcard-role">CEO · Kidooo AI</div>
+        </div>
+        <div class="tcard-overlay">
+          <div>
+            <div class="tcard-overlay-name">Hao Xue, PhD</div>
+            <div class="tcard-overlay-role">CEO · Kidooo AI</div>
+            <div class="tcard-bio">Former Stanford postdoctoral researcher in child development with 1,500+ citations and former Data Science Manager at Wayfair. At Kidooo AI, he leads vision and partnerships, turning rigorous research into an agentic AI system for autism care. Backed by SCU Bronco Ventures Accelerator. Serves on editorial boards for several academic journals.</div>
           </div>
-          <div class="tcard-name-block">
-            <div class="tcard-title">Hao Xue, PhD<br/>CEO</div>
-            <div class="tcard-socials">
-              <a href="https://www.linkedin.com/in/hao-xue-kidooo-ai/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
-              </a>
-              <a href="https://x.com/hao_xue_kidooo" target="_blank" rel="noopener" class="tcard-social" aria-label="X / Twitter">
-                <svg viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-              </a>
-            </div>
+          <div class="tcard-socials">
+            <a href="https://www.linkedin.com/in/hao-xue-kidooo-ai/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </a>
+            <a href="https://x.com/hao_xue_kidooo" target="_blank" rel="noopener" class="tcard-social" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </a>
           </div>
         </div>
-        <div class="tcard-bio">Former Stanford postdoctoral researcher in child development and clinician behavior with 1,500+ citations and former Data Science Manager at Wayfair, a Fortune 500 e-commerce company. At Kidooo AI, he leads vision and partnerships, turning rigorous research and industry experience into Autism Co-Pilot, an agentic AI system for autism care that plugs into clinic workflows first and extends support into everyday family routines. Backed by research experts, clinicians, and the Santa Clara University Bronco Ventures Accelerator, he focuses on measurable outcomes, privacy, and safety. He previously founded an education startup in China and serves on editorial boards for several academic journals, keeping Kidooo AI closely aligned with the latest science.</div>
       </div>
 
       <!-- Bing Yuan -->
       <div class="tcard">
-        <div class="tcard-top">
-          <div class="tav">
-            <img src="bing.png" alt="Bing Yuan, CTO" />
+        <div class="tcard-photo">
+          <img src="bing.png" alt="Bing Yuan, CTO" />
+        </div>
+        <div class="tcard-strip">
+          <div class="tcard-name">Bing Yuan</div>
+          <div class="tcard-role">CTO · Kidooo AI</div>
+        </div>
+        <div class="tcard-overlay">
+          <div>
+            <div class="tcard-overlay-name">Bing Yuan</div>
+            <div class="tcard-overlay-role">CTO · Kidooo AI</div>
+            <div class="tcard-bio">AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. Parent of a neurodivergent child. Builds the core product end to end — from backend architecture to a secure, production-ready user experience. Leads the technical roadmap and designs human-in-the-loop agent workflows for autism care.</div>
           </div>
-          <div class="tcard-name-block">
-            <div class="tcard-title">Bing Yuan<br/>CTO</div>
-            <div class="tcard-socials">
-              <a href="https://www.linkedin.com/in/bing-yuan/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
-              </a>
-            </div>
+          <div class="tcard-socials">
+            <a href="https://www.linkedin.com/in/bing-yuan/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </a>
           </div>
         </div>
-        <div class="tcard-bio">An AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. She builds the core product end to end, from backend architecture and data pipelines to a secure, production-ready user experience. As a parent of a neurodivergent child, Bing brings a grounded caregiver lens and strong product judgment to every decision, balancing speed with trust, privacy, and reliability. At Kidooo AI, she leads the technical roadmap and designs human-in-the-loop agent workflows that translate clinical guidance and real-world family context into clear, actionable support for autism care at home and in clinics.</div>
       </div>
+
     </div>
   </section>
 
