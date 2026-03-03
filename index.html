@@ -436,30 +436,44 @@
 
     .team-grid {
       max-width: 980px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
     }
 
     .tcard {
       background: var(--y-100); border-radius: var(--radius-lg);
       border: 1.5px solid var(--y-200);
-      padding: 32px 26px;
-      display: flex; gap: 20px; align-items: flex-start;
+      padding: 36px 30px 30px;
+      display: flex; flex-direction: column; gap: 0;
       transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
     }
     .tcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-y); border-color: var(--y-400); }
 
+    .tcard-top {
+      display: flex; align-items: center; gap: 20px; margin-bottom: 20px;
+    }
+
     .tav {
-      width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
+      width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
     }
     .tav img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
-    .tcard-role  { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--p-500); margin-bottom: 4px; }
-    .tcard-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.2px; }
-    .tcard-bio   { font-size: 13px; line-height: 1.75; color: var(--ink-60); }
+    .tcard-name-block { display: flex; flex-direction: column; gap: 6px; }
+    .tcard-title { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.4px; line-height: 1.15; }
+    .tcard-socials { display: flex; gap: 8px; align-items: center; }
+    .tcard-social {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      background: white; border: 1.5px solid rgba(0,0,0,0.08);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .tcard-social:hover { border-color: var(--y-400); transform: translateY(-1px); }
+    .tcard-social svg { width: 15px; height: 15px; display: block; }
+
+    .tcard-bio { font-size: 14.5px; line-height: 1.78; color: var(--ink-60); }
 
     /* ══════════════════════════════════════
        BACKED BY
@@ -624,7 +638,7 @@
       </div>
       <div class="nav-actions">
         <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
-        <a href="mailto:team@kidooo.ai" class="btn-solid">Talk to us →</a>
+        <a href="mailto:hello@kidooo.ai" class="btn-solid">Talk to us →</a>
       </div>
     </div>
   </nav>
@@ -636,11 +650,11 @@
       <div class="hero-left">
         <div class="hero-kicker">
           <div class="kicker-dot">✦</div>
-          AI Copilot for Autism
+          AI Agent for Autism
         </div>
         <h1 class="hero-h1">
-          AI Copilot for Autism<br/>
-          <span class="hi">Clinics</span> and Families
+          AI Agent for Autism<br/>
+          <span class="hi">Families</span> and Clinics
         </h1>
         <p class="hero-p">
           Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos
@@ -653,7 +667,7 @@
         <div class="hero-cta">
           <a href="https://family.kidooo.ai" class="btn-hero">Try Kidooo AI</a>
           <a href="https://family.kidooo.ai" class="btn-ghost">User Tutorial</a>
-          <a href="mailto:team@kidooo.ai" class="btn-ghost">Contact Us</a>
+          <a href="mailto:hello@kidooo.ai" class="btn-ghost">Contact Us</a>
         </div>
       </div>
 
@@ -710,18 +724,7 @@
     </div>
   </section>
 
-  <!-- CAREERS -->
-  <section id="careers" class="features">
-    <div class="section-label">Careers</div>
-    <h2 class="section-h2">Join us in building better autism care.</h2>
-    <p class="section-p">
-      We’re a small, research-grounded team working with families and clinicians. If you care deeply about autism,
-      product craft, and safe AI, we’d love to hear from you.
-    </p>
-    <p class="section-p" style="margin-bottom:0;">
-      Email us at <a href="mailto:team@kidooo.ai" class="hero-text-link">team@kidooo.ai</a> with your background and why Kidooo.
-    </p>
-  </section>
+
 
   <!-- TRUST -->
   <div class="trust">
@@ -830,25 +833,43 @@
     <p class="section-p" style="margin-bottom:48px;">Blending autism research, clinical practice, and lived caregiver experience.</p>
 
     <div class="team-grid">
+      <!-- Hao Xue -->
       <div class="tcard">
-      <div class="tav">
-        <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
-      </div>
-        <div>
-          <div class="tcard-role">CEO · Autism &amp; Data Science</div>
-          <div class="tcard-title">Hao Xue, PhD, CEO</div>
-          <div class="tcard-bio">Former Stanford postdoctoral researcher in child development and clinician behavior with 1,500+ citations and former Data Science Manager at Wayfair, a Fortune 500 e-commerce company. At Kidooo AI, he leads vision and partnerships, turning rigorous research and industry experience into Autism Co-Pilot, an agentic AI system for autism care that plugs into clinic workflows first and extends support into everyday family routines. Backed by research experts, clinicians, and the Santa Clara University Bronco Ventures Accelerator, he focuses on measurable outcomes, privacy, and safety. He previously founded an education startup in China and serves on editorial boards for several academic journals, keeping Kidooo AI closely aligned with the latest science.</div>
+        <div class="tcard-top">
+          <div class="tav">
+            <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
+          </div>
+          <div class="tcard-name-block">
+            <div class="tcard-title">Hao Xue, PhD<br/>CEO</div>
+            <div class="tcard-socials">
+              <a href="https://www.linkedin.com/in/hao-xue-kidooo-ai/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+              </a>
+              <a href="https://x.com/hao_xue_kidooo" target="_blank" rel="noopener" class="tcard-social" aria-label="X / Twitter">
+                <svg viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
+        <div class="tcard-bio">Former Stanford postdoctoral researcher in child development and clinician behavior with 1,500+ citations and former Data Science Manager at Wayfair, a Fortune 500 e-commerce company. At Kidooo AI, he leads vision and partnerships, turning rigorous research and industry experience into Autism Co-Pilot, an agentic AI system for autism care that plugs into clinic workflows first and extends support into everyday family routines. Backed by research experts, clinicians, and the Santa Clara University Bronco Ventures Accelerator, he focuses on measurable outcomes, privacy, and safety. He previously founded an education startup in China and serves on editorial boards for several academic journals, keeping Kidooo AI closely aligned with the latest science.</div>
       </div>
+
+      <!-- Bing Yuan -->
       <div class="tcard">
-      <div class="tav">
-        <img src="bing.png" alt="Bing Yuan, CTO" />
-      </div>
-        <div>
-          <div class="tcard-role">CTO · Engineering &amp; Caregiver</div>
-          <div class="tcard-title">Bing Yuan, CTO</div>
-          <div class="tcard-bio">An AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. She builds the core product end to end, from backend architecture and data pipelines to a secure, production-ready user experience. As a parent of a neurodivergent child, Bing brings a grounded caregiver lens and strong product judgment to every decision, balancing speed with trust, privacy, and reliability. At Kidooo AI, she leads the technical roadmap and designs human-in-the-loop agent workflows that translate clinical guidance and real-world family context into clear, actionable support for autism care at home and in clinics.</div>
+        <div class="tcard-top">
+          <div class="tav">
+            <img src="bing.png" alt="Bing Yuan, CTO" />
+          </div>
+          <div class="tcard-name-block">
+            <div class="tcard-title">Bing Yuan<br/>CTO</div>
+            <div class="tcard-socials">
+              <a href="https://www.linkedin.com/in/bing-yuan/" target="_blank" rel="noopener" class="tcard-social" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
+        <div class="tcard-bio">An AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. She builds the core product end to end, from backend architecture and data pipelines to a secure, production-ready user experience. As a parent of a neurodivergent child, Bing brings a grounded caregiver lens and strong product judgment to every decision, balancing speed with trust, privacy, and reliability. At Kidooo AI, she leads the technical roadmap and designs human-in-the-loop agent workflows that translate clinical guidance and real-world family context into clear, actionable support for autism care at home and in clinics.</div>
       </div>
     </div>
   </section>
@@ -888,7 +909,7 @@
       <p class="cta-p">Start with one short clip from home. No appointments. No waiting. Just understanding.</p>
       <div class="cta-btns">
         <a href="https://family.kidooo.ai" class="btn-cta">Try free → family.kidooo.ai</a>
-        <a href="mailto:team@kidooo.ai" class="btn-cta-out">Questions? Talk to us</a>
+        <a href="mailto:hello@kidooo.ai" class="btn-cta-out">Questions? Talk to us</a>
       </div>
       <div class="cta-note">Not a medical device. Built with families, for families.</div>
     </div>
