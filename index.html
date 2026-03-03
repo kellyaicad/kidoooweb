@@ -443,85 +443,91 @@
     .team { padding: 96px 32px 104px; background: white; }
 
     .team-grid {
-      max-width: 860px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+      max-width: 680px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
     }
 
-    /* Outer card — fixed aspect ratio portrait */
+    /* Outer card — stacked layout: photo on top, info below */
     .tcard {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      aspect-ratio: 3 / 4;
-      box-shadow: 0 16px 40px rgba(26,26,46,0.14);
+      display: flex; flex-direction: column;
+      box-shadow: 0 12px 32px rgba(26,26,46,0.12);
+      border: 1.5px solid var(--p-200);
       cursor: default;
     }
 
-    /* Full-bleed photo */
+    /* Photo area — fixed height, smaller */
     .tcard-photo {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
+      width: 100%; height: 280px; flex-shrink: 0;
+      overflow: hidden;
     }
     .tcard-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+      transition: transform 0.38s ease;
     }
+    .tcard:hover .tcard-photo img { transform: scale(1.04); }
 
     /* Bottom name strip — always visible */
     .tcard-strip {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(255,248,230,0.96);
+      background: var(--p-100);
       padding: 18px 22px 20px;
-      border-top: 1.5px solid var(--y-200);
+      border-top: 1.5px solid var(--p-200);
       transition: opacity 0.28s ease;
+      flex-shrink: 0;
     }
     .tcard-name {
-      font-size: 22px; font-weight: 800; color: var(--ink);
-      letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 3px;
+      font-size: 20px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 3px;
     }
     .tcard-role {
-      font-size: 14px; font-weight: 500; color: var(--ink-60);
+      font-size: 13px; font-weight: 500; color: var(--ink-60);
     }
 
-    /* Hover overlay — bio + socials slides up */
+    /* Hover overlay — slides up from bottom over the whole card */
     .tcard-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(160deg, #2C2250 0%, #1A1A2E 100%);
-      padding: 32px 28px 28px;
+      background: rgba(245, 243, 254, 0.97);
+      border: 1.5px solid var(--p-300, #C4B8F0);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px 24px;
       display: flex; flex-direction: column; justify-content: space-between;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.32s ease, transform 0.32s ease;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
       pointer-events: none;
+      backdrop-filter: blur(2px);
     }
     .tcard:hover .tcard-overlay {
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
-    .tcard:hover .tcard-strip { opacity: 0; pointer-events: none; }
 
     .tcard-overlay-name {
-      font-size: 24px; font-weight: 800; color: var(--y-400);
-      letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 4px;
+      font-size: 22px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 3px;
     }
     .tcard-overlay-role {
-      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.55);
-      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 18px;
+      font-size: 12px; font-weight: 600; color: var(--p-500);
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
     }
     .tcard-bio {
-      font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,0.82);
+      font-size: 13px; line-height: 1.75; color: var(--ink-60);
       flex: 1; overflow: hidden;
     }
     .tcard-socials {
-      display: flex; gap: 10px; align-items: center; margin-top: 20px;
+      display: flex; gap: 10px; align-items: center; margin-top: 18px;
     }
     .tcard-social {
-      width: 36px; height: 36px; border-radius: 10px;
+      width: 34px; height: 34px; border-radius: 9px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.2);
-      transition: background 0.15s, transform 0.15s;
+      background: white;
+      border: 1.5px solid var(--p-200);
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
     }
     .tcard-social:hover { background: var(--y-400); border-color: var(--y-400); transform: translateY(-2px); }
-    .tcard-social svg { width: 16px; height: 16px; display: block; }
+    .tcard-social svg { width: 15px; height: 15px; display: block; }
+    .tcard-social svg path { fill: var(--ink); }
     .tcard-social:hover svg path { fill: var(--ink); }
 
     /* ══════════════════════════════════════
@@ -661,18 +667,15 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .team-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .team-grid { grid-template-columns: 1fr; max-width: 380px; }
       .priv-banner-inner { grid-template-columns: 1fr; gap: 20px; }
-      /* On mobile show overlay bio statically below photo strip */
+      /* On mobile show overlay bio statically below strip */
       .tcard-overlay {
         position: static; opacity: 1; transform: none;
-        background: linear-gradient(160deg, #2C2250 0%, #1A1A2E 100%);
+        background: var(--p-100);
         pointer-events: auto; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        border: none;
       }
-      .tcard { aspect-ratio: unset; }
-      .tcard-photo { position: static; height: 320px; display: block; }
-      .tcard-photo img { width: 100%; height: 100%; object-fit: cover; }
-      .tcard-strip { display: none; }
     }
     @media (max-width: 660px) {
       .cards-row { grid-template-columns: 1fr; max-width: 400px; }
