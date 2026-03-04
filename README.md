@@ -2,8 +2,7 @@
 
 The marketing website for **Kidooo AI**, an AI copilot for autism clinics and families.
 
-Live site (temp): [idyllic-praline-bc9d8c.netlify.app](https://idyllic-praline-bc9d8c.netlify.app)
-GitHub Pages: [kellyaicad.github.io/kidoooweb](https://kellyaicad.github.io/kidoooweb)
+Live site: [kidoooweb.vercel.app](https://kidoooweb.vercel.app)
 Product app: [family.kidooo.ai](https://family.kidooo.ai)
 
 ---
@@ -61,7 +60,7 @@ git commit -m "your update message"
 git push
 ```
 
-GitHub Pages will automatically redeploy within 1–2 minutes.
+Vercel will automatically redeploy within 1–2 minutes.
 
 ---
 
