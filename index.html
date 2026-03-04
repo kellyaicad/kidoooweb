@@ -85,6 +85,14 @@
 
     .nav-actions { display: flex; gap: 8px; align-items: center; }
 
+    .lang-toggle {
+      padding: 5px 14px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.14); background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s; letter-spacing: 0.3px;
+    }
+    .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
+
     .btn-ghost {
       padding: 9px 18px; border-radius: var(--radius-pill);
       border: 1.5px solid rgba(26,26,46,0.14); background: transparent;
@@ -703,6 +711,7 @@
         <a href="#careers">Careers</a>
       </div>
       <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">中文</button>
         <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
         <a href="mailto:hello@kidooo.ai" class="btn-solid">Talk to us →</a>
       </div>
@@ -1010,6 +1019,169 @@
       </div>
     </div>
   </footer>
+
+
+<script>
+  let currentLang = 'en';
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    applyLang(currentLang);
+    document.getElementById('langToggle').textContent = currentLang === 'en' ? '中文' : 'EN';
+  }
+
+  function applyLang(lang) {
+    const zh = lang === 'zh';
+    function q(sel) { return document.querySelector(sel); }
+    function qa(sel) { return document.querySelectorAll(sel); }
+    function s(el, en, zh_) { if (el) el.innerHTML = zh ? zh_ : en; }
+
+    // ── NAV ──────────────────────────────────────────────
+    const navA = qa('.nav-links a');
+    s(navA[0], 'Home', '首页');
+    s(navA[1], 'User Tutorial', '使用教程');
+    s(navA[2], 'Careers', '加入我们');
+    s(q('.nav-actions .btn-ghost'), 'Family App', '家长版应用');
+    s(q('.nav-actions .btn-solid'), 'Talk to us →', '联系我们 →');
+
+    // ── HERO ─────────────────────────────────────────────
+    s(q('.hero-h1'),
+      'AI Agent for Autism<br/><span class="hi">Families</span> and Clinics',
+      '自闭症家庭与诊所的<br/><span class="hi">AI 智能助手</span>');
+    s(q('.hero-p'),
+      'Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos into clinician-ready documentation for therapists and actionable guidance for families.',
+      'Kidooo AI 是一款多模态 AI 智能体，专为个性化自闭症干预而设计。我们将治疗课程和家庭视频，转化为临床可用的专业文档与家庭可执行的行动建议。');
+    s(q('.btn-hero'), 'Try Kidooo Family', '体验 Kidooo 家长版');
+    s(q('.hero-cta .btn-ghost'), 'Contact Us', '联系我们');
+
+    // ── APP CARD ──────────────────────────────────────────
+    s(q('.live-row'), '<span class="live-pip"></span>Live analysis', '<span class="live-pip"></span>实时分析');
+    s(q('.app-card-title'), 'From moments to guidance.', '从日常片段到专业建议');
+    s(q('.app-card-sub'),
+      'Short clips from home become summaries, language you can use, and gentle ideas to try next.',
+      '家庭短视频变成摘要、易懂语言和温和的下一步建议。');
+    const moments = qa('.moment');
+    s(moments[0]?.querySelector('.moment-name'), 'After-school meltdown', '放学后情绪崩溃');
+    s(moments[0]?.querySelector('.moment-time'), 'Today · 2:14 PM', '今天 · 下午 2:14');
+    s(moments[0]?.querySelector('.mtag'), 'Summary ready', '摘要已生成');
+    s(moments[1]?.querySelector('.moment-name'), 'Playtime win', '游戏时的进步');
+    s(moments[1]?.querySelector('.moment-time'), 'Today · 4:32 PM', '今天 · 下午 4:32');
+    s(moments[1]?.querySelector('.mtag'), 'Ideas saved', '建议已保存');
+    s(moments[2]?.querySelector('.moment-name'), 'Parent note', '家长备注');
+    s(moments[2]?.querySelector('.moment-time'), 'Today · 6:05 PM', '今天 · 下午 6:05');
+    s(moments[2]?.querySelector('.mtag'), 'Tagged for doctor', '已标记给医生');
+
+    // ── MINI CARD ─────────────────────────────────────────
+    s(q('.mini-num'), '10–60 second<br/>video', '10–60秒<br/>视频');
+    s(q('.mini-label'), 'is all you need', '即可开始');
+
+    // ── TRUST ─────────────────────────────────────────────
+    s(q('.trust-text'),
+      'Built with researchers, clinicians &amp; families across leading autism centers.',
+      '与领先自闭症中心的研究人员、临床医生和家庭共同构建。');
+    const trustTags = qa('.trust-tag');
+    s(trustTags[0], 'Video-to-notes for clinics', '视频转笔记（面向诊所）');
+    s(trustTags[1], 'Coaching-style guidance at home', '居家指导（面向家庭）');
+
+    // ── FEATURES ──────────────────────────────────────────
+    s(q('#features .section-h2'),
+      'Three steps to <span class="hi">clarity</span>',
+      '三步，从混乱到<span class="hi">清晰</span>');
+    s(q('#features .section-p'),
+      'No jargon. No clinic waiting rooms. Just real guidance from real moments at home.',
+      '没有术语，没有漫长等待。只有来自真实家庭场景的真实指导。');
+    s(q('.fc-a .fcard-title'), 'Upload', '上传');
+    s(q('.fc-a .fcard-body'),
+      '<strong style="font-size:1.25em;font-weight:800;color:var(--ink);display:block;margin-bottom:6px;letter-spacing:-0.3px;">A 10–60 second video</strong>from home. No setup. No extra equipment. Just your phone.',
+      '<strong style="font-size:1.25em;font-weight:800;color:var(--ink);display:block;margin-bottom:6px;letter-spacing:-0.3px;">10–60秒的家庭视频</strong>无需额外设置，无需专用设备，只要一部手机。');
+    s(q('.fc-a .fcard-tag'), 'Any moment, any day', '随时随地');
+    s(q('.fc-b .fcard-title'), 'Understand', '理解');
+    s(q('.fc-b .fcard-body'),
+      'Kidooo AI reads what\'s happening and gives you a clear, gentle summary in plain language.',
+      'Kidooo AI 分析视频内容，以简洁友好的语言为您提供清晰温和的摘要。');
+    s(q('.fc-b .fcard-tag'), 'In plain language', '简单易懂');
+    s(q('.fc-c .fcard-title'), 'Take Action', '行动');
+    s(q('.fc-c .fcard-body'),
+      'Personalized, evidence-informed ideas you can try with your child today.',
+      '个性化、循证的建议，帮助您今天就能用于孩子的日常。');
+    s(q('.fc-c .fcard-tag'), 'Safe &amp; caregiver-first', '安全，以照护者为先');
+
+    // ── HOW IT WORKS ──────────────────────────────────────
+    s(q('.how .section-label'), 'How it works', '使用流程');
+    s(q('.how .section-h2'),
+      'Record. Review. <span class="hi">Act.</span>',
+      '记录。回顾。<span class="hi">行动。</span>');
+    s(q('.how .section-p'),
+      'No appointments. No complicated setup. Just you, your phone, and a few minutes.',
+      '无需预约，无需复杂设置。只需您、您的手机和几分钟时间。');
+    const steps = qa('.step');
+    s(steps[0]?.querySelector('.step-head'), 'Record', '记录');
+    s(steps[0]?.querySelector('.step-body'),
+      'A short video of a real moment at home — good, hard, or in-between.',
+      '拍一段家里真实的日常片段——好的、难的，或介于两者之间。');
+    s(steps[1]?.querySelector('.step-head'), 'Review', '回顾');
+    s(steps[1]?.querySelector('.step-body'),
+      'AI summary and gentle next steps — clear language, no jargon.',
+      'AI 摘要和温和的下一步建议——语言清晰，没有术语。');
+    s(steps[2]?.querySelector('.step-head'), 'Try &amp; Track', '尝试与追踪');
+    s(steps[2]?.querySelector('.step-body'),
+      'Log progress over time and share with your child\'s care team.',
+      '记录长期进展，并与孩子的护理团队分享。');
+
+    // ── PRIVACY ───────────────────────────────────────────
+    s(q('.priv-title'), 'Private by Default', '默认保护隐私');
+    s(q('.priv-text'),
+      'Your family\'s videos and notes are fully encrypted and parent-controlled. Kidooo never sells data, and you choose exactly what to share with your child\'s care team.',
+      '您家庭的视频和备注经过全面加密并由家长掌控。Kidooo 不出售数据，您可以完全决定与孩子护理团队共享的内容。');
+    const privTags = qa('.priv-tag');
+    s(privTags[0], 'End-to-end encrypted', '端对端加密');
+    s(privTags[1], 'Parent-controlled', '家长掌控');
+    s(privTags[2], 'HIPAA-aligned', '符合HIPAA标准');
+    s(privTags[3], 'No data selling', '不出售数据');
+
+    // ── TEAM ──────────────────────────────────────────────
+    s(q('#team .section-label'), 'Our team', '我们的团队');
+    s(q('#team .section-h2'),
+      'Built by people who <span class="hi">get it</span>',
+      '由真正懂的人<span class="hi">来构建</span>');
+    s(q('#team .section-p'), 'Blending autism research, clinical practice, and lived caregiver experience.',
+      '融合自闭症研究、临床实践与照护者的亲身经历。');
+    const tcards = qa('.tcard');
+    s(tcards[0]?.querySelector('.tcard-role'), 'Founder &amp; CEO · Kidooo AI', '创始人 &amp; CEO · Kidooo AI');
+    s(tcards[0]?.querySelector('.tcard-overlay-role'), 'Founder &amp; CEO · Kidooo AI', '创始人 &amp; CEO · Kidooo AI');
+    s(tcards[0]?.querySelector('.tcard-bio'),
+      'Former Stanford postdoctoral researcher in child development with 1,500+ citations and former Data Science Manager at Wayfair. At Kidooo AI, he leads vision and partnerships, turning rigorous research into an agentic AI system for autism care. Backed by SCU Bronco Ventures Accelerator. Serves on editorial boards for several academic journals.',
+      '前斯坦福大学博士后研究员，专注儿童发展，拥有1500+引用量；曾任Wayfair数据科学经理。在 Kidooo AI 主导产品愿景与合作，将严谨研究成果转化为自闭症护理 AI 智能体。获SCU Bronco Ventures加速器支持，并在多个学术期刊担任编委。');
+    s(tcards[1]?.querySelector('.tcard-role'), 'Co-Founder &amp; CTO · Kidooo AI', '联合创始人 &amp; CTO · Kidooo AI');
+    s(tcards[1]?.querySelector('.tcard-overlay-role'), 'Co-Founder &amp; CTO · Kidooo AI', '联合创始人 &amp; CTO · Kidooo AI');
+    s(tcards[1]?.querySelector('.tcard-bio'),
+      'AI-native full-stack engineer with a reinforcement learning background and three years of PhD training in Computer Science at Purdue. Parent of a neurodivergent child. Builds the core product end to end — from backend architecture to a secure, production-ready user experience. Leads the technical roadmap and designs human-in-the-loop agent workflows for autism care.',
+      'AI 原生全栈工程师，具有强化学习背景，在普渡大学接受三年计算机科学博士训练。神经多样性孩子的家长。全程构建核心产品，从后端架构到安全的生产环境用户体验。主导技术路线图，设计支持家庭和诊所的人机协作工作流。');
+
+    // ── BACKED BY ─────────────────────────────────────────
+    s(q('.backed-label'), 'Backed by', '支持机构');
+
+    // ── CTA ───────────────────────────────────────────────
+    s(q('.cta-h2'),
+      'Get your first summary <span class="hi">in minutes.</span>',
+      '几分钟内获取<span class="hi">您的第一份总结。</span>');
+    s(q('.cta-p'),
+      'Start with one short clip from home — no appointments, no waiting.',
+      '从一段家庭短视频开始——无需预约，无需等待。');
+    s(q('.btn-cta'), 'Try free → family.kidooo.ai', '免费体验 → family.kidooo.ai');
+    s(q('.btn-cta-out'), 'Questions? Talk to us', '有问题？联系我们');
+    s(q('.cta-note'),
+      'Not a medical device. Built with families, for families.',
+      '非医疗设备。由家庭共建，专为家庭打造。');
+
+    // ── FOOTER ────────────────────────────────────────────
+    const footerCopies = qa('.footer-copy');
+    s(footerCopies[1], '©2024–2026 AI ECD Inc. All rights reserved.', '©2024–2026 AI ECD Inc. 保留所有权利。');
+    const footerLinks = qa('.footer-links a');
+    s(footerLinks[0], 'Privacy Policy', '隐私政策');
+    s(footerLinks[1], 'Careers', '加入我们');
+  }
+</script>
 
 </body>
 </html>
