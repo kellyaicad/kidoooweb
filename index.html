@@ -776,7 +776,27 @@
     @media (max-width: 660px) {
       .cards-row { grid-template-columns: 1fr; max-width: 400px; }
       .fcard:nth-child(2) { margin-top: 0; }
-      .backed-row { grid-template-columns: repeat(2,1fr); }
+
+      /* Backed by: horizontal scroll strip on mobile */
+      .backed { padding: 28px 0 32px; }
+      .backed-label { padding: 0 24px; margin-bottom: 20px; }
+      .backed-inner { max-width: 100%; }
+      .backed-row {
+        flex-wrap: nowrap; justify-content: flex-start;
+        overflow-x: auto; overflow-y: hidden;
+        gap: 0;
+        padding: 8px 24px 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .backed-row::-webkit-scrollbar { display: none; }
+      .backed-logo {
+        flex-shrink: 0;
+        padding: 0 24px;
+        border-right: 1px solid rgba(0,0,0,0.08);
+      }
+      .backed-logo:last-child { border-right: none; }
+      .backed-logo img { height: 56px; }
     }
     @media (max-width: 480px) {
       .hero, .features, .how, .team, .cta { padding-inline: 18px; }
