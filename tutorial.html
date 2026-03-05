@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Tutorial – Kidooo AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --y-400:   #FFD426;
+      --y-300:   #FFE566;
+      --y-200:   #FFF3A3;
+      --y-100:   #FFFBE6;
+      --y-dark:  #C8A000;
+      --p-500:   #8B7ED8;
+      --p-400:   #A99EE0;
+      --p-300:   #C4B8F0;
+      --p-200:   #EAE6FA;
+      --p-100:   #F5F3FE;
+      --p-text:  #4A3FA0;
+      --ink:     #1A1A2E;
+      --ink-60:  #5A5878;
+      --ink-40:  #9896AD;
+      --ink-20:  #E0DFF0;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --shadow-sm: 0 2px 12px rgba(26,26,46,0.06);
+      --shadow-md: 0 8px 40px rgba(26,26,46,0.10);
+      --shadow-y:  0 8px 32px rgba(200,160,0,0.18);
+      --shadow-p:  0 8px 24px rgba(139,126,216,0.25);
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--ink); background: white; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,212,38,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 36px; width: auto; display: block; }
+    .nav-links {
+      display: flex; gap: 28px;
+      font-size: 15px; font-weight: 500; color: var(--ink-60);
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 700; }
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .btn-ghost {
+      padding: 9px 18px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.14); background: transparent;
+      font-family: inherit; font-size: 15px; font-weight: 600; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s;
+    }
+    .btn-ghost:hover { border-color: var(--y-dark); color: var(--ink); background: var(--y-100); }
+    .btn-solid {
+      padding: 10px 22px; border-radius: var(--radius-pill); border: none;
+      background: var(--p-500); font-family: inherit; font-size: 15px;
+      font-weight: 600; color: white; cursor: pointer;
+      box-shadow: var(--shadow-p); transition: all 0.16s;
+    }
+    .btn-solid:hover { background: var(--p-text); transform: translateY(-1px); }
+    .lang-toggle {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.18); background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px;
+    }
+    .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
+
+    /* ── HERO ── */
+    .tut-hero {
+      background: var(--y-100);
+      border-bottom: 1px solid var(--y-200);
+      padding: 56px 32px 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .tut-hero::before {
+      content: ''; position: absolute; top: -160px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(255,255,255,0.4); pointer-events: none;
+    }
+    .tut-hero-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+    .tut-label {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--y-dark);
+      background: var(--y-300); padding: 4px 14px; border-radius: var(--radius-pill);
+      margin-bottom: 20px;
+    }
+    .tut-h1 {
+      font-size: clamp(30px, 4vw, 48px); font-weight: 800; color: var(--ink);
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
+    }
+    .tut-h1 .hi { color: var(--p-500); }
+    .tut-sub {
+      font-size: 17px; color: var(--ink-60); line-height: 1.7; margin-bottom: 28px;
+    }
+    .tut-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-tut {
+      padding: 12px 28px; border-radius: var(--radius-pill); border: none;
+      background: var(--y-400); font-family: inherit; font-size: 16px;
+      font-weight: 700; color: var(--ink); cursor: pointer;
+      box-shadow: var(--shadow-y); transition: all 0.18s;
+    }
+    .btn-tut:hover { background: var(--y-300); transform: translateY(-2px); }
+
+    /* ── STEPS ── */
+    .steps-section { padding: 64px 32px 72px; }
+    .steps-inner { max-width: 820px; margin: 0 auto; }
+    .steps-title {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--ink);
+      letter-spacing: -0.8px; margin-bottom: 8px; text-align: center;
+    }
+    .steps-title .hi { color: var(--p-500); }
+    .steps-sub {
+      font-size: 16px; color: var(--ink-60); text-align: center;
+      line-height: 1.7; max-width: 500px; margin: 0 auto 52px;
+    }
+
+    .step-card {
+      display: grid; grid-template-columns: 56px 1fr; gap: 0 24px;
+      margin-bottom: 32px; align-items: start;
+    }
+    .step-card:last-child { margin-bottom: 0; }
+    .step-num-col { display: flex; flex-direction: column; align-items: center; }
+    .step-circle {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800;
+    }
+    .sc-y { background: var(--y-400); color: var(--ink); }
+    .sc-p { background: var(--p-400); color: white; }
+    .sc-g { background: var(--p-200); color: var(--p-text); }
+    .sc-w { background: white; border: 2px solid var(--y-300); color: var(--ink); }
+    .step-line {
+      width: 2px; flex: 1; min-height: 32px; background: var(--ink-20);
+      margin-top: 8px; border-radius: 2px;
+    }
+    .step-content {
+      background: white; border: 1.5px solid var(--ink-20);
+      border-radius: var(--radius-lg); padding: 24px 28px 28px;
+      margin-bottom: 0; box-shadow: var(--shadow-sm);
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .step-content:hover { border-color: var(--y-300); box-shadow: var(--shadow-y); }
+    .step-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--y-dark); background: var(--y-200);
+      padding: 3px 10px; border-radius: var(--radius-pill); margin-bottom: 12px;
+    }
+    .step-heading {
+      font-size: 20px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.3px; margin-bottom: 10px;
+    }
+    .step-body { font-size: 15px; line-height: 1.75; color: var(--ink-60); }
+    .step-body strong { color: var(--ink); font-weight: 700; }
+    .step-tips {
+      margin-top: 16px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .step-tip {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--ink-60); line-height: 1.6;
+    }
+    .tip-dot {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      background: var(--y-400); margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tip-dot svg { width: 10px; height: 10px; }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--p-100); border-top: 1px solid var(--p-200);
+      border-bottom: 1px solid var(--p-200); padding: 56px 32px 64px;
+    }
+    .faq-inner { max-width: 720px; margin: 0 auto; }
+    .faq-title {
+      font-size: 28px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.5px; margin-bottom: 32px; text-align: center;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--p-200); padding: 18px 0;
+    }
+    .faq-item:first-of-type { border-top: 1px solid var(--p-200); }
+    .faq-q {
+      font-size: 16px; font-weight: 700; color: var(--ink);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; user-select: none;
+    }
+    .faq-q svg { flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a {
+      font-size: 15px; color: var(--ink-60); line-height: 1.75;
+      padding-top: 12px; display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA ── */
+    .tut-cta {
+      padding: 56px 32px 64px; background: var(--y-400); text-align: center;
+    }
+    .tut-cta-inner { max-width: 500px; margin: 0 auto; }
+    .tut-cta h2 {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--ink);
+      letter-spacing: -0.8px; margin-bottom: 12px;
+    }
+    .tut-cta p { font-size: 16px; color: var(--ink); opacity: 0.7; margin-bottom: 28px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink); padding: 32px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--y-400); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .step-card { grid-template-columns: 44px 1fr; gap: 0 16px; }
+      .step-circle { width: 42px; height: 42px; font-size: 15px; }
+      .step-content { padding: 18px 20px 22px; }
+      .steps-section { padding: 40px 18px 48px; }
+      .tut-hero { padding: 40px 18px 48px; }
+      .faq-section { padding: 40px 18px 48px; }
+      .tut-cta { padding: 40px 18px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="Flex Logo.png" alt="Kidooo AI" class="logo-img" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tutorial.html" class="active">User Tutorial</a>
+        <a href="https://tally.so/r/gDao71" target="_blank" rel="noopener">Careers</a>
+      </div>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">中文</button>
+        <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tut-hero">
+    <div class="tut-hero-inner">
+      <div class="tut-label" data-i18n="hero-label">User Tutorial</div>
+      <h1 class="tut-h1" data-i18n="hero-h1">Get started with<br/><span class="hi">Kidooo Family</span></h1>
+      <p class="tut-sub" data-i18n="hero-sub">Everything you need to start recording, understanding, and acting on moments that matter — right from home.</p>
+      <div class="tut-cta-row">
+        <a href="https://family.kidooo.ai" class="btn-tut" data-i18n="hero-btn">Open Kidooo Family →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps-section">
+    <div class="steps-inner">
+      <h2 class="steps-title" data-i18n="steps-title">How to use <span class="hi">Kidooo Family</span></h2>
+      <p class="steps-sub" data-i18n="steps-sub">Follow these steps to get your first AI summary in minutes.</p>
+
+      <!-- Step 1 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-y">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s1-tag">Get Started</div>
+          <div class="step-heading" data-i18n="s1-head">Create your free account</div>
+          <div class="step-body" data-i18n="s1-body">
+            Visit <strong>family.kidooo.ai</strong> on your phone or computer. Sign up with your email — it takes less than 2 minutes. No credit card required.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-p">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s2-tag">Record</div>
+          <div class="step-heading" data-i18n="s2-head">Film a 10–60 second video</div>
+          <div class="step-body" data-i18n="s2-body">
+            Use your phone camera to capture a real moment with your child. It can be a meltdown, a win, playtime, or anything in between — there's no "wrong" clip.
+          </div>
+          <div class="step-tips">
+            <div class="step-tip">
+              <div class="tip-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span data-i18n="s2-tip1">Good lighting helps, but it doesn't need to be perfect</span>
+            </div>
+            <div class="step-tip">
+              <div class="tip-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span data-i18n="s2-tip2">Try to capture both your child's face and their actions</span>
+            </div>
+            <div class="step-tip">
+              <div class="tip-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span data-i18n="s2-tip3">Everyday moments work best — no need to "perform" for the camera</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-g">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s3-tag">Upload</div>
+          <div class="step-heading" data-i18n="s3-head">Upload the video to Kidooo</div>
+          <div class="step-body" data-i18n="s3-body">
+            In the app, tap <strong>+ New Moment</strong> and select your video. You can add a short note about what was happening before you upload.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-y">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s4-tag">Understand</div>
+          <div class="step-heading" data-i18n="s4-head">Read your AI summary</div>
+          <div class="step-body" data-i18n="s4-body">
+            Within minutes, Kidooo AI will generate a clear summary of the moment — including what behaviors were observed, possible triggers, and your child's emotional state — all in plain language, no jargon.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-p">5</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s5-tag">Take Action</div>
+          <div class="step-heading" data-i18n="s5-head">Try a personalized suggestion</div>
+          <div class="step-body" data-i18n="s5-body">
+            Kidooo will offer 2–3 evidence-informed ideas you can try with your child today. They're gentle, safe, and designed for real home situations — not a clinical setting.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step-card">
+        <div class="step-num-col">
+          <div class="step-circle sc-g">6</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-tag" data-i18n="s6-tag">Track &amp; Share</div>
+          <div class="step-heading" data-i18n="s6-head">Log progress &amp; share with your care team</div>
+          <div class="step-body" data-i18n="s6-body">
+            Over time, Kidooo builds a timeline of your child's moments. You can share selected summaries with your child's therapist or clinic — you always control what they see.
+          </div>
+          <div class="step-tips">
+            <div class="step-tip">
+              <div class="tip-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span data-i18n="s6-tip1">All videos are encrypted — your care team only sees the summary you choose to share</span>
+            </div>
+            <div class="step-tip">
+              <div class="tip-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span data-i18n="s6-tip2">Kidooo never sells or shares your data with any third parties</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <h2 class="faq-title" data-i18n="faq-title">Common questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq-q1">Is Kidooo a medical or diagnostic tool?</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a" data-i18n="faq-a1">No. Kidooo is not a medical device and does not provide diagnoses. It is an AI-powered support tool that helps families observe, understand, and document their child's behaviors at home. Always consult a licensed professional for medical or clinical decisions.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq-q2">How is my child's video kept private?</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a" data-i18n="faq-a2">All videos are end-to-end encrypted and stored securely. Kidooo never sells your data. You choose exactly what to share with your child's care team — they only see the text summary you explicitly share, never the raw video unless you allow it.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq-q3">What kind of videos should I record?</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a" data-i18n="faq-a3">Any real moment works — a meltdown after school, a breakthrough during play, a difficult bedtime, or a happy interaction with a sibling. The AI works best with natural, unstaged moments captured in everyday settings.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq-q4">Is Kidooo Family free to use?</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a" data-i18n="faq-a4">Yes — you can start for free with no credit card required. Visit family.kidooo.ai to create your account and upload your first video.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq-q5">Do I need to be diagnosed with autism to use Kidooo?</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a" data-i18n="faq-a5">No. Kidooo is built for any family navigating neurodevelopmental challenges — whether your child has a formal diagnosis or you're in the process of seeking one. The tool is most useful for families who want to better understand and document their child's daily experiences.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="tut-cta">
+    <div class="tut-cta-inner">
+      <h2 data-i18n="cta-h2">Ready to try it?</h2>
+      <p data-i18n="cta-p">Your first summary is just one short video away.</p>
+      <div class="tut-cta-row">
+        <a href="https://family.kidooo.ai" class="btn-tut" data-i18n="cta-btn">Start free → family.kidooo.ai</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-copy" data-i18n="footer-copy">©2024–2026 AI ECD Inc. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#" data-i18n="footer-privacy">Privacy Policy</a>
+        <a href="https://tally.so/r/gDao71" target="_blank" rel="noopener" data-i18n="footer-careers">Careers</a>
+        <a href="index.html" data-i18n="footer-home">Home</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  let currentLang = 'en';
+
+  const T = {
+    'hero-label':   { en: 'User Tutorial', zh: '使用教程' },
+    'hero-h1':      { en: 'Get started with<br/><span class="hi">Kidooo Family</span>', zh: '开始使用<br/><span class="hi">Kidooo 家长版</span>' },
+    'hero-sub':     { en: 'Everything you need to start recording, understanding, and acting on moments that matter — right from home.', zh: '从家里出发，记录、读懂、行动——陪伴孩子成长的每一个真实瞬间。' },
+    'hero-btn':     { en: 'Open Kidooo Family →', zh: '打开 Kidooo 家长版 →' },
+
+    'steps-title':  { en: 'How to use <span class="hi">Kidooo Family</span>', zh: '怎么使用 <span class="hi">Kidooo 家长版</span>' },
+    'steps-sub':    { en: 'Follow these steps to get your first AI summary in minutes.', zh: '按照以下步骤，几分钟内获取你的第一份 AI 摘要。' },
+
+    's1-tag':       { en: 'Get Started', zh: '开始' },
+    's1-head':      { en: 'Create your free account', zh: '注册免费账号' },
+    's1-body':      { en: 'Visit <strong>family.kidooo.ai</strong> on your phone or computer. Sign up with your email — it takes less than 2 minutes. No credit card required.', zh: '在手机或电脑上打开 <strong>family.kidooo.ai</strong>，用邮箱注册账号，不到两分钟即可完成，无需绑定信用卡。' },
+
+    's2-tag':       { en: 'Record', zh: '录制' },
+    's2-head':      { en: 'Film a 10–60 second video', zh: '拍一段 10–60 秒的视频' },
+    's2-body':      { en: 'Use your phone camera to capture a real moment with your child. It can be a meltdown, a win, playtime, or anything in between — there\'s no "wrong" clip.', zh: '用手机拍下和孩子在一起的真实瞬间。可以是情绪崩溃，可以是小小的进步，也可以是普通的游戏时光——没有"不对的"片段。' },
+    's2-tip1':      { en: 'Good lighting helps, but it doesn\'t need to be perfect', zh: '光线好一些会有帮助，但不需要完美' },
+    's2-tip2':      { en: 'Try to capture both your child\'s face and their actions', zh: '尽量拍到孩子的表情和动作' },
+    's2-tip3':      { en: 'Everyday moments work best — no need to "perform" for the camera', zh: '最自然的日常片段效果最好，不用刻意表演' },
+
+    's3-tag':       { en: 'Upload', zh: '上传' },
+    's3-head':      { en: 'Upload the video to Kidooo', zh: '上传视频到 Kidooo' },
+    's3-body':      { en: 'In the app, tap <strong>+ New Moment</strong> and select your video. You can add a short note about what was happening before you upload.', zh: '在应用中点击 <strong>+ 新片段</strong>，选择刚才录制的视频。上传前可以加一句简短的备注，说说当时发生了什么。' },
+
+    's4-tag':       { en: 'Understand', zh: '理解' },
+    's4-head':      { en: 'Read your AI summary', zh: '阅读 AI 摘要' },
+    's4-body':      { en: 'Within minutes, Kidooo AI will generate a clear summary of the moment — including what behaviors were observed, possible triggers, and your child\'s emotional state — all in plain language, no jargon.', zh: '几分钟内，Kidooo AI 会生成一份清晰的摘要，包括观察到的行为、可能的触发因素，以及孩子当时的情绪状态——全部用简单易懂的语言，没有术语。' },
+
+    's5-tag':       { en: 'Take Action', zh: '行动' },
+    's5-head':      { en: 'Try a personalized suggestion', zh: '试试个性化的建议' },
+    's5-body':      { en: 'Kidooo will offer 2–3 evidence-informed ideas you can try with your child today. They\'re gentle, safe, and designed for real home situations — not a clinical setting.', zh: 'Kidooo 会给出 2–3 条有循证依据的建议，今天就可以用于孩子的日常。这些建议温和、安全，是为真实的家庭场景设计的，不是临床用语。' },
+
+    's6-tag':       { en: 'Track & Share', zh: '追踪与分享' },
+    's6-head':      { en: 'Log progress & share with your care team', zh: '记录进展，与护理团队分享' },
+    's6-body':      { en: 'Over time, Kidooo builds a timeline of your child\'s moments. You can share selected summaries with your child\'s therapist or clinic — you always control what they see.', zh: '随着时间积累，Kidooo 会为孩子建立一个成长时间轴。你可以把部分摘要分享给治疗师或诊所——始终由你决定他们看到什么。' },
+    's6-tip1':      { en: 'All videos are encrypted — your care team only sees the summary you choose to share', zh: '所有视频均加密存储——护理团队只看到你主动分享的文字摘要' },
+    's6-tip2':      { en: 'Kidooo never sells or shares your data with any third parties', zh: 'Kidooo 绝不将你的数据出售或共享给任何第三方' },
+
+    'faq-title':    { en: 'Common questions', zh: '常见问题' },
+    'faq-q1':       { en: 'Is Kidooo a medical or diagnostic tool?', zh: 'Kidooo 是医疗或诊断工具吗？' },
+    'faq-a1':       { en: 'No. Kidooo is not a medical device and does not provide diagnoses. It is an AI-powered support tool that helps families observe, understand, and document their child\'s behaviors at home. Always consult a licensed professional for medical or clinical decisions.', zh: '不是。Kidooo 不是医疗器械，也不提供诊断。它是一个 AI 辅助工具，帮助家庭观察、理解并记录孩子在家中的行为。医疗或临床决策请始终咨询专业执照人员。' },
+    'faq-q2':       { en: 'How is my child\'s video kept private?', zh: '孩子的视频如何保护隐私？' },
+    'faq-a2':       { en: 'All videos are end-to-end encrypted and stored securely. Kidooo never sells your data. You choose exactly what to share with your child\'s care team — they only see the text summary you explicitly share, never the raw video unless you allow it.', zh: '所有视频均端对端加密、安全存储。Kidooo 不出售数据。你可以精确决定与护理团队分享什么——他们只能看到你明确分享的文字摘要，除非你允许，否则不会看到原始视频。' },
+    'faq-q3':       { en: 'What kind of videos should I record?', zh: '应该录制什么样的视频？' },
+    'faq-a3':       { en: 'Any real moment works — a meltdown after school, a breakthrough during play, a difficult bedtime, or a happy interaction with a sibling. The AI works best with natural, unstaged moments captured in everyday settings.', zh: '任何真实的瞬间都可以——放学后的情绪崩溃、游戏中的突破、困难的睡前时光，或者与兄弟姐妹的快乐互动。AI 在自然、未经排练的日常场景中效果最好。' },
+    'faq-q4':       { en: 'Is Kidooo Family free to use?', zh: 'Kidooo 家长版免费吗？' },
+    'faq-a4':       { en: 'Yes — you can start for free with no credit card required. Visit family.kidooo.ai to create your account and upload your first video.', zh: '是的——无需信用卡，免费开始。访问 family.kidooo.ai 创建账号并上传你的第一段视频。' },
+    'faq-q5':       { en: 'Do I need to be diagnosed with autism to use Kidooo?', zh: '需要有自闭症诊断才能使用 Kidooo 吗？' },
+    'faq-a5':       { en: 'No. Kidooo is built for any family navigating neurodevelopmental challenges — whether your child has a formal diagnosis or you\'re in the process of seeking one. The tool is most useful for families who want to better understand and document their child\'s daily experiences.', zh: '不需要。Kidooo 为所有正在应对神经发育挑战的家庭而建——无论孩子是否已有正式诊断，还是正在寻求诊断中。对于希望更好地了解和记录孩子日常体验的家庭，这个工具最有帮助。' },
+
+    'cta-h2':       { en: 'Ready to try it?', zh: '准备好了吗？' },
+    'cta-p':        { en: 'Your first summary is just one short video away.', zh: '你的第一份摘要，只需一段短视频。' },
+    'cta-btn':      { en: 'Start free → family.kidooo.ai', zh: '免费开始 → family.kidooo.ai' },
+
+    'footer-copy':    { en: '©2024–2026 AI ECD Inc. All rights reserved.', zh: '©2024–2026 AI ECD Inc. 保留所有权利。' },
+    'footer-privacy': { en: 'Privacy Policy', zh: '隐私政策' },
+    'footer-careers': { en: 'Careers', zh: '加入我们' },
+    'footer-home':    { en: 'Home', zh: '首页' },
+  };
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    applyLang(currentLang);
+    document.getElementById('langToggle').textContent = currentLang === 'en' ? '中文' : 'EN';
+    // update nav btn labels too
+    const navActions = document.querySelector('.nav-actions .btn-ghost');
+    const navSolid = document.querySelector('.nav-actions .btn-solid');
+    if (currentLang === 'zh') {
+      if (navActions) navActions.textContent = '家长版应用';
+      if (navSolid)   navSolid.textContent = '联系我们 →';
+    } else {
+      if (navActions) navActions.textContent = 'Family App';
+      if (navSolid)   navSolid.textContent = 'Talk to us →';
+    }
+  }
+
+  function applyLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (T[key]) el.innerHTML = T[key][lang];
+    });
+  }
+
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>

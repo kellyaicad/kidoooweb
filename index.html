@@ -87,15 +87,12 @@
     .nav-actions { display: flex; gap: 8px; align-items: center; }
 
     .lang-toggle {
-      position: absolute; top: 22px; right: 28px; z-index: 10;
-      padding: 8px 20px; border-radius: var(--radius-pill);
-      border: 2px solid var(--ink);
-      background: white;
-      font-family: inherit; font-size: 15px; font-weight: 700; color: var(--ink);
-      cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
-      box-shadow: 0 4px 16px rgba(26,26,46,0.12);
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.18); background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px;
     }
-    .lang-toggle:hover { background: var(--y-400); border-color: var(--y-400); box-shadow: 0 6px 20px rgba(200,160,0,0.25); }
+    .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
 
     .btn-ghost {
       padding: 9px 18px; border-radius: var(--radius-pill);
@@ -488,11 +485,13 @@
     /* Bottom name strip — always visible */
     .tcard-strip {
       background: var(--p-100);
-      padding: 18px 22px 20px;
+      padding: 16px 22px 18px;
       border-top: 1.5px solid var(--p-200);
       transition: opacity 0.28s ease;
       flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
+    .tcard-strip-info { flex: 1; min-width: 0; }
     .tcard-name {
       font-size: 20px; font-weight: 800; color: var(--ink);
       letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 3px;
@@ -500,6 +499,15 @@
     .tcard-role {
       font-size: 13px; font-weight: 500; color: var(--ink-60);
     }
+    .tcard-strip-socials { display: flex; gap: 7px; flex-shrink: 0; }
+    .tcard-strip-social {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      background: white; border: 1.5px solid var(--p-200);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .tcard-strip-social:hover { background: var(--y-400); border-color: var(--y-400); }
+    .tcard-strip-social svg { width: 14px; height: 14px; display: block; }
 
     /* Hover overlay — slides up from bottom over the whole card */
     .tcard-overlay {
@@ -693,6 +701,8 @@
         pointer-events: auto; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
         border: none;
       }
+      /* Hide duplicate name/title in overlay on mobile — strip already shows them */
+      .tcard-overlay-name, .tcard-overlay-role { display: none; }
     }
     @media (max-width: 660px) {
       .cards-row { grid-template-columns: 1fr; max-width: 400px; }
@@ -715,19 +725,18 @@
       </a>
       <div class="nav-links">
         <a href="#top">Home</a>
-        <a href="https://family.kidooo.ai" target="_blank" rel="noopener">User Tutorial</a>
-        <a href="#careers">Careers</a>
+        <a href="tutorial.html">User Tutorial</a>
+        <a href="https://tally.so/r/gDao71" target="_blank" rel="noopener">Careers</a>
       </div>
       <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">中文</button>
         <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
-        <a href="mailto:hello@kidooo.ai" class="btn-solid">Talk to us →</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="top" class="hero">
-    <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">中文</button>
     <div class="hero-inner">
 
       <div class="hero-left">
@@ -910,8 +919,18 @@
           <img src="haoxue.png" alt="Hao Xue, PhD, CEO" />
         </div>
         <div class="tcard-strip">
-          <div class="tcard-name">Hao Xue, PhD</div>
-          <div class="tcard-role">Founder & CEO · Kidooo AI</div>
+          <div class="tcard-strip-info">
+            <div class="tcard-name">Hao Xue, PhD</div>
+            <div class="tcard-role">Founder &amp; CEO · Kidooo AI</div>
+          </div>
+          <div class="tcard-strip-socials">
+            <a href="https://www.linkedin.com/in/hao-xue-kidooo-ai/" target="_blank" rel="noopener" class="tcard-strip-social" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </a>
+            <a href="https://x.com/hao_xue_kidooo" target="_blank" rel="noopener" class="tcard-strip-social" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </a>
+          </div>
         </div>
         <div class="tcard-overlay">
           <div>
@@ -936,8 +955,15 @@
           <img src="bing.png" alt="Bing Yuan, CTO" />
         </div>
         <div class="tcard-strip">
-          <div class="tcard-name">Bing Yuan</div>
-          <div class="tcard-role">Co-Founder & CTO · Kidooo AI</div>
+          <div class="tcard-strip-info">
+            <div class="tcard-name">Bing Yuan</div>
+            <div class="tcard-role">Co-Founder &amp; CTO · Kidooo AI</div>
+          </div>
+          <div class="tcard-strip-socials">
+            <a href="https://www.linkedin.com/in/bing-yuan/" target="_blank" rel="noopener" class="tcard-strip-social" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </a>
+          </div>
         </div>
         <div class="tcard-overlay">
           <div>
@@ -1022,7 +1048,7 @@
         <div class="footer-copy">©2024–2026 AI ECD Inc. All rights reserved.</div>
         <div class="footer-links">
           <a href="#">Privacy Policy</a>
-          <a href="#careers">Careers</a>
+          <a href="https://tally.so/r/gDao71" target="_blank" rel="noopener">Careers</a>
         </div>
       </div>
     </div>
@@ -1048,9 +1074,8 @@
     const navA = qa('.nav-links a');
     s(navA[0], 'Home', '首页');
     s(navA[1], 'User Tutorial', '使用教程');
-    s(navA[2], 'Careers', '加入我们');
+    s(navA[2], 'Careers', '加入我们 →');
     s(q('.nav-actions .btn-ghost'), 'Family App', '家长版应用');
-    s(q('.nav-actions .btn-solid'), 'Talk to us →', '联系我们 →');
 
     // ── HERO ─────────────────────────────────────────────
     s(q('.hero-h1'),
