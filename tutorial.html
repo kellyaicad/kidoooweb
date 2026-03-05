@@ -79,7 +79,7 @@
       padding: 6px 14px; border-radius: var(--radius-pill);
       border: 1.5px solid rgba(26,26,46,0.18); background: transparent;
       font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
-      cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px;
+      cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px; white-space: nowrap;
     }
     .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
 
@@ -238,6 +238,7 @@
 
     @media (max-width: 700px) {
       .nav-links { display: none; }
+      .nav-actions .btn-ghost { display: none; }
       .step-card { grid-template-columns: 44px 1fr; gap: 0 16px; }
       .step-circle { width: 42px; height: 42px; font-size: 15px; }
       .step-content { padding: 18px 20px 22px; }

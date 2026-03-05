@@ -91,6 +91,7 @@
       border: 1.5px solid rgba(26,26,46,0.18); background: transparent;
       font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
       cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px;
+      white-space: nowrap;
     }
     .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
 
@@ -98,7 +99,7 @@
       padding: 9px 18px; border-radius: var(--radius-pill);
       border: 1.5px solid rgba(26,26,46,0.14); background: transparent;
       font-family: inherit; font-size: 15px; font-weight: 600; color: var(--ink-60);
-      cursor: pointer; transition: all 0.16s;
+      cursor: pointer; transition: all 0.16s; white-space: nowrap;
     }
     .btn-ghost:hover { border-color: var(--y-dark); color: var(--ink); background: var(--y-100); }
 
@@ -691,6 +692,7 @@
     ══════════════════════════════════════ */
     @media (max-width: 900px) {
       .nav-links { display: none; }
+      .nav-actions .btn-ghost { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .team-grid { grid-template-columns: 1fr; max-width: 380px; }
       .priv-banner-inner { grid-template-columns: 1fr; gap: 20px; }
