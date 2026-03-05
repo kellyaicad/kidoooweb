@@ -295,6 +295,32 @@
     .mdot:first-child { margin-left: 0; }
 
     /* ══════════════════════════════════════
+       VIDEO SECTION
+    ══════════════════════════════════════ */
+    .video-section {
+      padding: 56px 32px 64px; background: white;
+      border-bottom: 1px solid var(--y-200);
+    }
+    .video-inner { max-width: 800px; margin: 0 auto; }
+    .video-label {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--y-dark); margin-bottom: 12px;
+    }
+    .video-title {
+      text-align: center; font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+      color: var(--ink); letter-spacing: -0.6px; margin-bottom: 32px;
+    }
+    .video-title .hi { color: var(--p-500); }
+    .video-wrap {
+      position: relative; width: 100%; padding-top: 56.25%; /* 16:9 */
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(26,26,46,0.16);
+    }
+    .video-wrap iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+
+    /* ══════════════════════════════════════
        TRUST BAR
     ══════════════════════════════════════ */
     .trust {
@@ -722,17 +748,30 @@
       .hamburger { display: flex; }
       .nav-actions .btn-ghost { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .team-grid { grid-template-columns: 1fr; max-width: 380px; }
       .priv-banner-inner { grid-template-columns: 1fr; gap: 20px; }
-      /* On mobile show overlay bio statically below strip */
-      .tcard-overlay {
-        position: static; opacity: 1; transform: none;
-        background: var(--p-100);
-        pointer-events: auto; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-        border: none;
+
+      /* ── Mobile team cards: horizontal layout ── */
+      .team-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .tcard {
+        flex-direction: row; aspect-ratio: unset; min-height: 160px;
       }
-      /* Hide duplicate name/title in overlay on mobile — strip already shows them */
-      .tcard-overlay-name, .tcard-overlay-role { display: none; }
+      .tcard-photo {
+        width: 130px; height: auto; flex-shrink: 0;
+      }
+      .tcard-photo img {
+        width: 130px; height: 100%; object-fit: cover; object-position: center top;
+      }
+      .tcard-strip {
+        flex: 1; flex-direction: column; align-items: flex-start;
+        border-top: none; border-left: 1.5px solid var(--p-200);
+        padding: 16px 16px 12px;
+        opacity: 1 !important; pointer-events: auto !important;
+      }
+      .tcard-strip-info { margin-bottom: 10px; }
+      .tcard-name { font-size: 17px; }
+      .tcard-role { font-size: 12px; }
+      /* Hide the hover overlay entirely on mobile */
+      .tcard-overlay { display: none; }
     }
     @media (max-width: 660px) {
       .cards-row { grid-template-columns: 1fr; max-width: 400px; }
@@ -857,6 +896,22 @@
       </div>
     </div>
   </div>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-inner">
+      <div class="video-label" id="video-label">See it in action</div>
+      <h2 class="video-title" id="video-title">Watch how <span class="hi">Kidooo AI works</span></h2>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/8XpmLmheCFA"
+          title="Kidooo AI Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
 
   <!-- FEATURES -->
   <section id="features" class="features">
@@ -1164,6 +1219,10 @@
     // ── MINI CARD ─────────────────────────────────────────
     s(q('.mini-num'), '10–60 second<br/>video', '10–60秒<br/>视频');
     s(q('.mini-label'), 'is all you need', '即可开始');
+
+    // ── VIDEO ─────────────────────────────────────────────
+    s(q('#video-label'), 'See it in action', '看看它是怎么工作的');
+    s(q('#video-title'), 'Watch how <span class="hi">Kidooo AI works</span>', '一分钟了解 <span class="hi">Kidooo AI</span>');
 
     // ── TRUST ─────────────────────────────────────────────
     s(q('.trust-text'),
