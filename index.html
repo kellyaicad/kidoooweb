@@ -690,8 +690,36 @@
     /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; height: 2px; border-radius: 2px;
+      background: var(--ink); transition: all 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--y-200);
+      padding: 8px 24px 20px;
+    }
+    .mobile-menu a {
+      padding: 14px 0; font-size: 17px; font-weight: 600; color: var(--ink);
+      border-bottom: 1px solid var(--ink-20); display: block;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--p-500); }
+    .mobile-menu.open { display: flex; }
+
     @media (max-width: 900px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .nav-actions .btn-ghost { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .team-grid { grid-template-columns: 1fr; max-width: 380px; }
@@ -733,7 +761,17 @@
       <div class="nav-actions">
         <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">中文</button>
         <a href="https://family.kidooo.ai" class="btn-ghost">Family App</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </div>
+    <!-- Mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#top" onclick="closeMenu()">Home</a>
+      <a href="tutorial.html" onclick="closeMenu()">User Tutorial</a>
+      <a href="https://tally.so/r/gDao71" target="_blank" rel="noopener" onclick="closeMenu()">Careers</a>
+      <a href="https://family.kidooo.ai" target="_blank" rel="noopener" onclick="closeMenu()">Family App →</a>
     </div>
   </nav>
 
@@ -1058,6 +1096,17 @@
 
 
 <script>
+  function toggleMenu() {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
   let currentLang = 'en';
 
   function toggleLang() {
@@ -1078,6 +1127,12 @@
     s(navA[1], 'User Tutorial', '使用教程');
     s(navA[2], 'Careers', '加入我们 →');
     s(q('.nav-actions .btn-ghost'), 'Family App', '家长版应用');
+    // mobile menu
+    const mA = qa('.mobile-menu a');
+    s(mA[0], 'Home', '首页');
+    s(mA[1], 'User Tutorial', '使用教程');
+    s(mA[2], 'Careers →', '加入我们 →');
+    s(mA[3], 'Family App →', '家长版应用 →');
 
     // ── HERO ─────────────────────────────────────────────
     s(q('.hero-h1'),
