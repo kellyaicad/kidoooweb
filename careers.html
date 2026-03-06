@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers – Kidooo AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --y-400:   #FFD426;
+      --y-300:   #FFE566;
+      --y-200:   #FFF3A3;
+      --y-100:   #FFFBE6;
+      --y-dark:  #C8A000;
+      --p-500:   #8B7ED8;
+      --p-400:   #A99EE0;
+      --p-200:   #EAE6FA;
+      --p-100:   #F5F3FE;
+      --p-text:  #6B5FAA;
+      --ink:     #1A1A2E;
+      --ink-60:  #5A5878;
+      --ink-40:  #8E8CAA;
+      --white:   #FFFFFF;
+      --radius-sm:   10px;
+      --radius-md:   18px;
+      --radius-lg:   26px;
+      --radius-xl:   36px;
+      --radius-pill: 999px;
+      --shadow-y:  0 8px 32px rgba(200,160,0,0.18);
+      --shadow-p:  0 8px 32px rgba(139,126,216,0.18);
+      --shadow-sm: 0 2px 16px rgba(26,26,46,0.07);
+      --shadow-md: 0 8px 40px rgba(26,26,46,0.10);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAVBAR ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,212,38,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 36px; width: auto; display: block; }
+    .nav-links {
+      display: flex; gap: 28px;
+      font-size: 15px; font-weight: 500; color: var(--ink-60);
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 600; }
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .lang-toggle {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(26,26,46,0.18); background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink-60);
+      cursor: pointer; transition: all 0.16s; letter-spacing: 0.4px; white-space: nowrap;
+    }
+    .lang-toggle:hover { background: var(--y-100); border-color: var(--y-400); color: var(--ink); }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; height: 2px; background: var(--ink); border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; flex-direction: column; background: white;
+      border-bottom: 1px solid var(--y-200); padding: 16px 24px 20px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 16px; font-weight: 500; color: var(--ink-60);
+      padding: 10px 0; border-bottom: 1px solid var(--y-100);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a.active { color: var(--ink); font-weight: 600; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--y-100);
+      padding: 60px 32px 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: var(--y-300); opacity: 0.45; pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -180px; left: -150px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: var(--p-200); opacity: 0.6; pointer-events: none;
+    }
+    .hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 14px 5px 6px; background: white; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--y-300); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--y-dark);
+      margin-bottom: 24px; box-shadow: var(--shadow-y);
+    }
+    .kicker-dot {
+      width: 20px; height: 20px; border-radius: 50%; background: var(--y-400);
+      display: flex; align-items: center; justify-content: center; font-size: 10px;
+    }
+    .hero-h1 {
+      font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 18px;
+    }
+    .hero-h1 span { color: var(--p-500); }
+    .hero-p {
+      font-size: 18px; line-height: 1.7; color: var(--ink-60); max-width: 560px; margin: 0 auto;
+    }
+
+    /* ── JOBS SECTION ── */
+    .jobs-section {
+      max-width: 860px; margin: 0 auto; padding: 64px 32px 80px;
+    }
+    .jobs-grid {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ── JOB CARD ── */
+    .job-card {
+      display: block;
+      border: 1.5px solid rgba(26,26,46,0.09);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      text-decoration: none; color: inherit;
+    }
+    .job-card:hover { box-shadow: var(--shadow-md); border-color: var(--y-300); }
+
+    .job-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 32px; cursor: pointer; gap: 16px;
+    }
+    .job-header-left { flex: 1; }
+    .job-tag {
+      display: inline-block; padding: 3px 12px;
+      background: var(--p-100); border-radius: var(--radius-pill);
+      font-size: 11px; font-weight: 700; color: var(--p-text);
+      letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .job-title {
+      font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .job-meta {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      font-size: 14px; color: var(--ink-60);
+    }
+    .job-meta-item { display: flex; align-items: center; gap: 5px; }
+    .job-meta-item svg { opacity: 0.55; flex-shrink: 0; }
+
+    .job-arrow {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--y-100); border: 1.5px solid var(--y-200);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.22s;
+    }
+    .job-card:hover .job-arrow { background: var(--y-400); border-color: var(--y-400); }
+
+    /* ── MISSION BANNER ── */
+    .mission-banner {
+      background: var(--p-100); border-radius: var(--radius-xl);
+      padding: 40px 48px; margin-top: 52px; text-align: center;
+    }
+    .mission-banner h2 {
+      font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 12px;
+    }
+    .mission-banner p {
+      font-size: 16px; color: var(--ink-60); line-height: 1.7; max-width: 560px; margin: 0 auto;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink); color: rgba(255,255,255,0.55);
+      padding: 40px 32px; text-align: center; font-size: 14px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { height: 28px; opacity: 0.7; margin-bottom: 16px; }
+    .footer-links {
+      display: flex; justify-content: center; gap: 24px;
+      flex-wrap: wrap; margin-bottom: 16px; font-size: 14px;
+    }
+    .footer-links a:hover { color: white; }
+    .footer-social {
+      display: flex; justify-content: center; gap: 18px; margin-bottom: 18px;
+    }
+    .footer-social a { opacity: 0.55; transition: opacity 0.15s; }
+    .footer-social a:hover { opacity: 1; }
+    .footer-copy { font-size: 13px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .job-header { padding: 22px 20px; }
+      .jobs-section { padding: 40px 16px 60px; }
+      .hero { padding: 48px 20px 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <img src="Flex Logo.png" alt="Kidooo AI" class="logo-img" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tutorial.html">User Tutorial</a>
+      <a href="careers.html" class="active">Careers</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">中文</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="tutorial.html" onclick="closeMenu()">User Tutorial</a>
+    <a href="careers.html" class="active" onclick="closeMenu()">Careers</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">
+      <span class="kicker-dot">✦</span>
+      <span id="kicker-text">We're Hiring</span>
+    </div>
+    <h1 class="hero-h1" id="hero-h1">Build Technology That<br/><span>Changes Lives</span></h1>
+    <p class="hero-p" id="hero-p">Join the founding team at Kidooo AI. We're looking for mission-driven people who want to make a real difference for autism families.</p>
+  </div>
+</section>
+
+<!-- JOBS -->
+<section class="jobs-section">
+  <div class="jobs-grid">
+
+    <!-- JOB 1: Full Stack Developer -->
+    <a class="job-card" href="job-fullstack.html">
+      <div class="job-header">
+        <div class="job-header-left">
+          <div class="job-tag" id="tag-eng">Engineering</div>
+          <div class="job-title" id="title-1">Founding Full Stack Developer</div>
+          <div class="job-meta">
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              San Francisco Bay Area
+            </span>
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Full-time · Founding Team
+            </span>
+          </div>
+        </div>
+        <div class="job-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- JOB 2: Product Designer -->
+    <a class="job-card" href="job-designer.html">
+      <div class="job-header">
+        <div class="job-header-left">
+          <div class="job-tag" id="tag-design">Design</div>
+          <div class="job-title" id="title-2">Founding Product Designer</div>
+          <div class="job-meta">
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              San Francisco Bay Area
+            </span>
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Full-time · Founding Team
+            </span>
+          </div>
+        </div>
+        <div class="job-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- JOB 3: Growth Lead -->
+    <a class="job-card" href="job-growth.html">
+      <div class="job-header">
+        <div class="job-header-left">
+          <div class="job-tag" id="tag-growth">Growth</div>
+          <div class="job-title" id="title-3">Founding Growth Lead</div>
+          <div class="job-meta">
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              San Francisco Bay Area
+            </span>
+            <span class="job-meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Full-time · Founding Team
+            </span>
+          </div>
+        </div>
+        <div class="job-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Mission Banner -->
+  <div class="mission-banner">
+    <h2 id="mission-h2">Mission-First, Always</h2>
+    <p id="mission-p">We deeply prefer candidates who have a personal connection to the autism community or prior experience in digital health. Every line of code, every pixel, every post — it all matters to real families.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="Flex Logo.png" alt="Kidooo AI" class="footer-logo" />
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="tutorial.html">User Tutorial</a>
+      <a href="careers.html">Careers</a>
+      <a href="mailto:hello@kidooo.ai">hello@kidooo.ai</a>
+    </div>
+    <div class="footer-social">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/kidoooai/" target="_blank" aria-label="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <!-- Xiaohongshu -->
+      <a href="https://www.xiaohongshu.com/user/profile/6153d39400000000020196eb" target="_blank" aria-label="RedNote">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/hao.xue.kidoooai/" target="_blank" aria-label="Facebook">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy" id="footer-copy">© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai</div>
+  </div>
+</footer>
+
+<script>
+  // ── Hamburger ──
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // ── Language toggle ──
+  let currentLang = 'en';
+
+  const T = {
+    en: {
+      'lang-btn': '中文',
+      'kicker-text': "We're Hiring",
+      'hero-h1': 'Build Technology That<br/><span>Changes Lives</span>',
+      'hero-p': "Join the founding team at Kidooo AI. We're looking for mission-driven people who want to make a real difference for autism families.",
+
+      'tag-eng': 'Engineering',
+      'tag-design': 'Design',
+      'tag-growth': 'Growth',
+
+      'title-1': 'Founding Full Stack Developer',
+      'title-2': 'Founding Product Designer',
+      'title-3': 'Founding Growth Lead',
+
+      'about-title-1': 'About AI ECD Inc.',
+      'about-1': "We are the team behind Kidooo AI, the AI Copilot for Personalized Autism Care. Our ecosystem includes Kidooo Family (instant insights for parents) and Kidooo Clinic (AI workflow agent for therapists). We are deeply committed to supporting autistic children and their families.",
+      'about-title-2': 'About AI ECD Inc.',
+      'about-2': "We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Mission-first: we strongly prefer candidates who have a personal connection to this mission or prior experience in digital health.",
+      'about-title-3': 'About AI ECD Inc.',
+      'about-3': "We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Mission-first: we strongly prefer candidates who have a personal connection to this mission or prior experience in digital health.",
+
+      'stack-title-1': 'The Stack', 'stack-title-2': 'The Stack', 'stack-title-3': 'The Stack',
+      'build-title-1': 'What You Will Build', 'build-title-2': 'What You Will Build', 'build-title-3': 'What You Will Build',
+      'who-title-1': 'Who You Are', 'who-title-2': 'Who You Are', 'who-title-3': 'Who You Are',
+      'why-title-1': 'Why Join Us', 'why-title-2': 'Why Join Us', 'why-title-3': 'Why Join Us',
+
+      'build-1-1': 'Kidooo Family: Launch the MVP and ship weekly updates based on real user feedback.',
+      'build-1-2': 'Kidooo Clinic: Architect the AI agent workflow for professional therapists.',
+      'build-1-3': 'Scale: Evolve our mobile-first web architecture into a hybrid or native iOS experience.',
+      'who-1-1': 'BS or MS in Computer Science or related field from a top-tier university.',
+      'who-1-2': '2+ years of professional experience. You\'ve shipped complex web and iOS apps to production.',
+      'who-1-3': 'Mission driven: you care about autism care and want your code to have real social impact.',
+      'who-1-4': 'Based in (or relocating to) the San Francisco Bay Area within 1 month.',
+      'who-1-5': 'We welcome candidates on CPT, OPT, and STEM OPT. Exceptional performers considered for H-1B sponsorship.',
+      'why-1-1-t': 'Purpose', 'why-1-1-p': 'Build technology that changes lives for autism families.',
+      'why-1-2-t': 'Ownership', 'why-1-2-p': 'Work alongside founders to shape the engineering culture.',
+      'why-1-3-t': 'Hybrid Culture', 'why-1-3-p': 'Deep work combined with high-bandwidth in-person collaboration.',
+      'apply-btn-1': 'Apply Now →', 'apply-note-1': 'Only local or relocating candidates will be considered.',
+
+      'build-2-1': 'Kidooo Family core flows: onboarding, video upload, processing states, results, daily practice steps, progress tracking.',
+      'build-2-2': 'Trust and clarity: privacy-forward UI, calm microcopy, clear expectations and error states.',
+      'build-2-3': 'Design system: reusable mobile-first components that map cleanly to code and ship fast.',
+      'build-2-4': 'Experimentation: ship improvements weekly, iterate based on real user feedback.',
+      'who-2-1': 'Strong design taste: crisp, modern, parent-friendly UI with great hierarchy, spacing, and microcopy.',
+      'who-2-2': 'Fast shipper: from rough concept to production-ready specs quickly.',
+      'who-2-3': 'Mission driven: you care about autism care.',
+      'who-2-4': 'Based in (or relocating to) the San Francisco Bay Area.',
+      'who-2-5': 'We welcome candidates on CPT, OPT, and STEM OPT.',
+      'why-2-1-t': 'Purpose', 'why-2-1-p': 'Build technology that changes lives for autism families.',
+      'why-2-2-t': 'Ownership', 'why-2-2-p': 'Work alongside founders to shape the product and design culture.',
+      'why-2-3-t': 'Hybrid Culture', 'why-2-3-p': 'Deep work combined with high-bandwidth in-person collaboration.',
+      'apply-btn-2': 'Apply Now →', 'apply-note-2': 'Prefer Bay Area based candidates.',
+
+      'build-3-1': 'A repeatable short-form content engine that drives qualified parent signups and retention.',
+      'build-3-2': 'A steady cadence of high-performing vertical videos with weekly experimentation.',
+      'build-3-3': 'Trust-building content that is empathetic, non-judgmental, and privacy-aware.',
+      'build-3-4': 'Community and partner distribution loops — parent groups, autism orgs, clinician networks.',
+      'who-3-1': 'Short-form video expert: concept, script, shoot, and edit mobile-first vertical video fast.',
+      'who-3-2': '2+ years driving growth through content, social, or community.',
+      'who-3-3': 'Community builder: earn trust and keep communities healthy in sensitive parenting spaces.',
+      'who-3-4': 'Early-stage fit: move fast, work directly with founders, high ownership.',
+      'who-3-5': 'Based in (or relocating to) the San Francisco Bay Area.',
+      'who-3-6': 'We welcome candidates on CPT, OPT, and STEM OPT.',
+      'why-3-1-t': 'Purpose', 'why-3-1-p': 'Build technology that changes lives for autism families.',
+      'why-3-2-t': 'Ownership', 'why-3-2-p': 'Work alongside founders to build our growth engine from zero to one.',
+      'why-3-3-t': 'Hybrid Culture', 'why-3-3-p': 'Deep work combined with high-bandwidth in-person collaboration.',
+      'apply-btn-3': 'Apply Now →', 'apply-note-3': 'Prefer Bay Area based candidates.',
+
+      'mission-h2': 'Mission-First, Always',
+      'mission-p': 'We deeply prefer candidates who have a personal connection to the autism community or prior experience in digital health. Every line of code, every pixel, every post — it all matters to real families.',
+      'footer-copy': '© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai',
+    },
+    zh: {
+      'lang-btn': 'EN',
+      'kicker-text': '我们在招人',
+      'hero-h1': '用技术的力量<br/><span>改变孩子的未来</span>',
+      'hero-p': '加入 Kidooo AI 创始团队。我们在寻找有使命感的伙伴，一起为自闭症家庭带来真正的改变。',
+
+      'tag-eng': '工程',
+      'tag-design': '设计',
+      'tag-growth': '增长',
+
+      'title-1': '创始全栈工程师',
+      'title-2': '创始产品设计师',
+      'title-3': '创始增长负责人（内容与社区）',
+
+      'about-title-1': '关于 AI ECD Inc.',
+      'about-1': '我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。我们的产品包括 Kidooo Family（帮助家长即时获得成长洞察）和 Kidooo Clinic（面向治疗师的 AI 工作流助手）。我们深深关怀自闭症儿童和他们的家庭，优先考虑有切身使命感或数字健康经验的候选人。',
+      'about-title-2': '关于 AI ECD Inc.',
+      'about-2': '我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。',
+      'about-title-3': '关于 AI ECD Inc.',
+      'about-3': '我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。',
+
+      'stack-title-1': '技术栈', 'stack-title-2': '工具栈', 'stack-title-3': '工具栈',
+      'build-title-1': '你将构建什么', 'build-title-2': '你将构建什么', 'build-title-3': '你将构建什么',
+      'who-title-1': '我们在找什么样的你', 'who-title-2': '我们在找什么样的你', 'who-title-3': '我们在找什么样的你',
+      'why-title-1': '为什么加入我们', 'why-title-2': '为什么加入我们', 'why-title-3': '为什么加入我们',
+
+      'build-1-1': 'Kidooo Family：发布 MVP 并根据真实用户反馈每周迭代更新。',
+      'build-1-2': 'Kidooo Clinic：设计面向专业治疗师的 AI 工作流架构。',
+      'build-1-3': '规模化：将移动优先的 Web 架构演进为 iOS 原生或混合 App 体验。',
+      'who-1-1': '计算机科学或相关专业本科/硕士，来自顶尖院校。',
+      'who-1-2': '2 年以上职业经验，有上线过复杂 Web 或 iOS 应用，有 GitHub 主页或作品集。',
+      'who-1-3': '有使命感：关心自闭症群体，希望用代码创造真实的社会价值。',
+      'who-1-4': '已在湾区（或一个月内可搬迁至湾区）。',
+      'who-1-5': '欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。',
+      'why-1-1-t': '使命感', 'why-1-1-p': '用技术改变自闭症家庭的生活。',
+      'why-1-2-t': '主人翁精神', 'why-1-2-p': '与创始人并肩，共同塑造工程文化。',
+      'why-1-3-t': '混合办公文化', 'why-1-3-p': '深度专注工作 + 高效线下协作。',
+      'apply-btn-1': '立即申请 →', 'apply-note-1': '仅考虑本地或即将搬迁的候选人。',
+
+      'build-2-1': 'Kidooo Family 核心流程：注册引导、视频上传、处理状态、结果展示、每日练习、进度追踪。',
+      'build-2-2': '信任感与清晰度：隐私优先的 UI、温和的文案、明确的预期与错误提示。',
+      'build-2-3': '设计系统：可复用的移动端优先组件，与代码完美对齐，快速交付。',
+      'build-2-4': '持续实验：每周迭代改进，根据用户反馈和漏斗数据优化体验。',
+      'who-2-1': '设计品味出众：能做出简洁现代、对家长友好的 UI，有优秀的信息层级、间距和文案感。',
+      'who-2-2': '快速交付：从粗略概念到生产级设计稿，知道什么时候"够好且已发布"胜过"完美"。',
+      'who-2-3': '有使命感：关心自闭症群体。',
+      'who-2-4': '已在湾区或即将搬迁至湾区。',
+      'who-2-5': '欢迎 CPT、OPT、STEM OPT 候选人。',
+      'why-2-1-t': '使命感', 'why-2-1-p': '用设计改变自闭症家庭的生活。',
+      'why-2-2-t': '主人翁精神', 'why-2-2-p': '与创始人一起塑造产品和设计文化。',
+      'why-2-3-t': '混合办公文化', 'why-2-3-p': '深度专注工作 + 高效线下协作。',
+      'apply-btn-2': '立即申请 →', 'apply-note-2': '优先考虑湾区候选人。',
+
+      'build-3-1': '打造可持续的短视频内容引擎，驱动高质量家长用户注册与留存。',
+      'build-3-2': '持续产出高表现竖版视频（TikTok、Reels、Shorts），每周迭代实验。',
+      'build-3-3': '构建有温度、不评判、注重隐私的内容，服务健康相关产品用户。',
+      'build-3-4': '建立社区和合作伙伴分发循环——家长群体、自闭症机构、治疗师网络。',
+      'who-3-1': '短视频高手：能快速完成策划、脚本、拍摄、剪辑，懂钩子、节奏、字幕和迭代。',
+      'who-3-2': '2 年以上内容、社交或社区增长经验，能拿出成果数据（触达、注册、留存、合作）。',
+      'who-3-3': '社区建设者：擅长在敏感育儿空间中建立信任、发起对话、维护健康社区氛围。',
+      'who-3-4': '适合早期创业：行动快、直接与创始人合作、喜欢高度自主的工作方式。',
+      'who-3-5': '已在湾区或即将搬迁至湾区。',
+      'who-3-6': '欢迎 CPT、OPT、STEM OPT 候选人。',
+      'why-3-1-t': '使命感', 'why-3-1-p': '用内容改变自闭症家庭的生活。',
+      'why-3-2-t': '主人翁精神', 'why-3-2-p': '与创始人一起从零构建增长引擎。',
+      'why-3-3-t': '混合办公文化', 'why-3-3-p': '深度专注工作 + 高效线下协作。',
+      'apply-btn-3': '立即申请 →', 'apply-note-3': '优先考虑湾区候选人。',
+
+      'mission-h2': '使命优先，始终如一',
+      'mission-p': '我们优先考虑与自闭症社区有个人连接、或有数字健康经验的候选人。每一行代码、每一个像素、每一条内容——都与真实家庭息息相关。',
+      'footer-copy': '© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai',
+    }
+  };
+
+  function applyLang(lang) {
+    const t = T[lang];
+    for (const [id, val] of Object.entries(t)) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      if (el.tagName === 'A' || el.tagName === 'BUTTON') el.innerHTML = val;
+      else el.innerHTML = val;
+    }
+    // nav links
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+    const navTexts = lang === 'zh'
+      ? ['主页', '使用教程', '加入我们']
+      : ['Home', 'User Tutorial', 'Careers'];
+    navLinks.forEach((a, i) => { if (navTexts[i]) a.textContent = navTexts[i]; });
+  }
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    applyLang(currentLang);
+  }
+</script>
+</body>
+</html>

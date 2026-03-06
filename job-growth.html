@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founding Growth Lead – Kidooo AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    html{scroll-behavior:smooth}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--y-400:#FFD426;--y-300:#FFE566;--y-200:#FFF3A3;--y-100:#FFFBE6;--y-dark:#C8A000;--p-500:#8B7ED8;--p-400:#A99EE0;--p-200:#EAE6FA;--p-100:#F5F3FE;--p-text:#6B5FAA;--ink:#1A1A2E;--ink-60:#5A5878;--ink-40:#8E8CAA;--white:#FFFFFF;--radius-sm:10px;--radius-md:18px;--radius-lg:26px;--radius-pill:999px;--shadow-y:0 8px 32px rgba(200,160,0,0.18);--shadow-p:0 8px 32px rgba(139,126,216,0.18);--shadow-sm:0 2px 16px rgba(26,26,46,0.07);--shadow-md:0 8px 40px rgba(26,26,46,0.10)}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,212,38,0.25)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:62px}
+    .logo img{height:36px;width:auto;display:block}
+    .nav-links{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--ink-60)}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .lang-toggle{padding:6px 14px;border-radius:var(--radius-pill);border:1.5px solid rgba(26,26,46,0.18);background:transparent;font-family:inherit;font-size:13px;font-weight:700;color:var(--ink-60);cursor:pointer;transition:all 0.16s;white-space:nowrap}
+    .lang-toggle:hover{background:var(--y-100);border-color:var(--y-400);color:var(--ink)}
+    .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px}
+    .hamburger span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:all 0.25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;flex-direction:column;background:white;border-bottom:1px solid var(--y-200);padding:16px 24px 20px;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-60);padding:10px 0;border-bottom:1px solid var(--y-100)}
+    .mobile-menu a:last-child{border-bottom:none}
+    .back-bar{max-width:860px;margin:0 auto;padding:20px 32px 0}
+    .back-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--ink-60);transition:color 0.15s}
+    .back-link:hover{color:var(--ink)}
+    .jd-page{max-width:860px;margin:0 auto;padding:32px 32px 80px}
+    .jd-header{margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid rgba(26,26,46,0.08)}
+    .jd-tag{display:inline-block;padding:3px 12px;background:var(--p-100);border-radius:var(--radius-pill);font-size:11px;font-weight:700;color:var(--p-text);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px}
+    .jd-title{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--ink);letter-spacing:-1px;margin-bottom:16px;line-height:1.1}
+    .jd-meta{display:flex;flex-wrap:wrap;gap:20px;font-size:15px;color:var(--ink-60);margin-bottom:24px}
+    .jd-meta-item{display:flex;align-items:center;gap:6px}
+    .jd-meta-item svg{opacity:0.55}
+    .btn-apply{padding:14px 36px;border-radius:var(--radius-pill);border:none;background:var(--y-400);font-family:inherit;font-size:16px;font-weight:700;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow-y);transition:all 0.2s;text-decoration:none}
+    .btn-apply:hover{background:#FFCA00;transform:translateY(-1px)}
+    .jd-section{margin-bottom:36px}
+    .jd-section-title{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--p-text);margin-bottom:14px}
+    .jd-p{font-size:16px;line-height:1.75;color:var(--ink-60)}
+    .jd-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .jd-list li{font-size:16px;line-height:1.7;color:var(--ink-60);padding-left:22px;position:relative}
+    .jd-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--y-400)}
+    .jd-stack{display:flex;flex-wrap:wrap;gap:8px}
+    .jd-stack-tag{padding:5px 14px;background:var(--y-100);border:1px solid var(--y-200);border-radius:var(--radius-pill);font-size:13px;font-weight:500;color:var(--y-dark)}
+    .jd-why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .jd-why-item{background:var(--p-100);border-radius:var(--radius-md);padding:18px 20px}
+    .jd-why-title{font-size:14px;font-weight:700;color:var(--p-text);margin-bottom:5px}
+    .jd-why-p{font-size:14px;color:var(--ink-60);line-height:1.55}
+    .apply-bottom{background:var(--y-100);border-radius:var(--radius-xl);padding:40px 48px;text-align:center;margin-top:8px}
+    .apply-bottom h2{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:10px}
+    .apply-bottom p{font-size:15px;color:var(--ink-60);margin-bottom:24px;line-height:1.65}
+    .footer{background:var(--ink);color:rgba(255,255,255,0.55);padding:36px 32px;text-align:center;font-size:14px}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-logo{height:26px;opacity:0.7;margin-bottom:14px}
+    .footer-copy{font-size:13px}
+    @media(max-width:700px){.nav-links{display:none}.hamburger{display:flex}.jd-page{padding:24px 16px 60px}.back-bar{padding:16px 16px 0}.jd-why{grid-template-columns:1fr}.apply-bottom{padding:28px 24px}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><img src="Flex Logo.png" alt="Kidooo AI" /></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tutorial.html">User Tutorial</a>
+      <a href="careers.html">Careers</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">中文</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="tutorial.html" onclick="closeMenu()">User Tutorial</a>
+    <a href="careers.html" onclick="closeMenu()">Careers</a>
+  </div>
+</nav>
+
+<div class="back-bar">
+  <a href="careers.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    <span id="back-text">All Openings</span>
+  </a>
+</div>
+
+<div class="jd-page">
+  <div class="jd-header">
+    <div class="jd-tag" id="jd-tag">Growth</div>
+    <h1 class="jd-title" id="jd-title">Founding Growth Lead<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">(Content &amp; Community)</span></h1>
+    <div class="jd-meta">
+      <span class="jd-meta-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        San Francisco Bay Area (South Bay / San Jose)
+      </span>
+      <span class="jd-meta-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Full-time · Founding Team
+      </span>
+      <span class="jd-meta-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        AI ECD Inc.
+      </span>
+    </div>
+    <a href="https://tally.so/r/gDao71" target="_blank" class="btn-apply" id="apply-top">Apply Now →</a>
+  </div>
+
+  <div class="jd-section">
+    <div class="jd-section-title" id="about-title">About AI ECD Inc.</div>
+    <p class="jd-p" id="about-p">We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Our ecosystem includes Kidooo Family (instant insights for parents) and Kidooo Clinic (AI workflow agent for therapists). Mission-First: We are deeply committed to supporting autistic children and their families. We strongly prefer candidates who have a personal connection to this mission or prior experience in the digital health space.</p>
+  </div>
+
+  <div class="jd-section">
+    <div class="jd-section-title" id="stack-title">The Stack</div>
+    <div class="jd-stack">
+      <span class="jd-stack-tag">CapCut</span><span class="jd-stack-tag">Canva</span>
+      <span class="jd-stack-tag">Figma</span><span class="jd-stack-tag">TikTok</span>
+      <span class="jd-stack-tag">Instagram Reels</span><span class="jd-stack-tag">YouTube Shorts</span>
+      <span class="jd-stack-tag">Facebook</span><span class="jd-stack-tag">Reddit</span>
+      <span class="jd-stack-tag">RedNote</span><span class="jd-stack-tag">Slack</span>
+      <span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Notion</span>
+    </div>
+  </div>
+
+  <div class="jd-section">
+    <div class="jd-section-title" id="build-title">What You Will Build</div>
+    <ul class="jd-list">
+      <li id="build-1">A repeatable short-form content engine that drives qualified parent signups and retention.</li>
+      <li id="build-2">A steady cadence of high-performing vertical videos (TikTok, Reels, Shorts) with weekly experimentation.</li>
+      <li id="build-3">Trust-building content that is empathetic, non-judgmental, and privacy-aware for a health-adjacent product.</li>
+      <li id="build-4">Community and partner distribution loops — parent groups, local communities, autism orgs, clinician networks.</li>
+    </ul>
+  </div>
+
+  <div class="jd-section">
+    <div class="jd-section-title" id="who-title">Who You Are</div>
+    <ul class="jd-list">
+      <li id="who-1">Short-form video killer: You can concept, script, shoot, and edit mobile-first vertical video fast. You understand hooks, pacing, captions, and iteration. TikTok-first mindset is a plus.</li>
+      <li id="who-2">Proven Growth Craft: 2+ years experience driving growth through content, social, or community. You can point to outcomes — reach, engagement, signups, retention, partnerships.</li>
+      <li id="who-3">Community Builder: You know how to earn trust, start conversations, and keep communities healthy — especially in sensitive spaces like parenting or care.</li>
+      <li id="who-4">Early-stage fit: You move fast, work directly with founders, and thrive with high ownership and low process.</li>
+      <li id="who-5">Local: Based in (or planning to relocate to) the San Francisco Bay Area — in-person collaboration with the founding team.</li>
+      <li id="who-6">Sponsorship: We welcome candidates on CPT, OPT, and STEM OPT. Exceptional performers will be considered for H-1B sponsorship.</li>
+    </ul>
+  </div>
+
+  <div class="jd-section">
+    <div class="jd-section-title" id="why-title">Why Join Us</div>
+    <div class="jd-why">
+      <div class="jd-why-item">
+        <div class="jd-why-title" id="why-1-t">Purpose</div>
+        <div class="jd-why-p" id="why-1-p">Build technology that changes lives for autism families.</div>
+      </div>
+      <div class="jd-why-item">
+        <div class="jd-why-title" id="why-2-t">Ownership</div>
+        <div class="jd-why-p" id="why-2-p">Work alongside founders to build our growth engine from zero to one.</div>
+      </div>
+      <div class="jd-why-item">
+        <div class="jd-why-title" id="why-3-t">Hybrid Culture</div>
+        <div class="jd-why-p" id="why-3-p">Deep work combined with high-bandwidth in-person collaboration.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="apply-bottom">
+    <h2 id="apply-h2">Ready to build a community that matters?</h2>
+    <p id="apply-p">Prefer Bay Area based candidates. We'd love to hear from you.</p>
+    <a href="https://tally.so/r/gDao71" target="_blank" class="btn-apply" id="apply-bottom-btn">Apply Now →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="Flex Logo.png" alt="Kidooo AI" class="footer-logo" />
+    <div class="footer-copy" id="footer-copy">© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai</div>
+  </div>
+</footer>
+
+<script>
+  let currentLang='en';
+  const T={
+    en:{'lang-btn':'中文','back-text':'All Openings','jd-tag':'Growth','jd-title':'Founding Growth Lead<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">(Content &amp; Community)</span>','about-title':'About AI ECD Inc.','about-p':'We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Mission-First: We deeply prefer candidates who have a personal connection to this mission or prior experience in digital health.','stack-title':'The Stack','build-title':'What You Will Build','who-title':'Who You Are','why-title':'Why Join Us','build-1':'A repeatable short-form content engine that drives qualified parent signups and retention.','build-2':'A steady cadence of high-performing vertical videos (TikTok, Reels, Shorts) with weekly experimentation.','build-3':'Trust-building content: empathetic, non-judgmental, and privacy-aware.','build-4':'Community and partner distribution loops — parent groups, autism orgs, clinician networks.','who-1':'Short-form video killer: concept, script, shoot, and edit fast. TikTok-first mindset is a plus.','who-2':'2+ years driving growth through content, social, or community. You can point to outcomes.','who-3':'Community Builder: earn trust in sensitive parenting and care spaces.','who-4':'Early-stage fit: move fast, work directly with founders, high ownership.','who-5':'Local: based in (or relocating to) the San Francisco Bay Area.','who-6':'We welcome CPT, OPT, STEM OPT. H-1B considered for exceptional performers.','why-1-t':'Purpose','why-1-p':'Build technology that changes lives for autism families.','why-2-t':'Ownership','why-2-p':'Build our growth engine from zero to one alongside founders.','why-3-t':'Hybrid Culture','why-3-p':'Deep work combined with high-bandwidth in-person collaboration.','apply-top':'Apply Now →','apply-h2':'Ready to build a community that matters?','apply-p':"Prefer Bay Area based candidates. We'd love to hear from you.",'apply-bottom-btn':'Apply Now →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'},
+    zh:{'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'增长','jd-title':'创始增长负责人<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">（内容与社区）</span>','about-title':'关于 AI ECD Inc.','about-p':'我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。','stack-title':'工具栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们','build-1':'打造可持续的短视频内容引擎，驱动高质量家长用户注册与留存。','build-2':'持续产出高表现竖版视频（TikTok、Reels、Shorts），每周迭代实验。','build-3':'构建有温度、不评判、注重隐私的内容，服务健康相关产品用户。','build-4':'建立社区和合作伙伴分发循环——家长群体、自闭症机构、治疗师网络。','who-1':'短视频高手：能快速完成策划、脚本、拍摄、剪辑，懂钩子、节奏、字幕和迭代。','who-2':'2 年以上内容、社交或社区增长经验，能拿出成果数据。','who-3':'社区建设者：擅长在敏感育儿空间中建立信任、维护健康社区氛围。','who-4':'适合早期创业：行动快、直接与创始人合作、喜欢高度自主的工作方式。','who-5':'已在湾区或即将搬迁至湾区。','who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。','why-1-t':'使命感','why-1-p':'用内容改变自闭症家庭的生活。','why-2-t':'主人翁精神','why-2-p':'与创始人一起从零构建增长引擎。','why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。','apply-top':'立即申请 →','apply-h2':'准备好构建一个真正有意义的社区了吗？','apply-p':'优先考虑湾区候选人，期待你的申请。','apply-bottom-btn':'立即申请 →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'}
+  };
+  function applyLang(lang){const t=T[lang];for(const[id,val]of Object.entries(t)){const el=document.getElementById(id);if(el)el.innerHTML=val;}const navLinks=document.querySelectorAll('.nav-links a,.mobile-menu a');const labels=lang==='zh'?['主页','使用教程','加入我们']:['Home','User Tutorial','Careers'];navLinks.forEach((a,i)=>{if(labels[i])a.textContent=labels[i];});}
+  function toggleLang(){currentLang=currentLang==='en'?'zh':'en';applyLang(currentLang);}
+  function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open');}
+  function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('open');}
+</script>
+</body>
+</html>

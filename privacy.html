@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Kidooo Family</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --y-400:#FFD426; --y-300:#FFE566; --y-200:#FFF3A3; --y-100:#FFFBE6; --y-dark:#C8A000;
+      --p-500:#8B7ED8; --p-200:#EAE6FA; --p-100:#F5F3FE; --p-text:#6B5FAA;
+      --ink:#1A1A2E; --ink-60:#5A5878; --ink-40:#8E8CAA; --white:#FFFFFF;
+      --radius-sm:10px; --radius-md:18px; --radius-lg:26px; --radius-pill:999px;
+      --shadow-y:0 8px 32px rgba(200,160,0,0.18);
+      --shadow-sm:0 2px 16px rgba(26,26,46,0.07);
+    }
+    body { font-family:'Inter',sans-serif; background:var(--white); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    a { color:var(--p-text); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* NAV */
+    .nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,212,38,0.25); }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:62px; }
+    .logo img { height:36px; width:auto; display:block; }
+    .nav-links { display:flex; gap:28px; font-size:15px; font-weight:500; color:var(--ink-60); }
+    .nav-links a { color:var(--ink-60); text-decoration:none; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-actions { display:flex; gap:8px; align-items:center; }
+    .lang-toggle { padding:6px 14px; border-radius:var(--radius-pill); border:1.5px solid rgba(26,26,46,0.18); background:transparent; font-family:inherit; font-size:13px; font-weight:700; color:var(--ink-60); cursor:pointer; transition:all 0.16s; white-space:nowrap; }
+    .lang-toggle:hover { background:var(--y-100); border-color:var(--y-400); color:var(--ink); }
+    .hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; background:none; border:none; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; height:2px; background:var(--ink); border-radius:2px; transition:all 0.25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; flex-direction:column; background:white; border-bottom:1px solid var(--y-200); padding:16px 24px 20px; gap:4px; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-size:16px; font-weight:500; color:var(--ink-60); padding:10px 0; border-bottom:1px solid var(--y-100); text-decoration:none; }
+    .mobile-menu a:last-child { border-bottom:none; }
+
+    /* HERO */
+    .priv-hero { background:var(--p-100); padding:48px 32px 40px; border-bottom:1px solid var(--p-200); }
+    .priv-hero-inner { max-width:860px; margin:0 auto; }
+    .priv-tag { display:inline-block; padding:3px 12px; background:var(--p-200); border-radius:var(--radius-pill); font-size:11px; font-weight:700; color:var(--p-text); letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
+    .priv-title { font-size:clamp(28px,4vw,40px); font-weight:800; color:var(--ink); letter-spacing:-1px; margin-bottom:10px; }
+    .priv-meta { font-size:14px; color:var(--ink-40); }
+
+    /* CONTENT */
+    .priv-body { max-width:860px; margin:0 auto; padding:48px 32px 80px; }
+
+    /* TOC */
+    .toc { background:var(--y-100); border:1px solid var(--y-200); border-radius:var(--radius-lg); padding:24px 28px; margin-bottom:48px; }
+    .toc-title { font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--y-dark); margin-bottom:14px; }
+    .toc-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .toc-list li a { font-size:14.5px; color:var(--p-text); font-weight:500; }
+    .toc-list li a:hover { color:var(--ink); }
+
+    /* SECTIONS */
+    .priv-section { margin-bottom:44px; padding-bottom:44px; border-bottom:1px solid rgba(26,26,46,0.07); }
+    .priv-section:last-child { border-bottom:none; }
+    .sec-num { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--p-text); margin-bottom:6px; }
+    .sec-h2 { font-size:22px; font-weight:700; color:var(--ink); margin-bottom:16px; line-height:1.2; }
+    .sec-h3 { font-size:16px; font-weight:700; color:var(--ink); margin-top:22px; margin-bottom:8px; }
+    .sec-p { font-size:15.5px; line-height:1.8; color:var(--ink-60); margin-bottom:12px; }
+    .sec-p:last-child { margin-bottom:0; }
+    .sec-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+    .sec-list li { font-size:15.5px; line-height:1.7; color:var(--ink-60); padding-left:20px; position:relative; }
+    .sec-list li::before { content:''; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:var(--y-400); }
+
+    /* CALLOUT BOXES */
+    .callout { background:var(--p-100); border-left:3px solid var(--p-500); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:16px 20px; margin:16px 0; }
+    .callout p { font-size:15px; line-height:1.7; color:var(--ink-60); margin-bottom:6px; }
+    .callout p:last-child { margin-bottom:0; }
+    .callout-title { font-size:12px; font-weight:700; color:var(--p-text); letter-spacing:0.8px; text-transform:uppercase; margin-bottom:8px; }
+
+    .notice-box { background:var(--y-100); border:1px solid var(--y-300); border-radius:var(--radius-md); padding:20px 24px; margin-top:24px; }
+    .notice-box p { font-size:15px; line-height:1.7; color:var(--ink-60); }
+
+    /* CONSENT SECTION */
+    .consent-block { background:var(--p-100); border-radius:var(--radius-lg); padding:28px 32px; margin-bottom:32px; }
+    .consent-block .sec-h2 { color:var(--p-text); }
+
+    /* DISCLAIMER */
+    .disclaimer-block { background:#FFF8F0; border:1px solid #FFD8A8; border-radius:var(--radius-lg); padding:28px 32px; }
+    .disclaimer-block .sec-h2 { color:#C05621; }
+    .disclaimer-block .sec-p { color:#7D4A2A; }
+
+    /* FOOTER */
+    .footer { background:var(--ink); color:rgba(255,255,255,0.55); padding:36px 32px; text-align:center; font-size:14px; }
+    .footer-inner { max-width:1100px; margin:0 auto; }
+    .footer-logo { height:26px; opacity:0.7; margin-bottom:14px; }
+    .footer-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:14px; font-size:14px; }
+    .footer-links a { color:rgba(255,255,255,0.55); text-decoration:none; }
+    .footer-links a:hover { color:white; }
+    .footer-copy { font-size:13px; }
+
+    @media (max-width:700px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .priv-body { padding:32px 16px 60px; }
+      .priv-hero { padding:36px 16px 32px; }
+      .toc { padding:18px 20px; }
+      .consent-block, .disclaimer-block { padding:20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><img src="Flex Logo.png" alt="Kidooo AI" /></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tutorial.html">User Tutorial</a>
+      <a href="careers.html">Careers</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">中文</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="tutorial.html" onclick="closeMenu()">User Tutorial</a>
+    <a href="careers.html" onclick="closeMenu()">Careers</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="priv-hero">
+  <div class="priv-hero-inner">
+    <div class="priv-tag">Legal</div>
+    <h1 class="priv-title">Kidooo Family Privacy Policy</h1>
+    <div class="priv-meta">Last Updated: January 7, 2026 &nbsp;·&nbsp; Operator: AI ECD Inc. &nbsp;·&nbsp; Contact: <a href="mailto:info@aiecd.com">info@aiecd.com</a></div>
+  </div>
+</div>
+
+<div class="priv-body">
+
+  <!-- INTRO -->
+  <div class="priv-section">
+    <p class="sec-p">This Privacy Policy describes how Kidooo Family collects, uses, stores, and shares information when you use our MVP beta app.</p>
+    <p class="sec-p">Kidooo Family is intended for <strong>parents, legal guardians, and adult caregivers</strong>. It is not designed for children to create accounts or use independently.</p>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <ol class="toc-list">
+      <li><a href="#s1">1. What We Collect</a></li>
+      <li><a href="#s2">2. How We Use Information</a></li>
+      <li><a href="#s3">3. AI Features</a></li>
+      <li><a href="#s4">4. Data Sharing</a></li>
+      <li><a href="#s5">5. Children's Privacy</a></li>
+      <li><a href="#s6">6. Sensitive Information</a></li>
+      <li><a href="#s7">7. Security</a></li>
+      <li><a href="#s8">8. Data Retention</a></li>
+      <li><a href="#s9">9. Your Choices</a></li>
+      <li><a href="#s10">10. AI Features and Data Use</a></li>
+      <li><a href="#s11">11. Changes to This Policy</a></li>
+      <li><a href="#s12">12. Contact</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="priv-section" id="s1">
+    <div class="sec-num">Section 1</div>
+    <h2 class="sec-h2">What We Collect</h2>
+
+    <h3 class="sec-h3">1.1 Information You Provide</h3>
+    <p class="sec-p"><strong>Account information</strong></p>
+    <ul class="sec-list">
+      <li>Name (optional), email, authentication credentials or tokens, and basic settings.</li>
+    </ul>
+
+    <p class="sec-p"><strong>Child profile and care information</strong> (provided by a parent/guardian)</p>
+    <ul class="sec-list">
+      <li>Child name or nickname, age/date of birth (optional), and information you choose to provide about routines, goals, preferences, and observations.</li>
+    </ul>
+
+    <p class="sec-p"><strong>Child video uploads</strong></p>
+    <ul class="sec-list">
+      <li>Videos of your child that you upload to the app.</li>
+    </ul>
+
+    <p class="sec-p"><strong>Uploaded documents</strong></p>
+    <ul class="sec-list">
+      <li>Documents you upload such as ASD diagnosis reports, school IEP plans, evaluations, and related materials. These documents may contain sensitive information about your child and family.</li>
+    </ul>
+
+    <p class="sec-p"><strong>Parent content</strong></p>
+    <ul class="sec-list">
+      <li>Notes, journals, responses to forms or questionnaires, messages, and feedback you submit.</li>
+    </ul>
+
+    <h3 class="sec-h3">1.2 Information Collected Automatically</h3>
+    <p class="sec-p"><strong>Usage and device data</strong></p>
+    <ul class="sec-list">
+      <li>App interactions and feature usage, timestamps, pages/screens viewed, and basic analytics events.</li>
+      <li>Device type, operating system, app version, IP address, language, crash logs, and performance diagnostics.</li>
+    </ul>
+
+    <p class="sec-p"><strong>Approximate location</strong></p>
+    <ul class="sec-list">
+      <li>Approximate location inferred from your IP address (such as city/region), mainly for security and basic operations.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="priv-section" id="s2">
+    <div class="sec-num">Section 2</div>
+    <h2 class="sec-h2">How We Use Information</h2>
+    <p class="sec-p">We use collected information to:</p>
+    <ul class="sec-list">
+      <li>Provide and operate Kidooo Family features.</li>
+      <li>Generate insights, summaries, or recommendations based on what you provide.</li>
+      <li>Support and communicate with beta users.</li>
+      <li>Improve product design, quality, and reliability (including troubleshooting, analytics, and feature evaluation).</li>
+      <li>Develop, evaluate, and improve our AI and related models that power Kidooo Family, as described in Section 10.</li>
+      <li>Protect safety and security, prevent abuse, and enforce our terms.</li>
+      <li>Comply with applicable laws and lawful requests.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="priv-section" id="s3">
+    <div class="sec-num">Section 3</div>
+    <h2 class="sec-h2">AI Features</h2>
+    <p class="sec-p">Kidooo Family may use AI to help create summaries, insights, or recommendations from the content you provide (such as parent notes, uploaded documents, and video).</p>
+    <div class="callout">
+      <div class="callout-title">Important</div>
+      <p>AI outputs can be inaccurate or incomplete.</p>
+      <p>Kidooo Family is <strong>not a medical device</strong> and does not provide medical advice, diagnosis, or treatment.</p>
+      <p>You are responsible for how you use any insights provided by the app.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="priv-section" id="s4">
+    <div class="sec-num">Section 4</div>
+    <h2 class="sec-h2">Data Sharing</h2>
+    <p class="sec-p">We may share information in the following limited ways:</p>
+
+    <h3 class="sec-h3">4.1 Service Providers (Vendors)</h3>
+    <p class="sec-p">We use service providers to run the app (for example cloud hosting, storage, analytics, customer support, and AI processing). They are permitted to process data only to provide services to us and are expected to protect it.</p>
+
+    <h3 class="sec-h3">4.2 Legal and Safety</h3>
+    <p class="sec-p">We may disclose information if required to comply with law or to protect the rights, safety, and security of our users, children, the public, or our services.</p>
+
+    <h3 class="sec-h3">4.3 Business Transactions</h3>
+    <p class="sec-p">If we are involved in a merger, acquisition, financing, or sale of assets, information may be transferred as part of that transaction subject to appropriate protections.</p>
+
+    <div class="notice-box">
+      <p>✦ &nbsp;<strong>We do not sell personal information.</strong></p>
+      <p>✦ &nbsp;<strong>We do not share personal information for cross-context behavioral advertising.</strong></p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="priv-section" id="s5">
+    <div class="sec-num">Section 5</div>
+    <h2 class="sec-h2">Children's Privacy</h2>
+    <p class="sec-p">Kidooo Family is intended solely for use by parents and legal guardians. It is not directed to children under 13, and children may not use it independently.</p>
+    <p class="sec-p">Parents and guardians may upload information about their child, including videos and documents. By doing so, you confirm you have the legal authority to provide that information.</p>
+    <p class="sec-p">If you believe a child has provided personal information directly to us without appropriate authorization, contact <a href="mailto:info@aiecd.com">info@aiecd.com</a> and we will take appropriate steps, including deletion where applicable.</p>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="priv-section" id="s6">
+    <div class="sec-num">Section 6</div>
+    <h2 class="sec-h2">Sensitive Information</h2>
+    <p class="sec-p">Because you may upload ASD diagnosis reports, IEPs, evaluations, and child videos, Kidooo Family may process information that could be considered sensitive (including health-related and education-related information).</p>
+    <p class="sec-p">We use this information only for operating Kidooo Family and improving the product as described in this policy, and we apply safeguards intended to protect it.</p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="priv-section" id="s7">
+    <div class="sec-num">Section 7</div>
+    <h2 class="sec-h2">Security</h2>
+    <p class="sec-p">We use safeguards designed to protect your information, which may include:</p>
+    <ul class="sec-list">
+      <li>Encryption in transit and at rest where appropriate.</li>
+      <li>Access controls designed to limit access to authorized personnel.</li>
+      <li>Monitoring and regular updates.</li>
+    </ul>
+    <p class="sec-p">No system can guarantee absolute security. You are responsible for keeping your login credentials confidential.</p>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="priv-section" id="s8">
+    <div class="sec-num">Section 8</div>
+    <h2 class="sec-h2">Data Retention</h2>
+    <p class="sec-p">We retain information for as long as reasonably necessary to support the MVP beta program, improve and secure the product, and comply with legal obligations.</p>
+    <ul class="sec-list">
+      <li><strong>Account content</strong> (child profiles, parent notes, uploaded videos, and documents): retained for as long as your account is active.</li>
+      <li><strong>Technical logs</strong> (crash reports, performance, security logs): generally up to 24 months, unless a longer period is required.</li>
+      <li><strong>Backups</strong>: maintained for a limited period and overwritten on a rolling basis.</li>
+    </ul>
+
+    <h3 class="sec-h3">Deletion Requests</h3>
+    <p class="sec-p">To leave the beta and request deletion of your account and associated content (including child videos and uploaded documents), contact <a href="mailto:info@aiecd.com">info@aiecd.com</a>.</p>
+    <p class="sec-p">After verifying your request and authority, we will delete or de-identify information unless we must retain it for legal, security, fraud prevention, backup integrity, or dispute resolution purposes.</p>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="priv-section" id="s9">
+    <div class="sec-num">Section 9</div>
+    <h2 class="sec-h2">Your Choices</h2>
+    <p class="sec-p">You can:</p>
+    <ul class="sec-list">
+      <li>Choose what information to upload (including whether to upload documents or videos).</li>
+      <li>Request access, correction, or deletion by contacting <a href="mailto:info@aiecd.com">info@aiecd.com</a> (subject to verification and applicable law).</li>
+      <li>Opt out of non-essential communications (where applicable).</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="priv-section" id="s10">
+    <div class="sec-num">Section 10</div>
+    <h2 class="sec-h2">AI Features and Data Use</h2>
+    <p class="sec-p">During the MVP beta, we use third-party AI providers via APIs to generate AI outputs. We do not enable optional data-sharing settings that allow third-party AI providers to use our API data for their model training.</p>
+    <p class="sec-p">If applicable law requires additional notices, opt-out rights, or opt-in consent for specific uses of data (including certain uses of sensitive information), we will follow those requirements.</p>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="priv-section" id="s11">
+    <div class="sec-num">Section 11</div>
+    <h2 class="sec-h2">Changes to This Policy</h2>
+    <p class="sec-p">We may update this policy as the product evolves. If changes are material, we will provide notice in the app or by email. Continued use after the effective date means you accept the updated policy.</p>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="priv-section" id="s12">
+    <div class="sec-num">Section 12</div>
+    <h2 class="sec-h2">Contact</h2>
+    <p class="sec-p">For questions, privacy requests, or deletion requests:</p>
+    <p class="sec-p"><a href="mailto:info@aiecd.com"><strong>info@aiecd.com</strong></a></p>
+  </div>
+
+  <!-- CONSENT -->
+  <div class="consent-block priv-section">
+    <div class="sec-num">Consent</div>
+    <h2 class="sec-h2">Kidooo Family Parent/Guardian Consent (MVP)</h2>
+    <p class="sec-p">By creating an account and uploading or entering information about your child in Kidooo Family, you confirm that you are the child's parent or legal guardian (or otherwise authorized) and you consent to our collection, use, storage, and processing of that information as described in this Privacy Policy to provide and improve the Service.</p>
+    <p class="sec-p">You may withdraw consent and request deletion by contacting <a href="mailto:info@aiecd.com">info@aiecd.com</a>, subject to the retention limits described in Section 8.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-block">
+    <div class="sec-num" style="color:#C05621;">Disclaimer</div>
+    <h2 class="sec-h2">Disclaimer of Warranties</h2>
+    <p class="sec-p">Kidooo Family MVP beta is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind. We do not guarantee that AI-generated insights are accurate or complete. Kidooo Family is not a substitute for professional medical advice, clinical diagnosis, or treatment.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="Flex Logo.png" alt="Kidooo AI" class="footer-logo" />
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="tutorial.html">User Tutorial</a>
+      <a href="careers.html">Careers</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:hello@kidooo.ai">hello@kidooo.ai</a>
+    </div>
+    <div class="footer-copy">© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai</div>
+  </div>
+</footer>
+
+<script>
+  let currentLang = 'en';
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    document.getElementById('lang-btn').textContent = currentLang === 'zh' ? 'EN' : '中文';
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+    const labels = currentLang === 'zh'
+      ? ['主页', '使用教程', '加入我们']
+      : ['Home', 'User Tutorial', 'Careers'];
+    navLinks.forEach((a, i) => { if (labels[i]) a.textContent = labels[i]; });
+  }
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+</script>
+</body>
+</html>
