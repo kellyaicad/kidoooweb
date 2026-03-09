@@ -185,6 +185,76 @@
     }
     .tip-dot svg { width: 10px; height: 10px; }
 
+    /* ── DETAIL SECTION ── */
+    .detail-section { padding: 56px 32px 64px; background: var(--white); }
+    .detail-inner { max-width: 860px; margin: 0 auto; }
+    .detail-header { text-align: center; margin-bottom: 40px; }
+    .detail-kicker {
+      display: inline-block; padding: 3px 12px; background: var(--y-100);
+      border-radius: var(--radius-pill); font-size: 11px; font-weight: 700;
+      color: var(--y-dark); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .detail-title {
+      font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: var(--ink);
+      letter-spacing: -0.8px; margin-bottom: 10px;
+    }
+    .detail-sub { font-size: 16px; color: var(--ink-60); line-height: 1.65; }
+
+    .detail-card {
+      border-bottom: 1px solid rgba(26,26,46,0.07);
+      padding: 4px 0;
+    }
+    .detail-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 4px; cursor: pointer; gap: 16px;
+    }
+    .detail-card-left { display: flex; align-items: flex-start; gap: 16px; flex: 1; }
+    .detail-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+    }
+    .dc-y { background: var(--y-400); color: var(--ink); }
+    .dc-p { background: var(--p-200); color: var(--p-text); }
+    .dc-g { background: #D4F5E9; color: #1A7A50; }
+    .detail-card-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--ink-40); margin-bottom: 3px;
+    }
+    .detail-card-title { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .detail-arrow {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--y-100); border: 1px solid var(--y-200);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.22s;
+    }
+    .detail-card-header.open .detail-arrow { background: var(--y-400); border-color: var(--y-400); transform: rotate(180deg); }
+
+    .detail-card-body {
+      display: none; padding: 0 4px 24px 48px;
+    }
+    .detail-card-body.open { display: block; }
+
+    .detail-substep {
+      display: flex; gap: 14px; margin-bottom: 20px;
+    }
+    .detail-substep-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--y-200); color: var(--y-dark);
+      font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .detail-substep-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+    .detail-substep-body { font-size: 15px; line-height: 1.75; color: var(--ink-60); }
+    .detail-substep-body a { color: var(--p-text); }
+    .detail-note {
+      background: var(--y-100); border-radius: var(--radius-md);
+      padding: 12px 16px; font-size: 14px; color: var(--ink-60);
+      line-height: 1.6; margin-top: 8px;
+    }
+    .detail-note a { color: var(--p-text); }
+
     /* ── FAQ ── */
     .faq-section {
       background: var(--p-100); border-top: 1px solid var(--p-200);
@@ -266,6 +336,8 @@
       .step-content { padding: 18px 20px 22px; }
       .steps-section { padding: 40px 18px 48px; }
       .tut-hero { padding: 40px 18px 48px; }
+      .detail-section { padding: 40px 16px 48px; }
+      .detail-card-body { padding-left: 16px; }
       .faq-section { padding: 40px 18px 48px; }
       .tut-cta { padding: 40px 18px 48px; }
     }
@@ -435,6 +507,258 @@
     </div>
   </section>
 
+  <!-- DETAILED INSTRUCTIONS -->
+  <section class="detail-section">
+    <div class="detail-inner">
+      <div class="detail-header">
+        <div class="detail-kicker" data-i18n="detail-kicker">Detailed Guide</div>
+        <h2 class="detail-title" data-i18n="detail-title">Step-by-step walkthrough</h2>
+        <p class="detail-sub" data-i18n="detail-sub">Everything you need to know, from first login to sharing with your care team.</p>
+      </div>
+
+      <!-- D1 -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-y">1</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d1-tag">Account Setup</div>
+              <div class="detail-card-title" data-i18n="d1-title">Creating your account &amp; setting up your child's profile</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d1-s1-t">Go to family.kidooo.ai</div>
+              <div class="detail-substep-body" data-i18n="d1-s1-b">Open your phone browser or computer browser and navigate to <strong>family.kidooo.ai</strong>. Tap <strong>"Sign Up"</strong> to create a new account. Enter your email address and create a password.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d1-s2-t">Verify your email</div>
+              <div class="detail-substep-body" data-i18n="d1-s2-b">Check your inbox for a verification email from Kidooo. Click the link inside to confirm your account. Check your spam folder if you don't see it within a few minutes.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d1-s3-t">Create your child's profile</div>
+              <div class="detail-substep-body" data-i18n="d1-s3-b">After logging in, tap <strong>"Add Child"</strong>. Enter your child's first name (or a nickname), date of birth, and any notes about their current goals or support needs. This information helps Kidooo personalize the AI insights for your child specifically.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d1-note">💡 You can add multiple children under one account. All data is kept separate and private per child.</div>
+        </div>
+      </div>
+
+      <!-- D2 -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-p">2</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d2-tag">Recording Tips</div>
+              <div class="detail-card-title" data-i18n="d2-title">How to film a good video (even in chaotic moments)</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d2-s1-t">Length: 10 to 60 seconds</div>
+              <div class="detail-substep-body" data-i18n="d2-s1-b">Shorter clips (10–30 seconds) work great for specific moments. Longer clips (up to 60 seconds) are useful when you want to capture a full sequence, like a meltdown from trigger to resolution.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d2-s2-t">What to capture</div>
+              <div class="detail-substep-body" data-i18n="d2-s2-b">Try to keep your child's face and body visible. Natural lighting works fine — you don't need special equipment. Capture real moments: transitions, mealtimes, school arrival, playtime, before-bed routines, or any behavior you've been wondering about.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d2-s3-t">Don't worry about being perfect</div>
+              <div class="detail-substep-body" data-i18n="d2-s3-b">The AI works with imperfect, real-life footage. Shaky camera, background noise, or partial views are all fine. What matters most is capturing the actual behavior — not film quality.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d2-note">💡 Common moments parents record: after-school transitions, morning routines, mealtime behaviors, sibling interactions, reactions to "no", and sensory play.</div>
+        </div>
+      </div>
+
+      <!-- D3 -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-g">3</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d3-tag">Uploading</div>
+              <div class="detail-card-title" data-i18n="d3-title">How to upload a video and add context</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d3-s1-t">Tap "+ New Moment"</div>
+              <div class="detail-substep-body" data-i18n="d3-s1-b">From the home screen, tap the <strong>"+ New Moment"</strong> button. Select the video from your camera roll, or record directly from the app.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d3-s2-t">Add a context note (optional but helpful)</div>
+              <div class="detail-substep-body" data-i18n="d3-s2-b">Before submitting, you can add a short note about what was happening: <em>"He hadn't napped and we asked him to stop the iPad"</em> or <em>"This happens every Tuesday after speech therapy."</em> Context makes the AI summary more accurate and useful.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d3-s3-t">Wait for processing</div>
+              <div class="detail-substep-body" data-i18n="d3-s3-b">Processing typically takes 1–3 minutes. You'll receive a notification when your summary is ready. You can close the app and come back — it'll be there waiting for you.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d3-note">💡 Supported formats: MP4, MOV (most phone videos). Maximum file size: 500MB. If your video is too long, trim it to under 60 seconds before uploading.</div>
+        </div>
+      </div>
+
+      <!-- D4 -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-y">4</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d4-tag">Reading Results</div>
+              <div class="detail-card-title" data-i18n="d4-title">Understanding your AI summary</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d4-s1-t">What the summary includes</div>
+              <div class="detail-substep-body" data-i18n="d4-s1-b">Each summary includes: <strong>Observed behaviors</strong> (what happened), <strong>Possible triggers</strong> (what may have caused it), <strong>Emotional state</strong> (how your child seemed to be feeling), and <strong>Patterns</strong> (if this matches previous moments).</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d4-s2-t">Personalized suggestions</div>
+              <div class="detail-substep-body" data-i18n="d4-s2-b">Below the summary, you'll see 2–3 gentle, evidence-informed ideas to try. These are practical things you can do at home today — not clinical prescriptions. They're designed to be realistic for busy parents.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d4-s3-t">If the summary seems off</div>
+              <div class="detail-substep-body" data-i18n="d4-s3-b">AI can make mistakes. If a summary doesn't feel right, you can add a correction note or flag it. Your feedback helps the system improve over time. Always use your own judgment as the parent who knows your child best.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d4-note">💡 Kidooo is not a medical device and does not provide diagnoses. Use summaries as a starting point for conversations with your care team — not as clinical conclusions.</div>
+        </div>
+      </div>
+
+      <!-- D5 -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-p">5</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d5-tag">Sharing</div>
+              <div class="detail-card-title" data-i18n="d5-title">Sharing summaries with your care team</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d5-s1-t">Select which summaries to share</div>
+              <div class="detail-substep-body" data-i18n="d5-s1-b">On any moment's summary page, tap <strong>"Share with Care Team"</strong>. You control which summaries are shared — your care team never sees your raw video unless you explicitly allow it.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d5-s2-t">Add your therapist or doctor</div>
+              <div class="detail-substep-body" data-i18n="d5-s2-b">Go to <strong>Settings → Care Team</strong> and enter your care provider's email. They'll receive an invite to view only the summaries you've chosen to share. You can revoke access at any time.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d5-s3-t">Export for appointments</div>
+              <div class="detail-substep-body" data-i18n="d5-s3-b">Before a therapy or doctor's appointment, you can export a PDF report of recent moments to bring with you. Tap <strong>"Export Report"</strong> from your child's timeline — it summarizes recent observations in a format clinicians can read quickly.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d5-note">💡 Many parents find it helpful to share 2–3 moments from the past week before each therapy session. It gives therapists real context from home, not just what they observe in clinic.</div>
+        </div>
+      </div>
+
+      <!-- D6 -->
+      <div class="detail-card" style="border-bottom:none;">
+        <div class="detail-card-header" onclick="toggleDetail(this)">
+          <div class="detail-card-left">
+            <div class="detail-badge dc-g">6</div>
+            <div>
+              <div class="detail-card-tag" data-i18n="d6-tag">Account &amp; Privacy</div>
+              <div class="detail-card-title" data-i18n="d6-title">Managing your account, data, and privacy settings</div>
+            </div>
+          </div>
+          <div class="detail-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-substep">
+            <div class="detail-substep-num">1</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d6-s1-t">Delete a video or moment</div>
+              <div class="detail-substep-body" data-i18n="d6-s1-b">Go to the moment, tap the three-dot menu (<strong>⋯</strong>), and select <strong>"Delete"</strong>. This permanently removes the video and its summary from Kidooo's servers.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">2</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d6-s2-t">Change your password or email</div>
+              <div class="detail-substep-body" data-i18n="d6-s2-b">Go to <strong>Settings → Account</strong>. You can update your email or reset your password at any time. We recommend using a strong, unique password and enabling two-factor authentication if available.</div>
+            </div>
+          </div>
+          <div class="detail-substep">
+            <div class="detail-substep-num">3</div>
+            <div class="detail-substep-content">
+              <div class="detail-substep-title" data-i18n="d6-s3-t">Request full data deletion</div>
+              <div class="detail-substep-body" data-i18n="d6-s3-b">To permanently delete your account and all associated data, email <a href="mailto:info@aiecd.com">info@aiecd.com</a> with the subject <strong>"Data Deletion Request"</strong>. We will process your request and confirm deletion within a reasonable timeframe.</div>
+            </div>
+          </div>
+          <div class="detail-note" data-i18n="d6-note">💡 All videos are encrypted at rest and in transit. Kidooo never sells your data. See our <a href="privacy.html">Privacy Policy</a> for full details.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="faq-section">
     <div class="faq-inner">
@@ -516,7 +840,7 @@
     document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  let currentLang = 'en';
+  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
 
   const T = {
     'hero-label':   { en: 'User Tutorial', zh: '使用教程' },
@@ -565,8 +889,72 @@
     'faq-a3':       { en: 'Any real moment works — a meltdown after school, a breakthrough during play, a difficult bedtime, or a happy interaction with a sibling. The AI works best with natural, unstaged moments captured in everyday settings.', zh: '任何真实的瞬间都可以——放学后的情绪崩溃、游戏中的突破、困难的睡前时光，或者与兄弟姐妹的快乐互动。AI 在自然、未经排练的日常场景中效果最好。' },
     'faq-q4':       { en: 'Is Kidooo Family free to use?', zh: 'Kidooo 家长版免费吗？' },
     'faq-a4':       { en: 'Yes — you can start for free with no credit card required. Visit family.kidooo.ai to create your account and upload your first video.', zh: '是的——无需信用卡，免费开始。访问 family.kidooo.ai 创建账号并上传你的第一段视频。' },
-    'faq-q5':       { en: 'Do I need to be diagnosed with autism to use Kidooo?', zh: '需要有自闭症诊断才能使用 Kidooo 吗？' },
+    'faq-q5':       { en: 'Do I need to be diagnosed with autism to use Kidooo?', zh: '需要有孤独症诊断才能使用 Kidooo 吗？' },
     'faq-a5':       { en: 'No. Kidooo is built for any family navigating neurodevelopmental challenges — whether your child has a formal diagnosis or you\'re in the process of seeking one. The tool is most useful for families who want to better understand and document their child\'s daily experiences.', zh: '不需要。Kidooo 为所有正在应对神经发育挑战的家庭而建——无论孩子是否已有正式诊断，还是正在寻求诊断中。对于希望更好地了解和记录孩子日常体验的家庭，这个工具最有帮助。' },
+
+    'detail-kicker': { en: 'Detailed Guide', zh: '详细操作指南' },
+    'detail-title':  { en: 'Step-by-step walkthrough', zh: '逐步使用说明' },
+    'detail-sub':    { en: 'Everything you need to know, from first login to sharing with your care team.', zh: '从第一次登录到与治疗团队分享，你需要知道的一切。' },
+
+    'd1-tag': { en: 'Account Setup', zh: '账号设置' },
+    'd1-title': { en: 'Creating your account & setting up your child\'s profile', zh: '创建账号并设置孩子的档案' },
+    'd1-s1-t': { en: 'Go to family.kidooo.ai', zh: '打开 family.kidooo.ai' },
+    'd1-s1-b': { en: 'Open your phone browser or computer browser and navigate to <strong>family.kidooo.ai</strong>. Tap <strong>"Sign Up"</strong> to create a new account. Enter your email address and create a password.', zh: '在手机或电脑浏览器中打开 <strong>family.kidooo.ai</strong>，点击 <strong>"注册"</strong> 创建新账号，填入邮箱地址并设置密码。' },
+    'd1-s2-t': { en: 'Verify your email', zh: '验证邮箱' },
+    'd1-s2-b': { en: 'Check your inbox for a verification email from Kidooo. Click the link inside to confirm your account. Check your spam folder if you don\'t see it within a few minutes.', zh: '查看收件箱里来自 Kidooo 的验证邮件，点击链接确认账号。若几分钟内没收到，请检查垃圾邮件文件夹。' },
+    'd1-s3-t': { en: 'Create your child\'s profile', zh: '创建孩子的档案' },
+    'd1-s3-b': { en: 'After logging in, tap <strong>"Add Child"</strong>. Enter your child\'s first name (or a nickname), date of birth, and any notes about their current goals or support needs. This helps Kidooo personalize AI insights for your child specifically.', zh: '登录后，点击 <strong>"添加孩子"</strong>。填入孩子的名字（或昵称）、出生日期，以及当前目标或支持需求的备注。这些信息帮助 Kidooo 为你的孩子个性化生成 AI 洞察。' },
+    'd1-note': { en: '💡 You can add multiple children under one account. All data is kept separate and private per child.', zh: '💡 一个账号可以添加多个孩子，每个孩子的数据完全独立保密。' },
+
+    'd2-tag': { en: 'Recording Tips', zh: '拍摄技巧' },
+    'd2-title': { en: 'How to film a good video (even in chaotic moments)', zh: '怎么拍出好的视频（哪怕是混乱的时刻）' },
+    'd2-s1-t': { en: 'Length: 10 to 60 seconds', zh: '时长：10 到 60 秒' },
+    'd2-s1-b': { en: 'Shorter clips (10–30 seconds) work great for specific moments. Longer clips (up to 60 seconds) are useful when you want to capture a full sequence, like a meltdown from trigger to resolution.', zh: '短片（10–30 秒）适合记录某个具体瞬间；长片（最长 60 秒）适合记录完整过程，比如从触发到情绪平复的全过程。' },
+    'd2-s2-t': { en: 'What to capture', zh: '拍什么' },
+    'd2-s2-b': { en: 'Try to keep your child\'s face and body visible. Natural lighting works fine. Capture real moments: transitions, mealtimes, school arrival, playtime, before-bed routines, or any behavior you\'ve been wondering about.', zh: '尽量让孩子的脸和身体都在画面里。自然光就够用。记录真实瞬间：过渡时段、吃饭、放学回家、玩耍、睡前例行，或者任何让你困惑的行为。' },
+    'd2-s3-t': { en: 'Don\'t worry about being perfect', zh: '不用追求完美' },
+    'd2-s3-b': { en: 'The AI works with imperfect, real-life footage. Shaky camera, background noise, or partial views are all fine. What matters most is capturing the actual behavior — not film quality.', zh: 'AI 可以处理不完美的真实生活画面。画面抖动、背景噪音或局部视角都没关系。最重要的是记录下真实行为，而不是画面质量。' },
+    'd2-note': { en: '💡 Common moments parents record: after-school transitions, morning routines, mealtime behaviors, sibling interactions, reactions to "no", and sensory play.', zh: '💡 家长常拍的场景：放学过渡时段、晨间例行、吃饭行为、兄弟姐妹互动、对"不行"的反应，以及感官游戏。' },
+
+    'd3-tag': { en: 'Uploading', zh: '上传视频' },
+    'd3-title': { en: 'How to upload a video and add context', zh: '如何上传视频并添加背景信息' },
+    'd3-s1-t': { en: 'Tap "+ New Moment"', zh: '点击"+ 新记录"' },
+    'd3-s1-b': { en: 'From the home screen, tap the <strong>"+ New Moment"</strong> button. Select the video from your camera roll, or record directly from the app.', zh: '在主页面点击 <strong>"+ 新记录"</strong>，从相册选择视频，或直接在应用内录制。' },
+    'd3-s2-t': { en: 'Add a context note (optional but helpful)', zh: '添加背景备注（可选但很有用）' },
+    'd3-s2-b': { en: 'Before submitting, you can add a short note about what was happening: <em>"He hadn\'t napped and we asked him to stop the iPad"</em> or <em>"This happens every Tuesday after speech therapy."</em> Context makes the AI summary more accurate and useful.', zh: '上传前可以添加简短备注说明当时发生了什么，比如：<em>"他没午睡，我们让他停止玩 iPad"</em> 或 <em>"每周二语言治疗后都会这样"</em>。背景信息让 AI 摘要更准确、更有用。' },
+    'd3-s3-t': { en: 'Wait for processing', zh: '等待处理' },
+    'd3-s3-b': { en: 'Processing typically takes 1–3 minutes. You\'ll receive a notification when your summary is ready. You can close the app and come back — it\'ll be there waiting for you.', zh: '处理通常需要 1–3 分钟。摘要准备好后你会收到通知。可以关闭应用去做别的，回来时结果就在那里等你。' },
+    'd3-note': { en: '💡 Supported formats: MP4, MOV (most phone videos). Maximum file size: 500MB. If your video is too long, trim it to under 60 seconds before uploading.', zh: '💡 支持格式：MP4、MOV（大多数手机视频）。最大文件大小：500MB。如果视频太长，请先剪辑到 60 秒以内再上传。' },
+
+    'd4-tag': { en: 'Reading Results', zh: '理解结果' },
+    'd4-title': { en: 'Understanding your AI summary', zh: '如何读懂 AI 摘要' },
+    'd4-s1-t': { en: 'What the summary includes', zh: '摘要包含哪些内容' },
+    'd4-s1-b': { en: 'Each summary includes: <strong>Observed behaviors</strong> (what happened), <strong>Possible triggers</strong> (what may have caused it), <strong>Emotional state</strong> (how your child seemed to be feeling), and <strong>Patterns</strong> (if this matches previous moments).', zh: '每份摘要包含：<strong>观察到的行为</strong>（发生了什么）、<strong>可能的触发因素</strong>（是什么引发的）、<strong>情绪状态</strong>（孩子当时的感受）以及<strong>规律</strong>（是否与之前的记录相符）。' },
+    'd4-s2-t': { en: 'Personalized suggestions', zh: '个性化建议' },
+    'd4-s2-b': { en: 'Below the summary, you\'ll see 2–3 gentle, evidence-informed ideas to try. These are practical things you can do at home today — not clinical prescriptions. They\'re designed to be realistic for busy parents.', zh: '摘要下方会显示 2–3 条温和的、有循证依据的建议。这些是你今天在家就可以尝试的实际方法——不是临床处方，而是为忙碌家长设计的现实可行建议。' },
+    'd4-s3-t': { en: 'If the summary seems off', zh: '如果摘要感觉不对' },
+    'd4-s3-b': { en: 'AI can make mistakes. If a summary doesn\'t feel right, you can add a correction note or flag it. Your feedback helps the system improve over time. Always use your own judgment as the parent who knows your child best.', zh: 'AI 可能会出错。如果摘要感觉不准确，你可以添加更正备注或标记问题。你的反馈帮助系统持续改进。作为最了解孩子的家长，请始终相信自己的判断。' },
+    'd4-note': { en: '💡 Kidooo is not a medical device and does not provide diagnoses. Use summaries as a starting point for conversations with your care team — not as clinical conclusions.', zh: '💡 Kidooo 不是医疗设备，不提供诊断。请将摘要作为与治疗团队对话的起点，而非临床结论。' },
+
+    'd5-tag': { en: 'Sharing', zh: '分享' },
+    'd5-title': { en: 'Sharing summaries with your care team', zh: '将摘要分享给治疗团队' },
+    'd5-s1-t': { en: 'Select which summaries to share', zh: '选择要分享的摘要' },
+    'd5-s1-b': { en: 'On any moment\'s summary page, tap <strong>"Share with Care Team"</strong>. You control which summaries are shared — your care team never sees your raw video unless you explicitly allow it.', zh: '在任意记录的摘要页面，点击 <strong>"分享给治疗团队"</strong>。你控制哪些摘要被分享——除非你明确允许，治疗团队永远看不到原始视频。' },
+    'd5-s2-t': { en: 'Add your therapist or doctor', zh: '添加治疗师或医生' },
+    'd5-s2-b': { en: 'Go to <strong>Settings → Care Team</strong> and enter your care provider\'s email. They\'ll receive an invite to view only the summaries you\'ve chosen to share. You can revoke access at any time.', zh: '进入 <strong>设置 → 治疗团队</strong>，填入你的医疗服务提供者的邮箱。他们会收到邀请，只能查看你选择分享的摘要。你可以随时撤销访问权限。' },
+    'd5-s3-t': { en: 'Export for appointments', zh: '导出报告用于就诊' },
+    'd5-s3-b': { en: 'Before a therapy or doctor\'s appointment, you can export a PDF report of recent moments to bring with you. Tap <strong>"Export Report"</strong> from your child\'s timeline — it summarizes recent observations in a format clinicians can read quickly.', zh: '在治疗或就诊预约前，可以导出最近记录的 PDF 报告带去就诊。在孩子的时间线页面点击 <strong>"导出报告"</strong>——报告以临床人员易读的格式呈现近期观察。' },
+    'd5-note': { en: '💡 Many parents find it helpful to share 2–3 moments from the past week before each therapy session. It gives therapists real context from home, not just what they observe in clinic.', zh: '💡 很多家长会在每次治疗前分享过去一周的 2–3 个记录。这让治疗师获得真实的家庭背景，而不仅仅是诊室里观察到的情况。' },
+
+    'd6-tag': { en: 'Account & Privacy', zh: '账号与隐私' },
+    'd6-title': { en: 'Managing your account, data, and privacy settings', zh: '管理账号、数据和隐私设置' },
+    'd6-s1-t': { en: 'Delete a video or moment', zh: '删除视频或记录' },
+    'd6-s1-b': { en: 'Go to the moment, tap the three-dot menu (<strong>⋯</strong>), and select <strong>"Delete"</strong>. This permanently removes the video and its summary from Kidooo\'s servers.', zh: '进入该记录，点击三点菜单（<strong>⋯</strong>），选择 <strong>"删除"</strong>。这将永久从 Kidooo 服务器上删除视频及其摘要。' },
+    'd6-s2-t': { en: 'Change your password or email', zh: '修改密码或邮箱' },
+    'd6-s2-b': { en: 'Go to <strong>Settings → Account</strong>. You can update your email or reset your password at any time. We recommend using a strong, unique password.', zh: '进入 <strong>设置 → 账号</strong>，可随时更新邮箱或重置密码。建议使用强度高、唯一的密码。' },
+    'd6-s3-t': { en: 'Request full data deletion', zh: '申请完全删除数据' },
+    'd6-s3-b': { en: 'To permanently delete your account and all associated data, email <a href="mailto:info@aiecd.com">info@aiecd.com</a> with the subject <strong>"Data Deletion Request"</strong>. We will process your request and confirm deletion within a reasonable timeframe.', zh: '如需永久删除账号及所有相关数据，请发送邮件至 <a href="mailto:info@aiecd.com">info@aiecd.com</a>，主题填写 <strong>"数据删除申请"</strong>。我们将在合理时间内处理并确认删除。' },
+    'd6-note': { en: '💡 All videos are encrypted at rest and in transit. Kidooo never sells your data. See our <a href="privacy.html">Privacy Policy</a> for full details.', zh: '💡 所有视频在存储和传输过程中均已加密。Kidooo 绝不出售你的数据。详情请查看我们的<a href="privacy.html">隐私政策</a>。' },
 
     'cta-h2':       { en: 'Ready to try it?', zh: '准备好了吗？' },
     'cta-p':        { en: 'Your first summary is just one short video away.', zh: '你的第一份摘要，只需一段短视频。' },
@@ -580,6 +968,7 @@
 
   function toggleLang() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('kidooo_lang', currentLang);
     applyLang(currentLang);
     document.getElementById('langToggle').textContent = currentLang === 'en' ? '中文' : 'EN';
     // update nav btn labels too
@@ -599,6 +988,24 @@
       const key = el.dataset.i18n;
       if (T[key]) el.innerHTML = T[key][lang];
     });
+    document.getElementById('langToggle').textContent = lang === 'zh' ? 'EN' : '中文';
+  }
+
+  // Auto-apply saved language on page load
+  if (currentLang === 'zh') applyLang('zh');
+
+  function toggleDetail(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    // close all
+    document.querySelectorAll('.detail-card-header').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      header.classList.add('open');
+      body.classList.add('open');
+    }
   }
 
   function toggleFaq(el) {

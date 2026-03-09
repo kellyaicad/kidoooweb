@@ -47,7 +47,7 @@
     .jd-list{list-style:none;display:flex;flex-direction:column;gap:10px}
     .jd-list li{font-size:16px;line-height:1.7;color:var(--ink-60);padding-left:22px;position:relative}
     .jd-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--y-400)}
-    .jd-stack{display:flex;flex-wrap:wrap;gap:8px}
+    .jd-stack{display:flex;flex-wrap:wrap;gap:8px}.jd-stack-table{display:flex;flex-direction:column;gap:10px}.jd-stack-row{display:flex;align-items:flex-start;gap:12px}.jd-stack-label{font-size:12px;font-weight:700;color:var(--p-text);text-transform:uppercase;letter-spacing:0.8px;min-width:110px;padding-top:6px;flex-shrink:0}.jd-stack-tags{display:flex;flex-wrap:wrap;gap:6px}
     .jd-stack-tag{padding:5px 14px;background:var(--y-100);border:1px solid var(--y-200);border-radius:var(--radius-pill);font-size:13px;font-weight:500;color:var(--y-dark)}
     .jd-why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .jd-why-item{background:var(--p-100);border-radius:var(--radius-md);padding:18px 20px}
@@ -120,11 +120,19 @@
 
   <div class="jd-section">
     <div class="jd-section-title" id="stack-title">The Stack</div>
-    <div class="jd-stack">
-      <span class="jd-stack-tag">Figma</span><span class="jd-stack-tag">Canva</span>
-      <span class="jd-stack-tag">Adobe</span><span class="jd-stack-tag">User Interviews</span>
-      <span class="jd-stack-tag">Usability Testing</span><span class="jd-stack-tag">Rapid Iteration</span>
-      <span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Notion</span>
+    <div class="jd-stack-table">
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Design</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Figma</span><span class="jd-stack-tag">Canva</span><span class="jd-stack-tag">Adobe</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Validation</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Lightweight User Interviews</span><span class="jd-stack-tag">Usability Testing</span><span class="jd-stack-tag">Rapid Iteration</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Ops</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Slack</span><span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Notion / Airtable</span><span class="jd-stack-tag">Fast iteration with founders</span></div>
+      </div>
     </div>
   </div>
 
@@ -186,11 +194,13 @@
   let currentLang='en';
   const T={
     en:{'lang-btn':'中文','back-text':'All Openings','jd-tag':'Design','jd-title':'Founding Product Designer','about-title':'About AI ECD Inc.','about-p':'We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Mission-First: We deeply prefer candidates who have a personal connection to this mission or prior experience in digital health.','stack-title':'The Stack','build-title':'What You Will Build','who-title':'Who You Are','why-title':'Why Join Us','build-1':'Kidooo Family core flows: onboarding, video upload, processing states, results, daily practice, progress tracking.','build-2':'Trust and clarity: privacy-forward UI, calm microcopy, clear expectations and error states.','build-3':'Design system: reusable mobile-first components that map cleanly to code.','build-4':'Experimentation: ship weekly, iterate based on real user feedback.','who-1':'Strong design taste: crisp, modern, parent-friendly UI with great hierarchy and microcopy.','who-2':'Fast shipper: rough concept to production-ready specs quickly.','who-3':'Mission Driven: you care about autism care.','who-4':'Self-Motivated: thrive in early-stage environments.','who-5':'Local: based in (or relocating to) the San Francisco Bay Area.','who-6':'We welcome CPT, OPT, STEM OPT. H-1B considered for exceptional performers.','why-1-t':'Purpose','why-1-p':'Build technology that changes lives for autism families.','why-2-t':'Ownership','why-2-p':'Work alongside founders to shape the product and design culture.','why-3-t':'Hybrid Culture','why-3-p':'Deep work combined with high-bandwidth in-person collaboration.','apply-top':'Apply Now →','apply-h2':'Ready to design something that matters?','apply-p':"Prefer Bay Area based candidates. We'd love to see your portfolio.",'apply-bottom-btn':'Apply Now →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'},
-    zh:{'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'设计','jd-title':'创始产品设计师','about-title':'关于 AI ECD Inc.','about-p':'我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。','stack-title':'工具栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们','build-1':'Kidooo Family 核心流程：注册引导、视频上传、处理状态、结果展示、每日练习、进度追踪。','build-2':'信任感与清晰度：隐私优先的 UI、温和的文案、明确的预期与错误提示。','build-3':'设计系统：可复用的移动端优先组件，与代码完美对齐，快速交付。','build-4':'持续实验：每周迭代改进，根据用户反馈优化体验。','who-1':'设计品味出众：能做出简洁现代、对家长友好的 UI，有优秀的信息层级和文案感。','who-2':'快速交付：从粗略概念到生产级设计稿，知道什么时候"够好且已发布"胜过"完美"。','who-3':'有使命感：关心自闭症群体。','who-4':'自驱力强：在早期创业环境中能主动定义解决方案。','who-5':'已在湾区或即将搬迁至湾区。','who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。','why-1-t':'使命感','why-1-p':'用设计改变自闭症家庭的生活。','why-2-t':'主人翁精神','why-2-p':'与创始人一起塑造产品和设计文化。','why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。','apply-top':'立即申请 →','apply-h2':'准备好做一件真正有意义的设计了吗？','apply-p':'优先考虑湾区候选人，期待看到你的作品集。','apply-bottom-btn':'立即申请 →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'}
+    zh:{'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'设计','jd-title':'创始产品设计师','about-title':'关于 AI ECD Inc.','about-p':'我们是 Kidooo AI 背后的团队——一款专为孤独症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。','stack-title':'工具栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们','build-1':'Kidooo Family 核心流程：注册引导、视频上传、处理状态、结果展示、每日练习、进度追踪。','build-2':'信任感与清晰度：隐私优先的 UI、温和的文案、明确的预期与错误提示。','build-3':'设计系统：可复用的移动端优先组件，与代码完美对齐，快速交付。','build-4':'持续实验：每周迭代改进，根据用户反馈优化体验。','who-1':'设计品味出众：能做出简洁现代、对家长友好的 UI，有优秀的信息层级和文案感。','who-2':'快速交付：从粗略概念到生产级设计稿，知道什么时候"够好且已发布"胜过"完美"。','who-3':'有使命感：关心孤独症群体。','who-4':'自驱力强：在早期创业环境中能主动定义解决方案。','who-5':'已在湾区或即将搬迁至湾区。','who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。','why-1-t':'使命感','why-1-p':'用设计改变孤独症家庭的生活。','why-2-t':'主人翁精神','why-2-p':'与创始人一起塑造产品和设计文化。','why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。','apply-top':'立即申请 →','apply-h2':'准备好做一件真正有意义的设计了吗？','apply-p':'优先考虑湾区候选人，期待看到你的作品集。','apply-bottom-btn':'立即申请 →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'}
   };
   function applyLang(lang){const t=T[lang];for(const[id,val]of Object.entries(t)){const el=document.getElementById(id);if(el)el.innerHTML=val;}const navLinks=document.querySelectorAll('.nav-links a,.mobile-menu a');const labels=lang==='zh'?['主页','使用教程','加入我们']:['Home','User Tutorial','Careers'];navLinks.forEach((a,i)=>{if(labels[i])a.textContent=labels[i];});}
   function toggleLang(){currentLang=currentLang==='en'?'zh':'en';applyLang(currentLang);}
   function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open');}
+  // Auto-apply saved language on page load
+  if (currentLang === 'zh') applyLang(currentLang);
   function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('open');}
 </script>
 </body>

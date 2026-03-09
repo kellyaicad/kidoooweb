@@ -1185,10 +1185,11 @@
     document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  let currentLang = 'en';
+  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
 
   function toggleLang() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('kidooo_lang', currentLang);
     applyLang(currentLang);
     document.getElementById('langToggle').textContent = currentLang === 'en' ? '中文' : 'EN';
   }
@@ -1215,7 +1216,7 @@
     // ── HERO ─────────────────────────────────────────────
     s(q('.hero-h1'),
       'AI Agent for Autism<br/><span class="hi">Families</span> and Clinics',
-      '为自闭症家庭与诊所<br/>打造的 <span class="hi">AI 陪伴助手</span>');
+      '为孤独症家庭与诊所<br/>打造的 <span class="hi">AI 陪伴助手</span>');
     s(q('.hero-p'),
       'Kidooo AI is a multimodal AI agent for personalized autism care. We transform therapy sessions and home videos into clinician-ready documentation for therapists and actionable guidance for families.',
       '陪伴孩子成长的每一步，都值得被看见。Kidooo AI 将家庭日常视频和治疗课程，转化为医生可直接使用的专业记录，以及家长能在家里当天就试的温和建议。');
@@ -1250,7 +1251,7 @@
     // ── TRUST ─────────────────────────────────────────────
     s(q('.trust-text'),
       'Built with researchers, clinicians &amp; families across leading autism centers.',
-      '与顶尖自闭症中心的研究人员、临床医生和家庭们一起打造，为了真实的需要。');
+      '与顶尖孤独症中心的研究人员、临床医生和家庭们一起打造，为了真实的需要。');
     const trustTags = qa('.trust-tag');
     s(trustTags[0], 'Video-to-notes for clinics', '视频自动生成记录（诊所版）');
     s(trustTags[1], 'Coaching-style guidance at home', '像教练一样陪伴在家（家庭版）');
@@ -1317,13 +1318,13 @@
       'Built by people who <span class="hi">get it</span>',
       '由真正<span class="hi">懂你</span>的人来做');
     s(q('#team .section-p'), 'Blending autism research, clinical practice, and lived caregiver experience.',
-      '团队里有研究者、有临床背景，也有正在陪伴自闭症孩子成长的家长。');
+      '团队里有研究者、有临床背景，也有正在陪伴孤独症孩子成长的家长。');
     const tcards = qa('.tcard');
     s(tcards[0]?.querySelector('.tcard-role'), 'Founder &amp; CEO · Kidooo AI', '创始人 &amp; CEO · Kidooo AI');
     s(tcards[0]?.querySelector('.tcard-overlay-role'), 'Founder &amp; CEO · Kidooo AI', '创始人 &amp; CEO · Kidooo AI');
     s(tcards[0]?.querySelector('.tcard-bio'),
       'Former Stanford postdoctoral researcher in child development with 1,500+ citations and former Data Science Manager at Wayfair. At Kidooo AI, he leads vision and partnerships, turning rigorous research into an agentic AI system for autism care. Backed by SCU Bronco Ventures Accelerator. Serves on editorial boards for several academic journals.',
-      '前斯坦福大学博士后研究员，专注儿童发展，拥有1500+引用量；曾任Wayfair数据科学经理。在 Kidooo AI 主导产品愿景与合作，将严谨研究成果转化为自闭症护理 AI 智能体。获SCU Bronco Ventures加速器支持，并在多个学术期刊担任编委。');
+      '前斯坦福大学博士后研究员，专注儿童发展，拥有1500+引用量；曾任Wayfair数据科学经理。在 Kidooo AI 主导产品愿景与合作，将严谨研究成果转化为孤独症护理 AI 智能体。获SCU Bronco Ventures加速器支持，并在多个学术期刊担任编委。');
     s(tcards[1]?.querySelector('.tcard-role'), 'Co-Founder &amp; CTO · Kidooo AI', '联合创始人 &amp; CTO · Kidooo AI');
     s(tcards[1]?.querySelector('.tcard-overlay-role'), 'Co-Founder &amp; CTO · Kidooo AI', '联合创始人 &amp; CTO · Kidooo AI');
     s(tcards[1]?.querySelector('.tcard-bio'),
@@ -1352,7 +1353,11 @@
     const footerLinks = qa('.footer-links a');
     s(footerLinks[0], 'Privacy Policy', '隐私政策');
     s(footerLinks[1], 'Careers', '加入我们');
+    document.getElementById('langToggle').textContent = lang === 'zh' ? 'EN' : '中文';
   }
+
+  // Auto-apply saved language on page load
+  if (currentLang === 'zh') applyLang('zh');
 </script>
 
 </body>

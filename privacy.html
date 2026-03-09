@@ -374,7 +374,7 @@
 </footer>
 
 <script>
-  let currentLang = 'en';
+  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
   function toggleLang() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
     document.getElementById('lang-btn').textContent = currentLang === 'zh' ? 'EN' : '中文';

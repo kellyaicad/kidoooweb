@@ -149,14 +149,27 @@
 
   <div class="jd-section">
     <div class="jd-section-title" id="stack-title">The Stack</div>
-    <div class="jd-stack">
-      <span class="jd-stack-tag">React</span><span class="jd-stack-tag">TypeScript</span>
-      <span class="jd-stack-tag">Tailwind CSS</span><span class="jd-stack-tag">Mobile-First</span>
-      <span class="jd-stack-tag">Python</span><span class="jd-stack-tag">AWS Lambda</span>
-      <span class="jd-stack-tag">Vercel</span><span class="jd-stack-tag">RDS</span>
-      <span class="jd-stack-tag">OpenAI</span><span class="jd-stack-tag">Gemini</span>
-      <span class="jd-stack-tag">Claude</span><span class="jd-stack-tag">Docker</span>
-      <span class="jd-stack-tag">CI/CD</span><span class="jd-stack-tag">JIRA</span>
+    <div class="jd-stack-table">
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Frontend</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">React</span><span class="jd-stack-tag">TypeScript</span><span class="jd-stack-tag">Tailwind CSS</span><span class="jd-stack-tag">Mobile-First</span><span class="jd-stack-tag">Responsive Design</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Backend</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Vercel</span><span class="jd-stack-tag">Python</span><span class="jd-stack-tag">AWS Lambda</span><span class="jd-stack-tag">AWS</span><span class="jd-stack-tag">RDS</span><span class="jd-stack-tag">Cognito</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">AI</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">OpenAI</span><span class="jd-stack-tag">Google Gemini</span><span class="jd-stack-tag">Anthropic Claude</span><span class="jd-stack-tag">Multimodal Foundation Models</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">DevOps</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">AWS</span><span class="jd-stack-tag">Git</span><span class="jd-stack-tag">CI/CD</span><span class="jd-stack-tag">Docker</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Agile</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Slack</span><span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Google Workspace</span><span class="jd-stack-tag">Confluence</span><span class="jd-stack-tag">Weekly Sprints</span></div>
+      </div>
     </div>
   </div>
 
@@ -214,7 +227,7 @@
 </footer>
 
 <script>
-  let currentLang = 'en';
+  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
   const T = {
     en: {
       'lang-btn':'中文','back-text':'All Openings','jd-tag':'Engineering',
@@ -243,18 +256,18 @@
       'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'工程',
       'jd-title':'创始全栈工程师',
       'about-title':'关于 AI ECD Inc.',
-      'about-p':'我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。产品包括 Kidooo Family（帮助家长即时获取洞察）和 Kidooo Clinic（面向治疗师的 AI 工作流助手）。使命优先：我们深切关怀自闭症儿童及其家庭，优先考虑有切身使命感或数字健康经验的候选人。',
+      'about-p':'我们是 Kidooo AI 背后的团队——一款专为孤独症家庭打造的 AI 智能助手。产品包括 Kidooo Family（帮助家长即时获取洞察）和 Kidooo Clinic（面向治疗师的 AI 工作流助手）。使命优先：我们深切关怀孤独症儿童及其家庭，优先考虑有切身使命感或数字健康经验的候选人。',
       'stack-title':'技术栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们',
       'build-1':'Kidooo Family：发布 MVP，根据真实用户反馈每周迭代更新。',
       'build-2':'Kidooo Clinic：设计面向专业治疗师的 AI 工作流架构。',
       'build-3':'规模化：将移动优先的 Web 架构演进为 iOS 原生或混合 App 体验。',
       'who-1':'计算机科学或相关专业本科/硕士，来自顶尖院校。',
       'who-2':'2 年以上职业经验，有上线过复杂 Web 或 iOS 应用，需提供 GitHub 主页或作品集。',
-      'who-3':'有使命感：关心自闭症群体，希望用代码创造真实的社会价值。',
+      'who-3':'有使命感：关心孤独症群体，希望用代码创造真实的社会价值。',
       'who-4':'自驱力强：在早期创业环境中能主动定义解决方案，而不只是执行任务。',
       'who-5':'已在湾区或一个月内可搬迁至湾区（南湾/圣何塞）。',
       'who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。',
-      'why-1-t':'使命感','why-1-p':'用技术改变自闭症家庭的生活。',
+      'why-1-t':'使命感','why-1-p':'用技术改变孤独症家庭的生活。',
       'why-2-t':'主人翁精神','why-2-p':'与创始人并肩，从第一天起共同塑造工程文化。',
       'why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。',
       'apply-top':'立即申请 →','apply-h2':'准备好做一件真正有意义的事了吗？',

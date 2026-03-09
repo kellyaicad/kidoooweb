@@ -47,7 +47,7 @@
     .jd-list{list-style:none;display:flex;flex-direction:column;gap:10px}
     .jd-list li{font-size:16px;line-height:1.7;color:var(--ink-60);padding-left:22px;position:relative}
     .jd-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--y-400)}
-    .jd-stack{display:flex;flex-wrap:wrap;gap:8px}
+    .jd-stack{display:flex;flex-wrap:wrap;gap:8px}.jd-stack-table{display:flex;flex-direction:column;gap:10px}.jd-stack-row{display:flex;align-items:flex-start;gap:12px}.jd-stack-label{font-size:12px;font-weight:700;color:var(--p-text);text-transform:uppercase;letter-spacing:0.8px;min-width:110px;padding-top:6px;flex-shrink:0}.jd-stack-tags{display:flex;flex-wrap:wrap;gap:6px}
     .jd-stack-tag{padding:5px 14px;background:var(--y-100);border:1px solid var(--y-200);border-radius:var(--radius-pill);font-size:13px;font-weight:500;color:var(--y-dark)}
     .jd-why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .jd-why-item{background:var(--p-100);border-radius:var(--radius-md);padding:18px 20px}
@@ -120,13 +120,19 @@
 
   <div class="jd-section">
     <div class="jd-section-title" id="stack-title">The Stack</div>
-    <div class="jd-stack">
-      <span class="jd-stack-tag">CapCut</span><span class="jd-stack-tag">Canva</span>
-      <span class="jd-stack-tag">Figma</span><span class="jd-stack-tag">TikTok</span>
-      <span class="jd-stack-tag">Instagram Reels</span><span class="jd-stack-tag">YouTube Shorts</span>
-      <span class="jd-stack-tag">Facebook</span><span class="jd-stack-tag">Reddit</span>
-      <span class="jd-stack-tag">RedNote</span><span class="jd-stack-tag">Slack</span>
-      <span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Notion</span>
+    <div class="jd-stack-table">
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Content Creation</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">CapCut</span><span class="jd-stack-tag">Canva</span><span class="jd-stack-tag">Figma</span><span class="jd-stack-tag">Strong writing and storytelling</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Distribution</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">TikTok</span><span class="jd-stack-tag">Instagram Reels</span><span class="jd-stack-tag">YouTube Shorts</span><span class="jd-stack-tag">Facebook</span><span class="jd-stack-tag">Reddit</span><span class="jd-stack-tag">RedNote</span><span class="jd-stack-tag">Lightweight events</span></div>
+      </div>
+      <div class="jd-stack-row">
+        <div class="jd-stack-label">Ops</div>
+        <div class="jd-stack-tags"><span class="jd-stack-tag">Slack</span><span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Notion / Airtable</span><span class="jd-stack-tag">Fast iteration with founders</span></div>
+      </div>
     </div>
   </div>
 
@@ -188,11 +194,13 @@
   let currentLang='en';
   const T={
     en:{'lang-btn':'中文','back-text':'All Openings','jd-tag':'Growth','jd-title':'Founding Growth Lead<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">(Content &amp; Community)</span>','about-title':'About AI ECD Inc.','about-p':'We are the team behind Kidooo AI, the AI Agent for Personalized Autism Care. Mission-First: We deeply prefer candidates who have a personal connection to this mission or prior experience in digital health.','stack-title':'The Stack','build-title':'What You Will Build','who-title':'Who You Are','why-title':'Why Join Us','build-1':'A repeatable short-form content engine that drives qualified parent signups and retention.','build-2':'A steady cadence of high-performing vertical videos (TikTok, Reels, Shorts) with weekly experimentation.','build-3':'Trust-building content: empathetic, non-judgmental, and privacy-aware.','build-4':'Community and partner distribution loops — parent groups, autism orgs, clinician networks.','who-1':'Short-form video killer: concept, script, shoot, and edit fast. TikTok-first mindset is a plus.','who-2':'2+ years driving growth through content, social, or community. You can point to outcomes.','who-3':'Community Builder: earn trust in sensitive parenting and care spaces.','who-4':'Early-stage fit: move fast, work directly with founders, high ownership.','who-5':'Local: based in (or relocating to) the San Francisco Bay Area.','who-6':'We welcome CPT, OPT, STEM OPT. H-1B considered for exceptional performers.','why-1-t':'Purpose','why-1-p':'Build technology that changes lives for autism families.','why-2-t':'Ownership','why-2-p':'Build our growth engine from zero to one alongside founders.','why-3-t':'Hybrid Culture','why-3-p':'Deep work combined with high-bandwidth in-person collaboration.','apply-top':'Apply Now →','apply-h2':'Ready to build a community that matters?','apply-p':"Prefer Bay Area based candidates. We'd love to hear from you.",'apply-bottom-btn':'Apply Now →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'},
-    zh:{'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'增长','jd-title':'创始增长负责人<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">（内容与社区）</span>','about-title':'关于 AI ECD Inc.','about-p':'我们是 Kidooo AI 背后的团队——一款专为自闭症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。','stack-title':'工具栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们','build-1':'打造可持续的短视频内容引擎，驱动高质量家长用户注册与留存。','build-2':'持续产出高表现竖版视频（TikTok、Reels、Shorts），每周迭代实验。','build-3':'构建有温度、不评判、注重隐私的内容，服务健康相关产品用户。','build-4':'建立社区和合作伙伴分发循环——家长群体、自闭症机构、治疗师网络。','who-1':'短视频高手：能快速完成策划、脚本、拍摄、剪辑，懂钩子、节奏、字幕和迭代。','who-2':'2 年以上内容、社交或社区增长经验，能拿出成果数据。','who-3':'社区建设者：擅长在敏感育儿空间中建立信任、维护健康社区氛围。','who-4':'适合早期创业：行动快、直接与创始人合作、喜欢高度自主的工作方式。','who-5':'已在湾区或即将搬迁至湾区。','who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。','why-1-t':'使命感','why-1-p':'用内容改变自闭症家庭的生活。','why-2-t':'主人翁精神','why-2-p':'与创始人一起从零构建增长引擎。','why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。','apply-top':'立即申请 →','apply-h2':'准备好构建一个真正有意义的社区了吗？','apply-p':'优先考虑湾区候选人，期待你的申请。','apply-bottom-btn':'立即申请 →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'}
+    zh:{'lang-btn':'EN','back-text':'返回职位列表','jd-tag':'增长','jd-title':'创始增长负责人<br/><span style="font-size:0.7em;font-weight:600;color:var(--ink-60)">（内容与社区）</span>','about-title':'关于 AI ECD Inc.','about-p':'我们是 Kidooo AI 背后的团队——一款专为孤独症家庭打造的 AI 智能助手。使命优先：我们优先考虑有个人使命连接或数字健康经验的候选人。','stack-title':'工具栈','build-title':'你将构建什么','who-title':'我们在找什么样的你','why-title':'为什么加入我们','build-1':'打造可持续的短视频内容引擎，驱动高质量家长用户注册与留存。','build-2':'持续产出高表现竖版视频（TikTok、Reels、Shorts），每周迭代实验。','build-3':'构建有温度、不评判、注重隐私的内容，服务健康相关产品用户。','build-4':'建立社区和合作伙伴分发循环——家长群体、孤独症机构、治疗师网络。','who-1':'短视频高手：能快速完成策划、脚本、拍摄、剪辑，懂钩子、节奏、字幕和迭代。','who-2':'2 年以上内容、社交或社区增长经验，能拿出成果数据。','who-3':'社区建设者：擅长在敏感育儿空间中建立信任、维护健康社区氛围。','who-4':'适合早期创业：行动快、直接与创始人合作、喜欢高度自主的工作方式。','who-5':'已在湾区或即将搬迁至湾区。','who-6':'欢迎 CPT、OPT、STEM OPT 候选人，优秀者可考虑 H-1B 支持。','why-1-t':'使命感','why-1-p':'用内容改变孤独症家庭的生活。','why-2-t':'主人翁精神','why-2-p':'与创始人一起从零构建增长引擎。','why-3-t':'混合办公文化','why-3-p':'深度专注工作 + 高效线下协作。','apply-top':'立即申请 →','apply-h2':'准备好构建一个真正有意义的社区了吗？','apply-p':'优先考虑湾区候选人，期待你的申请。','apply-bottom-btn':'立即申请 →','footer-copy':'© 2025 AI ECD Inc. · Kidooo AI · hello@kidooo.ai'}
   };
   function applyLang(lang){const t=T[lang];for(const[id,val]of Object.entries(t)){const el=document.getElementById(id);if(el)el.innerHTML=val;}const navLinks=document.querySelectorAll('.nav-links a,.mobile-menu a');const labels=lang==='zh'?['主页','使用教程','加入我们']:['Home','User Tutorial','Careers'];navLinks.forEach((a,i)=>{if(labels[i])a.textContent=labels[i];});}
   function toggleLang(){currentLang=currentLang==='en'?'zh':'en';applyLang(currentLang);}
   function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open');}
+  // Auto-apply saved language on page load
+  if (currentLang === 'zh') applyLang(currentLang);
   function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('open');}
 </script>
 </body>
