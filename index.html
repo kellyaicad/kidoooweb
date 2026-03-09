@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kidooo AI – AI Copilot for Autism Families</title>
+  <link rel="alternate" hreflang="en" href="https://kidooo.ai/" />
+  <link rel="alternate" hreflang="zh" href="https://kidooo.ai/?lang=zh" />
+  <link rel="alternate" hreflang="x-default" href="https://kidooo.ai/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet" />
@@ -1185,13 +1188,18 @@
     document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
+  const _isZhDomain = window.location.hostname.startsWith('zh.') || new URLSearchParams(window.location.search).get('lang') === 'zh';
+  if (_isZhDomain) localStorage.setItem('kidooo_lang', 'zh');
+  let currentLang = _isZhDomain ? 'zh' : (localStorage.getItem('kidooo_lang') || 'en');
 
   function toggleLang() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
     localStorage.setItem('kidooo_lang', currentLang);
     applyLang(currentLang);
     document.getElementById('langToggle').textContent = currentLang === 'en' ? '中文' : 'EN';
+    const _u = new URL(window.location.href);
+    if (currentLang === 'zh') { _u.searchParams.set('lang', 'zh'); } else { _u.searchParams.delete('lang'); }
+    history.replaceState(null, '', _u.toString());
   }
 
   function applyLang(lang) {

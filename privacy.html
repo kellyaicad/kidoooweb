@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy – Kidooo Family</title>
+  <link rel="alternate" hreflang="en" href="https://kidooo.ai/privacy.html" />
+  <link rel="alternate" hreflang="zh" href="https://kidooo.ai/privacy.html?lang=zh" />
+  <link rel="alternate" hreflang="x-default" href="https://kidooo.ai/privacy.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
@@ -374,15 +377,21 @@
 </footer>
 
 <script>
-  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
+  const _isZhDomain = window.location.hostname.startsWith('zh.') || new URLSearchParams(window.location.search).get('lang') === 'zh';
+  if (_isZhDomain) localStorage.setItem('kidooo_lang', 'zh');
+  let currentLang = _isZhDomain ? 'zh' : (localStorage.getItem('kidooo_lang') || 'en');
   function toggleLang() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('kidooo_lang', currentLang);
     document.getElementById('lang-btn').textContent = currentLang === 'zh' ? 'EN' : '中文';
     const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
     const labels = currentLang === 'zh'
       ? ['主页', '使用教程', '加入我们']
       : ['Home', 'User Tutorial', 'Careers'];
     navLinks.forEach((a, i) => { if (labels[i]) a.textContent = labels[i]; });
+    const _u = new URL(window.location.href);
+    if (currentLang === 'zh') { _u.searchParams.set('lang', 'zh'); } else { _u.searchParams.delete('lang'); }
+    history.replaceState(null, '', _u.toString());
   }
   function toggleMenu() {
     document.getElementById('hamburger').classList.toggle('open');

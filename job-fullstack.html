@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Founding Full Stack Developer – Kidooo AI</title>
+  <link rel="alternate" hreflang="en" href="https://kidooo.ai/job-fullstack.html" />
+  <link rel="alternate" hreflang="zh" href="https://kidooo.ai/job-fullstack.html?lang=zh" />
+  <link rel="alternate" hreflang="x-default" href="https://kidooo.ai/job-fullstack.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
@@ -65,6 +68,10 @@
     .jd-list li { font-size:16px; line-height:1.7; color:var(--ink-60); padding-left:22px; position:relative; }
     .jd-list li::before { content:''; position:absolute; left:0; top:11px; width:6px; height:6px; border-radius:50%; background:var(--y-400); }
     .jd-stack { display:flex; flex-wrap:wrap; gap:8px; }
+    .jd-stack-table { display:flex; flex-direction:column; gap:12px; }
+    .jd-stack-row { display:flex; align-items:flex-start; gap:0; }
+    .jd-stack-label { font-size:12px; font-weight:700; color:var(--p-text); text-transform:uppercase; letter-spacing:0.8px; min-width:120px; padding:6px 0 0 0; flex-shrink:0; }
+    .jd-stack-tags { display:flex; flex-wrap:wrap; gap:6px; }
     .jd-stack-tag { padding:5px 14px; background:var(--y-100); border:1px solid var(--y-200); border-radius:var(--radius-pill); font-size:13px; font-weight:500; color:var(--y-dark); }
     .jd-why { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
     .jd-why-item { background:var(--p-100); border-radius:var(--radius-md); padding:18px 20px; }
@@ -149,28 +156,13 @@
 
   <div class="jd-section">
     <div class="jd-section-title" id="stack-title">The Stack</div>
-    <div class="jd-stack-table">
-      <div class="jd-stack-row">
-        <div class="jd-stack-label">Frontend</div>
-        <div class="jd-stack-tags"><span class="jd-stack-tag">React</span><span class="jd-stack-tag">TypeScript</span><span class="jd-stack-tag">Tailwind CSS</span><span class="jd-stack-tag">Mobile-First</span><span class="jd-stack-tag">Responsive Design</span></div>
-      </div>
-      <div class="jd-stack-row">
-        <div class="jd-stack-label">Backend</div>
-        <div class="jd-stack-tags"><span class="jd-stack-tag">Vercel</span><span class="jd-stack-tag">Python</span><span class="jd-stack-tag">AWS Lambda</span><span class="jd-stack-tag">AWS</span><span class="jd-stack-tag">RDS</span><span class="jd-stack-tag">Cognito</span></div>
-      </div>
-      <div class="jd-stack-row">
-        <div class="jd-stack-label">AI</div>
-        <div class="jd-stack-tags"><span class="jd-stack-tag">OpenAI</span><span class="jd-stack-tag">Google Gemini</span><span class="jd-stack-tag">Anthropic Claude</span><span class="jd-stack-tag">Multimodal Foundation Models</span></div>
-      </div>
-      <div class="jd-stack-row">
-        <div class="jd-stack-label">DevOps</div>
-        <div class="jd-stack-tags"><span class="jd-stack-tag">AWS</span><span class="jd-stack-tag">Git</span><span class="jd-stack-tag">CI/CD</span><span class="jd-stack-tag">Docker</span></div>
-      </div>
-      <div class="jd-stack-row">
-        <div class="jd-stack-label">Agile</div>
-        <div class="jd-stack-tags"><span class="jd-stack-tag">Slack</span><span class="jd-stack-tag">JIRA</span><span class="jd-stack-tag">Google Workspace</span><span class="jd-stack-tag">Confluence</span><span class="jd-stack-tag">Weekly Sprints</span></div>
-      </div>
-    </div>
+    <ul class="jd-list">
+      <li><strong>Frontend:</strong> React, TypeScript, Tailwind CSS, Mobile-First, Responsive Design.</li>
+      <li><strong>Backend:</strong> Vercel, Python, Lambda, AWS, RDS, Cognito</li>
+      <li><strong>AI:</strong> OpenAI, Google Gemini, Anthropic Claude, Multimodal Foundation Models.</li>
+      <li><strong>DevOps:</strong> AWS, Git, CI/CD, Docker</li>
+      <li><strong>Agile Development:</strong> Slack, JIRA, Google Workspace, Confluence, Weekly Sprints</li>
+    </ul>
   </div>
 
   <div class="jd-section">
@@ -227,7 +219,9 @@
 </footer>
 
 <script>
-  let currentLang = localStorage.getItem('kidooo_lang') || 'en';
+  const _isZhDomain = window.location.hostname.startsWith('zh.') || new URLSearchParams(window.location.search).get('lang') === 'zh';
+  if (_isZhDomain) localStorage.setItem('kidooo_lang', 'zh');
+  let currentLang = _isZhDomain ? 'zh' : (localStorage.getItem('kidooo_lang') || 'en');
   const T = {
     en: {
       'lang-btn':'中文','back-text':'All Openings','jd-tag':'Engineering',
@@ -286,7 +280,14 @@
     const labels = lang === 'zh' ? ['主页','使用教程','加入我们'] : ['Home','User Tutorial','Careers'];
     navLinks.forEach((a,i) => { if (labels[i]) a.textContent = labels[i]; });
   }
-  function toggleLang() { currentLang = currentLang==='en'?'zh':'en'; applyLang(currentLang); }
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('kidooo_lang', currentLang);
+    applyLang(currentLang);
+    const _u = new URL(window.location.href);
+    if (currentLang === 'zh') { _u.searchParams.set('lang', 'zh'); } else { _u.searchParams.delete('lang'); }
+    history.replaceState(null, '', _u.toString());
+  }
   function toggleMenu() { document.getElementById('hamburger').classList.toggle('open'); document.getElementById('mobile-menu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('hamburger').classList.remove('open'); document.getElementById('mobile-menu').classList.remove('open'); }
 </script>
